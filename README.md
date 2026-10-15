@@ -79,11 +79,27 @@ docker run --rm -v "$PWD":/repo -w /repo/ThemeCore swift:6.0-jammy swift test
 
 `scripts/contact_sheets.py` regenerates the two contact sheets from the Swift sources.
 
+## Unsigned IPA for manual SideStore testing
+
+With full Xcode installed and selected as the active developer directory:
+
+```bash
+bash scripts/build_ipa.sh
+```
+
+This builds Release for physical iPhones and writes `DerivedData/Artifacts/iPod-Playr-SideStore.ipa`.
+The archive excludes macOS metadata sidecars so SideStore sees exactly one app bundle in Payload.
+SideStore signs the IPA during manual installation. The build requires no local signing account;
+successful installation does not establish MusicKit service access or runtime correctness.
+No simulator or automated phone installation is used. Run the Foundation-only tests on the Mac
+with `swift test --package-path ThemeCore`; record phone observations in `BETA_TEST_LOG.md`.
+
 ## Project documents
 
 - `THEME_MIGRATION_STATUS.md`: per-item status of the Theme + Mode work.
-- `PHASE2_MAC_HANDOFF.md`: build, test, screenshot and device-check steps for the Mac phase.
-- `BETA_TEST_LOG.md`: template for logging issues found on the device.
+- `PHASE2_MAC_HANDOFF.md`: current prod-dev-team handoff for 16 October, covering the four beta fixes and acceptance checks.
+- `BETA_TEST_LOG.md`: actual device observations from 15 October.
+- `design/beta/2026-10-15/README.md`: saved screenshots, console/build logs, checksums and superseded plans.
 
 ## Acknowledgments & Credit
 

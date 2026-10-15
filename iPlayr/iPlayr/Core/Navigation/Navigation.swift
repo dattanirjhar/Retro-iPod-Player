@@ -121,7 +121,7 @@ enum Route: Hashable, Identifiable, Sendable {
 extension Route {
     var isFullScreen: Bool {
         switch self {
-        case .home, .music, .settings, .signIn, .theme,
+        case .home, .music, .settings, .signIn, .theme, .extras,
              .about, .brightness, .menuCustomization, .appearanceSetting(_), .info(_):
             return false
         case .playlists, .artists, .albums, .songs, .genres, .composers,

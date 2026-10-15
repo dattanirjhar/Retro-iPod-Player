@@ -1,0 +1,75 @@
+{
+  "captured_on": "2026-10-15",
+  "device": "iPhone 17",
+  "os": "iOS 27.0.1",
+  "files": [
+    {
+      "saved_path": "design/beta/2026-10-15/screenshots/01-coverflow-portrait.jpeg",
+      "original_filename": "CB02026A-B684-4FC4-9730-C295E7C6F115_4_5005_c.jpeg",
+      "sha256": "58497a7cbd470871718e5e4532e53fbb0a48ab579b76c82a4cfa9909226a5276",
+      "bytes": 30978,
+      "pixels": [
+        281,
+        610
+      ]
+    },
+    {
+      "saved_path": "design/beta/2026-10-15/screenshots/02-coverflow-landscape.jpeg",
+      "original_filename": "12866B72-BF5F-4081-AD5F-01BF72220019_4_5005_c.jpeg",
+      "sha256": "2bf67d2125618cad463c4ddf7a96ed65d82b4b3aafa826f921840cb4d565ace7",
+      "bytes": 33412,
+      "pixels": [
+        610,
+        281
+      ]
+    },
+    {
+      "saved_path": "design/beta/2026-10-15/screenshots/03-home-landscape.jpeg",
+      "original_filename": "BF58D9E3-ED45-4CDF-A512-E12DDB121081_4_5005_c.jpeg",
+      "sha256": "6504fdd9b942da753c4140ba08c7dd811bfe8ff05e2d59e614a6771d02fde9e0",
+      "bytes": 24918,
+      "pixels": [
+        610,
+        281
+      ]
+    },
+    {
+      "saved_path": "design/beta/2026-10-15/screenshots/04-home-portrait-minimal.jpeg",
+      "original_filename": "CA520CCA-5AD1-4666-BFD2-E0780DD56D63_4_5005_c.jpeg",
+      "sha256": "ae62c9569b75ed0a1045782149ab382fe490d125f6e2c912b59dfcc78cc04b96",
+      "bytes": 33886,
+      "pixels": [
+        281,
+        610
+      ]
+    },
+    {
+      "saved_path": "design/beta/2026-10-15/screenshots/05-home-portrait-classic.jpeg",
+      "original_filename": "4859EBA6-B640-423A-910A-0304917B07B7_4_5005_c.jpeg",
+      "sha256": "d9cba6b24751cadec0458e681c2ad4b2bbe481a35f4f85bbb830f8a184902bb5",
+      "bytes": 35228,
+      "pixels": [
+        281,
+        610
+      ]
+    },
+    {
+      "saved_path": "design/beta/2026-10-15/logs/console_20261015_202822_592.log",
+      "original_filename": "console_20261015_202822_592.log",
+      "sha256": "a452a68d3588cae5703244655bc43b1a86eee28a8e4ed0e8d79390d4f3804b26",
+      "bytes": 113206
+    },
+    {
+      "saved_path": "design/beta/2026-10-15/logs/xcode-release-build.log",
+      "original_filename": "build.log",
+      "sha256": "c7a266de7eb31b1937593b3a5bf2d49703c7b2726b9d757886b527b3e6c2b8b4",
+      "bytes": 1923
+    },
+    {
+      "saved_path": "design/beta/2026-10-15/logs/xcode-debug-analyze.log",
+      "original_filename": "iplayr-device-analyze.log",
+      "sha256": "f80e714ae6afb4ac7748c15dd6f9cb1b53dd6921ebf5d0caff743e45c0110d7b",
+      "bytes": 90803
+    }
+  ]
+}

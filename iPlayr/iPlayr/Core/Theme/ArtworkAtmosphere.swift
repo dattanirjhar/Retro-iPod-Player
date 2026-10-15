@@ -105,9 +105,15 @@ actor ArtworkPaletteExtractor {
 
         var counts = [Int](repeating: 0, count: k)
         for a in assignment { counts[a] += 1 }
-        let clusters = (0..<k).map { Cluster(mean: centroids[$0], count: counts[$0]) }
-            .filter { $0.count > 0 && $0.chroma >= 0.03 }
-            .sorted { Double($0.count) * $0.chroma > Double($1.count) * $1.chroma }
+        let populatedClusters: [Cluster] = (0..<k).map { index in
+            Cluster(mean: centroids[index], count: counts[index])
+        }
+        let chromaticClusters = populatedClusters.filter { $0.count > 0 && $0.chroma >= 0.03 }
+        let clusters = chromaticClusters.sorted { lhs, rhs in
+            let leftScore = Double(lhs.count) * lhs.chroma
+            let rightScore = Double(rhs.count) * rhs.chroma
+            return leftScore > rightScore
+        }
 
         guard let first = clusters.first else { return nil }
         let second = clusters.dropFirst().first { OKLCH.hueDistance($0.hue, first.hue) >= 30 }

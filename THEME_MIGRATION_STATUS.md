@@ -1,8 +1,15 @@
 # Theme + Mode migration status
 
+**Current product handoff:** [16 October prod-dev-team fix plan](PHASE2_MAC_HANDOFF.md).
+The 15 October device beta reported four issues: iPod heading, broken Cover Flow in both immersive
+settings, landscape wheel alignment, and wheel size. See [observations](BETA_TEST_LOG.md) and
+[saved evidence](design/beta/2026-10-15/README.md). This file retains the technical history below;
+the current handoff replaces the earlier simulator plan and pending-first-launch checklist.
+
 Phase 1 (Linux) status as of 2026-10-15 15:50 IST. Every item was verified against the files, the Linux
 SwiftPM build and tests (Swift 6.0.3 in `swift:6.0-jammy`), and the regenerated contact sheets.
-Nothing SwiftUI has been compiled; that is Phase 2 on the Mac tonight.
+At that point no SwiftUI had been compiled. This table is the historical Phase 1 snapshot;
+see the Phase 2 results below for the current Mac verification status.
 
 | # | Item | Status | Evidence | What remains |
 | --- | --- | --- | --- | --- |
@@ -34,10 +41,49 @@ None in constants. Two implementation notes:
 The project was never a git repository, so no per-item commits existed before this recovery. The repository was
 initialised during recovery; Phase 1 work is committed as a baseline and every change from here on is committed per item.
 
-## Phase 2 (Mac, tonight)
+## Phase 2 results — 2026-10-15, Mac and manual SideStore workflow
 
-1. Xcode build, zero errors, no new warnings; fix anything Linux could not see (SwiftUI, main-actor isolation, Material).
-2. Add the `iPlayrTests` Unit Testing Bundle, attach `iPlayr/iPlayrTests/ThemeSystemTests.swift`, run it.
-3. 390 pt simulator screenshots: 20 themes × Dark and Light, two 5 × 4 grids.
-4. Now Playing for themes 17, 18 and 20 in both modes.
-5. Device checks: picker preview / confirm / cancel; theme / mode independence; relaunch persistence; migration; identical touch behaviour on Classic and Minimal; the 90 ms press feel; Reduce Motion, Reduce Transparency, Increase Contrast.
+Environment: Apple silicon, macOS 27.0.1, Xcode 27.0 (27A266a), iOS 27.0 SDK.
+Target phone: iPhone 17 on iOS 27.0.1. The user installs through SideStore and captures
+screenshots manually. No simulator was launched and no app was installed on a phone by automation.
+
+- **Passed:** all 13 ThemeCore XCTest tests on the Mac, including the 540 contrast checks.
+  Command: `swift test --package-path ThemeCore --scratch-path /private/tmp/iplayr-xcode27-tests`.
+- **Passed:** Release build for `generic/platform=iOS`, signing disabled.
+- **Passed:** Xcode Analyze action for the Debug configuration on `generic/platform=iOS`.
+  This checks compilation/analysis; it does not execute the app or its iOS tests.
+- **Fixed build blockers:** `UserDefaultsKeys` now conforms to `Sendable`; `MusicLibraryStore`
+  explicitly imports Foundation; `.extras` belongs to the split-screen navigation routes;
+  artwork cluster ranking uses smaller typed expressions the Swift compiler can check.
+- **Fixed bundle configuration:** background audio is declared as an array in `Info.plist`.
+  The previous generated build setting did not appear in the built app's metadata.
+- **Packaged:** `DerivedData/Artifacts/iPod-Playr-SideStore.ipa`, version 1.0 (1), arm64 device
+  executable, minimum iOS 17.0. ZIP integrity, Payload layout, music privacy description, and
+  background audio metadata verified. It contains no provisioning profile or code signature;
+  SideStore must sign it. Rebuild with `bash scripts/build_ipa.sh`.
+- **Packaging correction after the first device attempt:** SideStore 0.7.0 rejected the original
+  `iPod-Playr-unsigned.ipa` twice during DownloadAppOperation, before signing. That archive
+  contained nine AppleDouble metadata entries, including `Payload/._iPlayr.app`. The parser in
+  the installed SideSign revision (`a731c0d5`) selects the first Payload entry whose name ends
+  in `.app`, without checking that it is a directory, so the sidecar is a plausible cause of
+  the invalidApp result. The corrected IPA contains zero metadata entries and exactly one
+  `.app` candidate; the executable and app resources are byte-identical to the original.
+  `build_ipa.sh` now suppresses resource/xattr metadata and rejects ambiguous candidates.
+  Subsequent user-supplied screenshots and beta feedback establish that the app launched on the
+  phone. No successful installer console was supplied. The observed Cover Flow layout defect
+  is documented separately from the earlier archive-import failure.
+- **Warnings observed on first compilation:** ten legacy app-icon images are unassigned in
+  the asset catalog; App Intents metadata extraction is skipped because the app has no
+  AppIntents dependency. Neither prevented the build. They remain unresolved.
+- **Not run:** the five app-module tests in `iPlayrTests/ThemeSystemTests.swift`. The Xcode
+  project still has no test target; these tests require an iOS test host and cannot execute
+  through the user's ordinary SideStore install. The native SwiftPM suite is the executed suite.
+- **Device beta update:** five screenshots saved; the user reports that other tested use works
+  fine and explicitly requests four fixes for tomorrow. Individual migration, accessibility,
+  background-playback and full-theme checks were not separately reported. The current handoff
+  defines the focused follow-up; the former 40-theme screenshot checklist is not a new gate.
+
+This build fixes compilation and packaging only. The reviewed queue-window limit, album-title
+grouping, light-atmosphere progress contrast, and immersive track-selection gaps remain open.
+No application source, build configuration or IPA was modified during the later documentation-only
+handoff pass. Existing uncommitted Phase 2 changes remain in the working tree for the team to review.

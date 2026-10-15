@@ -1,156 +1,173 @@
-# Phase 2 handoff: Mac build, verification, and beta IPA
+# Beta handoff for prod-dev-team — 16 October 2026
 
-For the team picking this up on a Mac. Everything below is self-contained; you do not need the
-history of how Phase 1 was done. Read `THEME_MIGRATION_STATUS.md` for the per-item status and
-`README.md` for what the app is.
+Prepared from the user's 15 October 2026 beta session on an iPhone 17 running iOS 27.0.1.
+This is the current plan and acceptance checklist. It replaces the earlier Mac setup/simulator
+plan and the empty device checklist. Their previous versions are preserved in the
+[evidence archive](design/beta/2026-10-15/archive/).
 
-## 1. Where things stand
+## Direction from the user
 
-- **App:** iPlayr, a SwiftUI + MusicKit iPod recreation. Xcode project at `iPlayr/iPlayr.xcodeproj`,
-  Swift 6 language mode, iOS 17.0 deployment target, iPhone only.
-- **Phase 1 (done on Linux, no Xcode):** a fixed two-choice theme system, THEME (20 presets) × MODE
-  (Dark / Light). The theme logic lives in `iPlayr/iPlayr/Core/Theme/ThemeCore/` (Foundation only)
-  and was compiled and unit-tested with the Linux Swift 6.0.3 toolchain through the SwiftPM package
-  in `ThemeCore/`. All 13 tests pass, including 540 contrast assertions across 20 themes × 2 modes.
-- **Never compiled yet:** every SwiftUI and UIKit file. Phase 1 could only check them statically.
-  Expect the first Xcode build to surface a handful of diagnostics; §4 lists where to look first.
-- **Reference visuals:** `design/contact-dark.png` and `design/contact-light.png` are Pillow
-  renders of the 20 themes from the Swift constants. They are the intended look, not app output.
+**Document the findings now. Apply the fixes tomorrow.** No app code, layout, preferences, theme
+constants or IPA was changed or rebuilt while preparing this handoff.
 
-Repository notes:
-- `ThemeCore/Sources/ThemeCore` is a **symlink** to `iPlayr/iPlayr/Core/Theme/ThemeCore`. Git
-  preserves it on macOS. Do not replace it with a copy; the point is that Xcode and SwiftPM compile
-  the same files.
-- The project uses Xcode's folder-synchronised groups, so any `.swift` under `iPlayr/iPlayr/` is
-  compiled automatically. `iPlayr/iPlayrTests/` is *outside* that folder on purpose (see §5).
+The user reports that the rest of their tested use is working fine. Keep the next pass focused on
+these four issues. Cover Flow is unusable enough that the user intends to deactivate or avoid it
+while using the app. That is the user's temporary workaround; no feature flag or removal has been
+implemented. The Immersive Mode setting changes presentation and does not disable Cover Flow itself.
 
-## 2. Environment
+## Current build and verification
 
-- Xcode with the iOS 27 SDK (the target device is an iPhone 17e on iOS 27). Xcode 16 builds the
-  code, but running on that device needs the matching SDK.
-- An Apple Developer account for device signing.
-- Enable **Developer Mode** on the iPhone (Settings › Privacy & Security › Developer Mode).
-- An Apple Music subscription on the device; the app has no content without one.
+- App version: 1.0 (1), built from baseline `679be9b` plus uncommitted Phase 2 fixes.
+- Tools: Xcode 27.0 (27A266a), iOS 27.0 SDK, Apple silicon Mac on macOS 27.0.1.
+- Device: iPhone 17, iOS 27.0.1; user manually signs/installs through SideStore with a free Apple ID.
+- Delivered artifact: `DerivedData/Artifacts/iPod-Playr-SideStore.ipa`.
+- Corrected IPA SHA-256: `7df9fbca27c8b23cd8914079addd5bbd9206b71df804296a570a003d1d0c8de3`.
+- Earlier verification: 13 native Mac ThemeCore tests passed, including 540 contrast checks;
+  Release iPhone compilation and Debug Analyze passed. These do not validate visual layout.
+- The supplied screenshots establish that the app launched and reached populated app screens.
+  The user reports other tested functionality working. This is not an itemized pass for every
+  background playback, migration, accessibility or persistence scenario.
+- The five iOS app-module tests still have no configured Xcode test target and were not run.
+- No simulator testing or automated phone installation was performed. Continue using Mac tests
+  plus manual phone installation/screenshots for this work.
 
-## 3. First build
+## Issues to fix
 
-1. Clone, then `open iPlayr/iPlayr.xcodeproj`.
-2. Target iPlayr › Signing & Capabilities: set **your** team. The committed project carries the
-   original author's team id (`5H8M2557R8` in `project.pbxproj`) and bundle id `com.kerem.iPlayr`;
-   change the bundle id if your team cannot sign it.
-3. In the Developer portal, the App ID must have the **MusicKit** app service enabled
-   (Identifiers › your App ID › App Services › MusicKit). Without it, library requests fail at
-   runtime even though the build succeeds. `NSAppleMusicUsageDescription` is already set in the
-   target's build settings.
-4. Build for a simulator first (⌘B), then for the device.
+### BETA-01 — Home heading must read iPod (P2)
 
-Command-line equivalent for a fast diagnostic pass without signing:
+**Observed:** The simulated screen's top-left home heading says `iPlayr` in the landscape and
+portrait home screenshots.
 
-```bash
-xcodebuild -project iPlayr/iPlayr.xcodeproj -scheme iPlayr \
-  -destination 'generic/platform=iOS Simulator' -configuration Debug \
-  CODE_SIGNING_ALLOWED=NO build 2>&1 | grep -E 'error|warning:' | sort -u
-```
+**Requested:** Change that visible heading to exactly `iPod` in both orientations and all themes.
+This request concerns the in-app heading; it does not request renaming Swift symbols, the project,
+MusicKit identifiers, bundle identifiers or the repository. The installed display name is already iPod.
 
-Goal: zero errors, no new warnings. Record any fixes in `THEME_MIGRATION_STATUS.md` under the item
-they belong to and commit per item (`theme: J …`).
+**Evidence:** [03 landscape](design/beta/2026-10-15/screenshots/03-home-landscape.jpeg),
+[04 minimal portrait](design/beta/2026-10-15/screenshots/04-home-portrait-minimal.jpeg),
+[05 classic portrait](design/beta/2026-10-15/screenshots/05-home-portrait-classic.jpeg).
 
-## 4. Where the first build is most likely to complain
+**Code entry point:** `iPlayr/iPlayr/Screens/Home/HomeListView.swift`, the `StatusBar` title.
 
-These are the spots Phase 1 could not compile. None is expected to be deep; most are one-line fixes.
+### BETA-02 — Cover Flow does not fit or align with its viewport (P1)
 
-| File | What to check |
-| --- | --- |
-| `Components/iPodButtons.swift` | `WheelLook.init(theme:)` reads `ThemeSpec` only (value type), so it needs no actor isolation; `iPlayrButtons.body` builds `WheelGeometry` and `WheelLook` inside the `GeometryReader` closure. `WheelPaintLayer.sectorPath` builds a `Path` from `WheelGeometry.sectorOutline`. The two `Task { @MainActor in … }` closures capture the view; same pattern as elsewhere in the app. |
-| `Screens/Theme/ThemeView.swift` | `ThemePickerView.Row` is a private `Identifiable` enum driving `ForEach(rows)` with a `switch` in the builder. `ChoiceRow` takes `AnyView?` for its swatch. `ModeSwatch` calls `InterfaceTokens.resolve` in its body. |
-| `Screens/Player/PlayerView.swift` | `platter<Content: View>(@ViewBuilder _:)` with `.background(_:in:)` and `.ultraThinMaterial`; `.animation(_, value: atmosphereSpec)` relies on `AtmosphereSpec: Hashable`; `.task(id:)` keyed on a string. |
-| `Core/Theme/ArtworkAtmosphere.swift` | `actor ArtworkPaletteExtractor` with `static` helpers; `pixels.withUnsafeMutableBytes` feeding `CGContext(data:)`; `Artwork.url(width:height:)` and `URLSession.shared.data(from:)`. |
-| `Core/Managers/AppleMusic/AppleMusicManager.swift` | `enqueue<Item: PlayableMusicItem>` passing `[Track]` and `[Song]` to `ApplicationMusicPlayer.Queue(for:startingAt:)`. If `Track` does not satisfy the constraint in this SDK, split into two overloads. |
-| `Screens/Settings/AboutView.swift` | `async let` on a locally bound `MusicLibraryStore` inside a `taskAfterNavigation` closure. |
-| `Core/Theme/Theme.swift` | `ThemeManager.init` persists then deletes legacy keys; `preview(theme:)` / `preview(mode:)` are overloads by label. |
-| `Core/Theme/ThemeCore/WheelGeometry.swift` | Uses `CGPoint` / `CGFloat` via Foundation. On Apple platforms this resolves through CoreGraphics automatically. |
-| `Components/StatusBar.swift` | `BatteryIconView(level:ink:)` is the new signature; `Color.hex` is defined in `Core/Theme/ColorMath+SwiftUI.swift`. |
+**User report:** Cover Flow is completely misaligned with Immersive Mode both **On and Off**.
+Treat both presentations as affected, and test both portrait and landscape. This is a layout
+failure, broader than the previously documented lack of tappable immersive track rows.
 
-If Swift 6 strict concurrency flags a view-struct capture in a `Task`, prefer binding the needed
-`@Environment` object to a `let` before the `Task` over loosening the isolation.
+**Visible evidence:**
 
-## 5. Tests in Xcode
+- [01 portrait](design/beta/2026-10-15/screenshots/01-coverflow-portrait.jpeg): the selected Sonny & Cher
+  cover is displaced towards the right and cut off. Album text and the bottom Play control are
+  also clipped at the right edge. The carousel is not centered in the visible viewport.
+- [02 landscape](design/beta/2026-10-15/screenshots/02-coverflow-landscape.jpeg): the carousel is low
+  in the viewport and the covers are cut off at the bottom. The album details and bottom controls
+  are not visible in the captured frame. The exit control is visible near the upper right.
 
-The test file exists but there is no test target yet.
+The exact Immersive Mode setting was not recorded per image. The full-phone controls suggest
+an immersive presentation, but do not use that inference to dismiss the user's explicit report
+that both settings fail. There is no separate screenshot conclusively labeled as the Off state.
 
-1. File › New › Target › **Unit Testing Bundle**, name it exactly `iPlayrTests`, host app iPlayr.
-2. Delete the generated template test file.
-3. Add `iPlayr/iPlayrTests/ThemeSystemTests.swift` to that target (Target Membership: iPlayrTests only).
-4. Run ⌘U. Expected: all tests pass, including the 540-assertion contrast sweep.
+**Reproduction for tomorrow:** Open Music → Cover Flow (or a configured Cover Flow shortcut).
+Start in portrait, browse a few albums, then rotate. Repeat with Settings → App Settings →
+Immersive Mode Off and On. Open Tracks and return to covers; start playback and return; exit to
+the home menu. Record which state and orientation each screenshot shows.
 
-The same assertions already pass on Linux (`cd ThemeCore && swift test`); if a test fails only in
-Xcode, the difference is the environment, not the constants. Do not change a constant to make a test
-pass; record the exact pair and ratio in the status file instead.
+**Expected:** The selected cover is centered and readable; titles and controls remain inside the
+available viewport and safe areas. The embedded presentation stays within the simulated screen;
+the immersive presentation fits the phone. Neighboring covers may intentionally extend beyond
+carousel edges, but the selected cover and actionable controls must remain usable.
 
-## 6. Screenshot grids (20 themes × 2 modes)
+**Read-only code map / investigation leads (not diagnosed causes):**
 
-Use a simulator whose logical width is 390 pt (iPhone 16 / 17 base models). For each theme in gallery
-order (the order in `ThemeTable.all`), open the app's main menu and capture one screenshot in Dark
-and one in Light. Change theme and mode in the app: Settings › App Settings › Theme / Mode.
+- `Screens/CoverFlow/CoverFlowView.swift`: outer GeometryReader, carousel positioning, available
+  content height, album info, immersive controls, and the scaled/blurred backdrop.
+- `Screens/CoverFlow/AlbumCover.swift`: nested geometry and the relationship between the dynamic
+  cover size and the expanded track-list frame.
+- `Screens/CoverFlow/CoverFlowMetrics.swift`: fixed 180-point item step, 300-point expanded size,
+  and 160-point base size alongside dynamically sized covers.
+- `Screens/CoverFlow/SongListView.swift`: track-list layout and selection.
+- `Screens/Main/MainScreen.swift`: full-phone immersive overlay and the hardware layout.
+- `Components/iPlayrScreen.swift`: embedded viewport and navigation layers, including the fixed
+  300-point simulated screen height.
 
-Capture from the command line while the simulator is booted:
+Paths above are relative to `iPlayr/iPlayr/`. Inspect the full parent/child size chain and safe-area
+behavior. The screenshots establish the symptom; they do not establish the root cause.
 
-```bash
-mkdir -p design/shots
-xcrun simctl io booted screenshot design/shots/01-silverClassic-dark.png
-```
+### BETA-03 — Move the landscape click wheel farther right (P2)
 
-Name files `NN-themeId-mode.png` (NN = 01…20, mode = dark|light). Then assemble:
+**Observed/requested:** In [03 landscape](design/beta/2026-10-15/screenshots/03-home-landscape.jpeg),
+the wheel sits too far inward for the user's preference. Move it toward the right/end of the phone.
+Keep it vertically balanced and allow safe clearance for the screen, bezel and phone edge.
 
-```bash
-python3 scripts/make_grid.py design/shots dark  design/grid-dark.png
-python3 scripts/make_grid.py design/shots light design/grid-light.png
-```
+**Code entry point:** `iPlayr/iPlayr/Screens/Main/MainScreen.swift`, landscape `deviceLayout`.
+The current centered HStack places the screen and a separately constrained wheel container side by
+side. Evaluate the container placement as well as the painted wheel; validate both landscape rotations.
 
-Compare each cell with the same cell in `design/contact-dark.png` / `contact-light.png` and with the
-reference gallery image. Flag any theme where the selected row is hard to spot at arm's length, or
-where a light screen visually merges with a light body (the 6 pt bezel should prevent this).
+No exact inset or point offset has been requested. Do not derive physical points from the supplied
+610 × 281 JPEG, which is a scaled image rather than an original-resolution device screenshot.
 
-Also capture Now Playing for themes 17 (Modern Album Glow), 18 (Midnight Studio) and 20 (Liquid
-Glass) in both modes with a track playing, so the artwork atmosphere is visible.
+### BETA-04 — Slightly enlarge the click wheel (P2)
 
-## 7. Device checks (iPhone 17e, iOS 27)
+**User report:** The wheel feels too small. Increase it slightly. Treat this as a general sizing
+request and verify portrait and landscape, including Classic and Minimal styles.
 
-- [ ] Theme picker: scrolling the wheel over a row previews it on the whole device; centre confirms;
-      MENU restores the saved theme; the tick marks the saved theme.
-- [ ] Mode picker: same three behaviours.
-- [ ] Changing Theme never changes Mode, and vice versa.
-- [ ] Theme and Mode survive a force-quit and relaunch.
-- [ ] Migration: install a build that writes the old keys, or seed `UserDefaults` with
-      `presetId = "custom"`, `bodyColor = "#287EB8"`, `interfaceAppearance = "retroLcd"`; the app
-      must open as Nano Blue, Dark, and the old keys must be gone afterwards.
-- [ ] Tap, centre press, scroll and long-press behave identically on a Classic theme (Silver
-      Classic) and a Minimal theme (Liquid Glass).
-- [ ] The 90 ms press highlight on the wheel sectors and centre feels right.
-- [ ] Reduce Motion: atmosphere swaps instantly. Reduce Transparency: the Now Playing platter is
-      solid. Increase Contrast: atmosphere off, muted text brighter.
-- [ ] Battery glyph tints `#E5484D` below 20%.
-- [ ] Playback, Cover Flow and non-visual settings behave as before (they were not meant to change).
+**Evidence:** [03 landscape](design/beta/2026-10-15/screenshots/03-home-landscape.jpeg),
+[04 minimal portrait](design/beta/2026-10-15/screenshots/04-home-portrait-minimal.jpeg),
+[05 classic portrait](design/beta/2026-10-15/screenshots/05-home-portrait-classic.jpeg).
 
-## 8. Beta IPA
+**Code entry points:** `Components/iPodButtons.swift` computes wheel diameter as the smaller of
+62%/68% of its container width and its available height minus slop. In landscape, that width is
+already constrained by `Screens/Main/MainScreen.swift`. `Core/Theme/ThemeCore/WheelGeometry.swift`
+provides the hit map. Size and placement should be evaluated together.
 
-Simplest for a single test phone: run from Xcode directly onto the device (⌘R) with automatic
-signing. For a shareable file: Product › Archive › Distribute App › **Debugging** (development) or
-**Release Testing** (ad hoc), export, and install the `.ipa` with Apple Configurator or Finder.
-A development-signed IPA runs only on devices registered to the team.
+No exact percentage or diameter is approved. Preserve the circular shape, center-button proportions,
+labels, ring slop and style-independent hit map. Check touch behavior after resizing; a larger paint
+layer alone would not satisfy the request if its input geometry no longer matches.
 
-Log everything you find in `BETA_TEST_LOG.md`.
+## Tomorrow's implementation and acceptance checklist
 
-## 9. Known gaps not caused by Phase 1 (do not fix tonight; log if they bite)
+All items below are **pending**. The team should implement during the next development session;
+this document is not evidence that the changes have been made.
 
-- In immersive Cover Flow the track list is viewable but its rows are not tappable, so Play starts
-  from track 1.
-- Cover Flow's own screen still uses a blurred-artwork backdrop (pre-existing); the theme system does
-  not touch it.
-- The colour pickers are gone by design; themes are fixed presets.
+- [ ] Reproduce BETA-02 in all four combinations: Immersive On/Off × portrait/landscape.
+- [ ] Fix Cover Flow framing/centering, including safe areas, titles, controls and expanded tracks.
+- [ ] Verify album browsing, Tracks/Covers, playback return, exit, and orientation changes in each combination.
+- [ ] Change the home heading to iPod; check it in portrait and landscape across representative themes.
+- [ ] Move the landscape wheel toward the right end, keeping safe margins in both rotations.
+- [ ] Slightly enlarge the wheel in both orientations; review Classic and Minimal styles together.
+- [ ] Confirm scroll, SELECT, MENU, hold MENU, transport, seek, volume, haptics and clicker remain usable.
+- [ ] Run `swift test --package-path ThemeCore` and physical-device compilation/analysis; record exact results.
+- [ ] Build a new IPA using `bash scripts/build_ipa.sh`; give it a distinct build number or filename so
+      the user can identify the next candidate. Preserve the metadata-free SideStore packaging check.
+- [ ] Hand the new IPA to the user for manual SideStore installation and before/after screenshots.
+- [ ] Obtain the user's review of wheel size/right alignment and Cover Flow's corrected appearance.
 
-## 10. Reporting back
+The user will collect screenshots manually. Do not add simulator runs or automated phone deployment
+as requirements. The full 40-theme screenshot matrix from the old plan is not a gate for this focused
+fix pass; prioritize the supplied failing layouts and representative theme styles.
 
-Fill the Phase 2 section at the bottom of `THEME_MIGRATION_STATUS.md` with: build output, test
-output, both grids, Now Playing shots, any mismatch against the reference image, and anything still
-unverified. Commit per checklist item.
+## Logs and prior installation issue
+
+[Evidence index](design/beta/2026-10-15/README.md) · [Observed issue log](BETA_TEST_LOG.md) ·
+[Technical migration history](THEME_MIGRATION_STATUS.md).
+
+The preserved SideStore console is an **installer log**, not an app runtime/crash log. It records
+the original IPA failing at 20:28:52 and 20:29:06 with `SideStore.OperationError`, code 2, during
+DownloadAppOperation. The original archive included `Payload/._iPlayr.app`, which SideStore's parser
+could mistake for the app. The corrected archive removed those metadata sidecars and passed archive
+checks. Subsequent screenshots show a usable installed app, but no successful installation console
+or Cover Flow runtime trace has been supplied. Do not attribute Cover Flow's layout failure to the
+old signing/import error.
+
+Saved evidence includes all five original supplied JPEG files, the original SideStore console,
+available Xcode Release/Analyze logs, their SHA-256 manifest, and the superseded handoff/checklist.
+Original file bytes are preserved. Screenshot times visible in the status bar are around 20:37–20:40;
+the exported JPEGs are 281 × 610 or 610 × 281, not native-resolution captures.
+
+## Scope held for later
+
+The user says the remaining tested behavior is fine. Earlier code-review concerns about bounded
+song queues, album-title grouping, light-atmosphere contrast and immersive track tapping remain
+separate backlog items, not newly reproduced failures from this session. Do not silently expand
+this four-issue pass into those changes. Accessibility settings, full theme coverage and migration
+were not individually reported as tested; retain that distinction when reporting confidence.

@@ -1,4 +1,4 @@
-public enum UserDefaultsKeys: String {
+public enum UserDefaultsKeys: String, Sendable {
     case themeId = "themeId"
     case mode = "mode"
 

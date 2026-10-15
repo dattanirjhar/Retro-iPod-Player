@@ -1,0 +1,1502 @@
+2026-10-15T20:28:22.594 [D]: ===================================================
+2026-10-15T20:28:22.594 [D]: |               App is Starting up                |
+2026-10-15T20:28:22.594 [D]: ===================================================
+2026-10-15T20:28:22.594 [D]: | Console Logger started capturing output streams |
+2026-10-15T20:28:22.594 [D]: ===================================================
+2026-10-15T20:28:22.594 [D]: |   Version 0.7.0-20260911.328+6032424a (0700)    |
+2026-10-15T20:28:22.594 [D]: ===================================================
+2026-10-15T20:28:22.594 [D]: |            15 Oct 2026 at 8:28:22 PM            |
+2026-10-15T20:28:22.594 [D]: ===================================================
+
+2026-10-15T20:28:22.595 [D]: [SideSign] setLogging(false) invoked
+2026-10-15T20:28:22.595 [D]: [SideSign] setLogging(false) completed
+2026-10-15T20:28:22.595 [D]: [SideStore] minimuxerSetLogging(enabled) invoked
+2026-10-15T20:28:22.595 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:28:22.595 [D]: [IdeviceGateway] invalidateConnection() called - clearing stale adapter and handshake
+2026-10-15T20:28:22.595 [D]: [IdeviceGateway] setLogging(false) called
+2026-10-15T20:28:22.596 [D]: [SideStore] minimuxerSetLogging(enabled) completed
+2026-10-15T20:28:22.598 [D]: Starting DatabaseManager...
+2026-10-15T20:28:22.598 [D]: [AppDelegate] Boot sequence starting...
+2026-10-15T20:28:22.598 [D]: [AppBootManager] performBootSequence() entered
+2026-10-15T20:28:22.598 [D]: [AppBootManager] performBootSequence(): Minimuxer check starting
+2026-10-15T20:28:22.598 [D]: [AppBootManager] performBootSequence(): JIT check starting
+2026-10-15T20:28:22.598 [D]: [SideJITManager] resolveServerURL: attempting Bonjour auto-discovery for type='_http._tcp', prefix='SideJITServer' (timeout: 2.0s)
+2026-10-15T20:28:22.599 [D]: [BonjourDiscovery] resolveFirstService: starting NWBrowser for type='_http._tcp', namePrefix='SideJITServer', domain=nil (timeout: 2.0s)
+2026-10-15T20:28:22.599 [D]: [AppBootManager] startMinimuxer() entered
+2026-10-15T20:28:22.599 [D]: [SideStore] bindTunnelConfig() invoked
+2026-10-15T20:28:22.600 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:28:22.600 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:22.602 [D]: [AppDelegate] Current image cache size: 23 kB
+2026-10-15T20:28:22.604 [D]: [minimuxer] [iface] total: 7
+2026-10-15T20:28:22.605 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:62078 (protocol: .unknown) -> unreachable
+2026-10-15T20:28:22.605 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:22.605 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:22.605 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 7
+  • probable-vpn host: nil
+  • probable-vpn mask: nil
+  • probable-vpn destination gateway IP: nil
+  • probable-vpn derived peer IP: nil
+  • probable-vpn derived peer mask: nil
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:22.605 [D]: [IdeviceGateway] setDeviceEndpointIp(nil) called
+2026-10-15T20:28:22.605 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already nil, skipping invalidation
+2026-10-15T20:28:22.605 [D]: [SideStore] bindTunnelConfig() completed
+2026-10-15T20:28:22.605 [D]: [SideStore] minimuxerStart(pairingFile) invoked
+2026-10-15T20:28:22.605 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:28:22.606 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:22.608 [D]: [IdeviceGateway] start() called, pairingFileContent length: 9887
+2026-10-15T20:28:22.608 [D]: [IdeviceGateway] cleanup() called
+2026-10-15T20:28:22.609 [D]: [BonjourDiscovery] resolveFirstService: browser stateUpdate -> ready
+2026-10-15T20:28:22.610 [D]: [SceneDelegate] scene(willConnectTo:) invoked
+2026-10-15T20:28:22.610 [D]: [SideStore] minimuxerStart(pairingFile) completed
+2026-10-15T20:28:22.610 [D]: [AppBootManager] startMinimuxer(): Minimuxer fetchUDID() based connection starting...
+2026-10-15T20:28:22.610 [D]: [SideStore] fetchUDID() invoked
+2026-10-15T20:28:22.610 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:28:22.610 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:22.610 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: nil, handshake: nil
+2026-10-15T20:28:22.610 [D]: [IdeviceGateway] ensureRPConnection() failed because deviceEndpointIp is nil
+2026-10-15T20:28:22.610 [D]: [IdeviceGateway] fetchUDID() ensureRPConnection failed with error: Device endpoint IP is not available.
+2026-10-15T20:28:22.610 [D]: [SideStore] fetchUDID() completed
+2026-10-15T20:28:22.610 [D]: [AppBootManager] startMinimuxer(): Minimuxer fetchUDID() based connection test SUCCEEDED. UDID: nil
+2026-10-15T20:28:22.610 [D]: [AppBootManager] startMinimuxer() exited
+2026-10-15T20:28:22.611 [D]: [AppBootManager] performBootSequence(): Minimuxer check completed
+2026-10-15T20:28:22.611 [D]: [LaunchViewController] viewDidLoad()
+2026-10-15T20:28:22.612 [D]: [SplashView] init — splash screen presented
+2026-10-15T20:28:22.613 [D]: [minimuxer] [iface] total: 7
+2026-10-15T20:28:22.614 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> unreachable
+2026-10-15T20:28:22.614 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:22.614 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:22.614 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 7
+  • probable-vpn host: nil
+  • probable-vpn mask: nil
+  • probable-vpn destination gateway IP: nil
+  • probable-vpn derived peer IP: nil
+  • probable-vpn derived peer mask: nil
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:22.614 [D]: [IdeviceGateway] setDeviceEndpointIp(nil) called
+2026-10-15T20:28:22.614 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already nil, skipping invalidation
+2026-10-15T20:28:22.614 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:22.614 [D]: [minimuxer] minimuxer not ready: no network connection
+2026-10-15T20:28:22.614 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15 20:28:22.620 SideStore[69585:9769152] Could not load the "Browse" image referenced from a nib in the bundle with identifier "com.SideStore.SideStore.MMFMUA9BSU"
+2026-10-15T20:28:22.633 [D]: LaunchViewController.viewDidAppear() invoked
+2026-10-15T20:28:22.633 [D]: [SplashView] status: Starting…
+2026-10-15T20:28:22.634 [D]: [SceneDelegate] sceneDidBecomeActive() invoked
+2026-10-15T20:28:22.635 [D]: [AppDelegate] Checking for SideBackup log in group 'group.com.SideStore.SideStore.MMFMUA9BSU' at: /private/var/mobile/Containers/Shared/AppGroup/35A5C920-4B5A-4BAE-916D-40B86C861134/Logs/SideBackup.log
+2026-10-15T20:28:22.645 [D]: [CertificateManager] loadActiveCertificate: Successfully loaded certificate (serial: 3A61AB49511982E56108D04BD65D8A23).
+2026-10-15T20:28:22.647 [D]: [CertificateManager] readBinaryCertificate: Found 3 certificate(s) in Mach-O chain.
+2026-10-15T20:28:22.648 [D]: [CertificateManager] readBinaryCertificate: Extracted leaf signing certificate from Mach-O (SideStore)
+2026-10-15T20:28:22.648 [D]: [CertificateManager] getSigningCertificate: Loaded signing certificate from main bundle Mach-O (serial: 3A61AB49511982E56108D04BD65D8A23).
+2026-10-15T20:28:22.651 [D]: [DatabaseManager] reconcileSelfFromSelfBinary: Started for 'SideStore' (com.SideStore.SideStore.MMFMUA9BSU).
+2026-10-15T20:28:22.653 [D]: [CertificateManager] readBinaryCertificate: Found 3 certificate(s) in Mach-O chain.
+2026-10-15T20:28:22.654 [D]: [CertificateManager] readBinaryCertificate: Extracted leaf signing certificate from Mach-O (SideStore)
+2026-10-15T20:28:22.654 [D]: [CertificateManager] getSigningCertificate: Loaded signing certificate from main bundle Mach-O (serial: 3A61AB49511982E56108D04BD65D8A23).
+2026-10-15T20:28:22.654 [D]: [CertificateManager] saveX509Certificate started for serial: 3A61AB49511982E56108D04BD65D8A23
+2026-10-15T20:28:22.654 [D]: [CertificateManager] derData exists, size: 1473
+2026-10-15T20:28:22.675 [D]: [CertificateManager] Successfully saved der to keychain
+2026-10-15T20:28:22.675 [D]: [CertificateManager] saveX509Certificate completed for serial: 3A61AB49511982E56108D04BD65D8A23
+2026-10-15T20:28:22.675 [D]: [DatabaseManager] reconcileSelfFromSelfBinary: Completed
+  • name: 'SideStore'
+  • bundleID: 'com.SideStore.SideStore'
+  • version: '0.7.0-20260911.328+6032424a'
+  • buildVersion: '0700'
+  • refreshedDate: 2026-10-04 14:30:11 +0000
+  • expirationDate: 2026-10-11 14:30:11 +0000
+  • installCertSerial: '3A61AB49511982E56108D04BD65D8A23'
+  • binaryCertSerial: '3A61AB49511982E56108D04BD65D8A23'
+  • binaryCertStatus: valid(isCrossSigned: false)
+
+2026-10-15T20:28:22.679 [D]: Started DatabaseManager.
+2026-10-15T20:28:22.679 [D]: Reconciling any staged drafts started...
+2026-10-15T20:28:22.679 [D]: [AppDelegate] reconcileSelfReinstallation: No staged self-reinstall metadata file found at /private/var/mobile/Containers/Shared/AppGroup/35A5C920-4B5A-4BAE-916D-40B86C861134/StagedSelfReinstall.json.
+2026-10-15T20:28:22.679 [D]: Reconcile any staged drafts completed.
+2026-10-15T20:28:22.679 [D]: [SplashView] status: Loading apps…
+2026-10-15T20:28:22.681 [D]: [ScheduleExpirationWarningNotificationOperation] execute() started
+2026-10-15T20:28:22.681 [D]: [ScheduleExpirationWarningNotificationOperation] executePreconditionCheck() started
+2026-10-15T20:28:22.682 [D]: [ScheduleExpirationWarningNotificationOperation] executePreconditionCheck() completed
+2026-10-15T20:28:22.689 [D]: [ScheduleExpirationWarningNotificationOperation] execute() took: 0.008s
+2026-10-15T20:28:22.690 [D]: [SplashView] status: Updating sources…
+2026-10-15T20:28:22.690 [D]: [SplashView] status: Almost there…
+2026-10-15T20:28:22.690 [D]: [UpdateKnownSourcesOperation] execute() started
+2026-10-15T20:28:22.691 [D]: [FetchSourceOperation] execute() started
+2026-10-15T20:28:22.691 [D]: [FetchSourceOperation] executePreconditionCheck() started
+2026-10-15T20:28:22.691 [D]: [FetchSourceOperation] executePreconditionCheck() completed
+2026-10-15T20:28:23.164 [D]: [TabBarController] viewDidLoad()
+2026-10-15T20:28:23.255 [D]: [TabBarController] viewDidAppear() — TabBarController is now visible
+2026-10-15T20:28:23.555 [D]: [LaunchViewController] Transition complete — exiting LaunchViewController, handing off to TabBarController
+2026-10-15T20:28:23.555 [D]: [SplashView] willMove(toSuperview: nil) — splash screen being removed from view hierarchy
+2026-10-15T20:28:24.099 [D]: [UpdateKnownSourcesOperation] execute() took: 1.408s
+2026-10-15T20:28:24.105 [D]: Active Apps Fetch Request: Optional(isActive == 1)
+2026-10-15T20:28:24.149 [D]: [FetchSourceOperation] execute() took: 1.458s
+2026-10-15T20:28:24.149 [D]: [SideStore] Resolving AppVersion context-level conflict. Most likely due to migrating from pre-AppVersion model version. <AppVersion: 0x106b58050> (entity: AppVersion; id: 0x11735f8e0 <x-coredata:///AppVersion/t9C63DBC5-5629-49BB-AC15-38C7C7C782C322>; data: {
+    app = "0x1172adba0 <x-coredata:///StoreApp/t9C63DBC5-5629-49BB-AC15-38C7C7C782C33>";
+    appBundleID = "com.SideStore.SideStore";
+    buildVersion = "";
+    channel = stable;
+    date = "2026-09-11 21:25:58 +0000";
+    downloadURL = "https://github.com/SideStore/SideStore/releases/download/alpha/SideStore.ipa";
+    latestVersionApp = "0x1172adba0 <x-coredata:///StoreApp/t9C63DBC5-5629-49BB-AC15-38C7C7C782C33>";
+    localizedDescription = "#### What's Changed:\n- **fixes for 503 during sign-in**: There were some changes from apple server side which broke 0.6.4 and prior versions and prevent them from signing into sidestore. This temporar";
+    maxOSVersion = nil;
+    minOSVersion = nil;
+    releaseTrack = "0x11735f8c0 <x-coredata:///ReleaseTrack/t9C63DBC5-5629-49BB-AC15-38C7C7C782C321>";
+    sha256 = e334f86e6ceeab2e0d886c07611246533f474bb18838cf13ebc09ed1f0d622b5;
+    size = 27770821;
+    sourceID = "sidestore.io/apps-v2.json";
+    version = "0.7.0-20260911.328+6032424a";
+})
+2026-10-15T20:28:24.172 [D]: [AnisetteProvider] Fetching anisette via On-Device Anisette (ODA)...
+2026-10-15T20:28:24.173 [D]: [OnDeviceAnisetteManager] [Fetch] Fetching on-device Anisette headers...
+2026-10-15T20:28:24.174 [D]: [OnDeviceAnisetteManager] [Fetch] Reusing existing adi.pb from Keychain (633 bytes)
+2026-10-15T20:28:24.176 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:28:24.176 [D]: [minimuxer] minimuxer not ready: no network connection
+2026-10-15T20:28:24.179 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:28:24.640 [D]: [BonjourDiscovery] resolveFirstService: timeout reached after 2.0s
+2026-10-15T20:28:24.640 [D]: [BonjourDiscovery] resolveFirstService: browser stateUpdate -> cancelled
+2026-10-15T20:28:24.640 [D]: [SideJITManager] resolveServerURL: Bonjour discovery did not return any service within timeout
+2026-10-15T20:28:24.640 [D]: [SideJITManager] resolveServerURL: trying fallback address 'http://sidejitserver._http._tcp.local:8080'
+2026-10-15T20:28:24.640 [D]: [SideJITManager] resolveAddressIfNeeded: parsing host='sidejitserver._http._tcp.local', port=8080
+2026-10-15T20:28:24.640 [D]: [SideJITManager] resolveAddressIfNeeded: DNS-SD descriptor -> searching type='_http._tcp', prefix='sidejitserver'
+2026-10-15T20:28:24.640 [D]: [BonjourDiscovery] resolveFirstService: starting NWBrowser for type='_http._tcp', namePrefix='sidejitserver', domain=nil (timeout: 2.0s)
+2026-10-15T20:28:24.649 [D]: [BonjourDiscovery] resolveFirstService: browser stateUpdate -> ready
+2026-10-15T20:28:24.664 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:24.666 [D]: [minimuxer] [iface] total: 7
+2026-10-15T20:28:24.667 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> unreachable
+2026-10-15T20:28:24.667 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:24.667 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:24.667 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 7
+  • probable-vpn host: nil
+  • probable-vpn mask: nil
+  • probable-vpn destination gateway IP: nil
+  • probable-vpn derived peer IP: nil
+  • probable-vpn derived peer mask: nil
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:24.667 [D]: [IdeviceGateway] setDeviceEndpointIp(nil) called
+2026-10-15T20:28:24.667 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already nil, skipping invalidation
+2026-10-15T20:28:24.667 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:24.667 [D]: [minimuxer] minimuxer not ready: no network connection
+2026-10-15T20:28:24.667 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:24.729 [D]: [OnDeviceAnisetteManager] [Fetch] SUCCESS: AnisetteData generated successfully.
+2026-10-15T20:28:24.730 [D]: [SyncAppIDsOperation] execute() started
+2026-10-15T20:28:24.730 [D]: [SyncAppIDsOperation] executePreconditionCheck() started
+2026-10-15T20:28:24.730 [D]: [SyncAppIDsOperation] executePreconditionCheck() completed
+2026-10-15T20:28:24.739 [D]: [AnisetteProvider] Fetching anisette via On-Device Anisette (ODA)...
+2026-10-15T20:28:24.739 [D]: [OnDeviceAnisetteManager] [Fetch] Fetching on-device Anisette headers...
+2026-10-15T20:28:24.740 [D]: [OnDeviceAnisetteManager] [Fetch] Reusing existing adi.pb from Keychain (633 bytes)
+2026-10-15T20:28:24.780 [D]: [OnDeviceAnisetteManager] [Fetch] SUCCESS: AnisetteData generated successfully.
+2026-10-15T20:28:24.781 [D]: [SideSign] fetchAppIDs starting...
+2026-10-15T20:28:26.700 [D]: [BonjourDiscovery] resolveFirstService: timeout reached after 2.0s
+2026-10-15T20:28:26.701 [D]: [SideJITManager] resolveAddressIfNeeded: DNS-SD resolution timed out for descriptor 'sidejitserver._http._tcp.local'
+2026-10-15T20:28:26.701 [D]: [BonjourDiscovery] resolveFirstService: browser stateUpdate -> cancelled
+2026-10-15T20:28:26.701 [D]: [SideJITManager] resolveAddressIfNeeded: resolving .local hostname 'sidejitserver._http._tcp.local' via getaddrinfo
+2026-10-15T20:28:27.640 [D]: Fetch 'AltStore' Predicate: bundleIdentifier == "com.SideStore.SideStore"
+2026-10-15T20:28:27.644 [D]: [AppManager] refresh() called for apps: ["com.yourname.ipodplayer", "com.SideStore.SideStore"]
+2026-10-15T20:28:27.688 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:28:27.688 [D]: [minimuxer] minimuxer not ready: no network connection
+2026-10-15T20:28:27.688 [D]: Operation Summary:
+===================================================
+|                OPERATION FAILED                 |
+===================================================
+| • Operation: refresh                            |
+| • App ID: com.yourname.ipodplayer               |
+| • Status: FAILED                                |
+| • Elapsed: 0.044s                               |
+| • Error: Network Connection Error:
+No wifi inter|
+|          face satisfied
+
+Please connect to Wi-Fi|
+|           before attempting further operations. |
+===================================================
+2026-10-15T20:28:27.688 [D]: Operation Summary:
+===================================================
+|                OPERATION FAILED                 |
+===================================================
+| • Operation: refresh                            |
+| • App ID: com.SideStore.SideStore               |
+| • Status: FAILED                                |
+| • Elapsed: 0.044s                               |
+| • Error: Network Connection Error:
+No wifi inter|
+|          face satisfied
+
+Please connect to Wi-Fi|
+|           before attempting further operations. |
+===================================================
+2026-10-15T20:28:27.688 [D]: [AppManager] setProgress: nil for operation: .refresh, totalUnitCount: 0
+2026-10-15T20:28:27.689 [D]: [AppManager] setProgress: nil for operation: .refresh, totalUnitCount: 0
+2026-10-15 20:28:27.699 SideStore[69585:9769152] [UIMotionEffects][UIMotionEffectBody 0x1218e17d0] _startUpdatingBodyToken: token=<CMBodyToken: 0x1218f8b60> bodyID=(null) thread=<_NSMainThread: 0x1021a8a00>{number = 1, name = main}
+2026-10-15T20:28:28.054 [D]: Fetch 'AltStore' Predicate: bundleIdentifier == "com.SideStore.SideStore"
+2026-10-15T20:28:28.058 [D]: [AppManager] refresh() called for apps: ["com.yourname.ipodplayer", "com.SideStore.SideStore"]
+2026-10-15T20:28:28.066 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:28:28.066 [D]: [minimuxer] minimuxer not ready: no network connection
+2026-10-15T20:28:28.066 [D]: Operation Summary:
+===================================================
+|                OPERATION FAILED                 |
+===================================================
+| • Operation: refresh                            |
+| • App ID: com.yourname.ipodplayer               |
+| • Status: FAILED                                |
+| • Elapsed: 0.008s                               |
+| • Error: Network Connection Error:
+No wifi inter|
+|          face satisfied
+
+Please connect to Wi-Fi|
+|           before attempting further operations. |
+===================================================
+2026-10-15T20:28:28.067 [D]: Operation Summary:
+===================================================
+|                OPERATION FAILED                 |
+===================================================
+| • Operation: refresh                            |
+| • App ID: com.SideStore.SideStore               |
+| • Status: FAILED                                |
+| • Elapsed: 0.008s                               |
+| • Error: Network Connection Error:
+No wifi inter|
+|          face satisfied
+
+Please connect to Wi-Fi|
+|           before attempting further operations. |
+===================================================
+2026-10-15T20:28:28.067 [D]: [AppManager] setProgress: nil for operation: .refresh, totalUnitCount: 0
+2026-10-15T20:28:28.068 [D]: [AppManager] setProgress: nil for operation: .refresh, totalUnitCount: 0
+2026-10-15T20:28:28.387 [D]: Fetch 'AltStore' Predicate: bundleIdentifier == "com.SideStore.SideStore"
+2026-10-15T20:28:28.392 [D]: [AppManager] refresh() called for apps: ["com.yourname.ipodplayer", "com.SideStore.SideStore"]
+2026-10-15T20:28:28.400 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:28:28.400 [D]: [minimuxer] minimuxer not ready: no network connection
+2026-10-15T20:28:28.401 [D]: Operation Summary:
+===================================================
+|                OPERATION FAILED                 |
+===================================================
+| • Operation: refresh                            |
+| • App ID: com.yourname.ipodplayer               |
+| • Status: FAILED                                |
+| • Elapsed: 0.009s                               |
+| • Error: Network Connection Error:
+No wifi inter|
+|          face satisfied
+
+Please connect to Wi-Fi|
+|           before attempting further operations. |
+===================================================
+2026-10-15T20:28:28.401 [D]: Operation Summary:
+===================================================
+|                OPERATION FAILED                 |
+===================================================
+| • Operation: refresh                            |
+| • App ID: com.SideStore.SideStore               |
+| • Status: FAILED                                |
+| • Elapsed: 0.009s                               |
+| • Error: Network Connection Error:
+No wifi inter|
+|          face satisfied
+
+Please connect to Wi-Fi|
+|           before attempting further operations. |
+===================================================
+2026-10-15T20:28:28.402 [D]: [AppManager] setProgress: nil for operation: .refresh, totalUnitCount: 0
+2026-10-15T20:28:28.402 [D]: [AppManager] setProgress: nil for operation: .refresh, totalUnitCount: 0
+2026-10-15 20:28:29.872 SideStore[69585:9769152] [UIMotionEffects][UIMotionEffectBody 0x1218e17d0] _stopUpdatingBodyToken: token=<CMBodyToken: 0x1218f8b60>
+2026-10-15T20:28:30.054 [D]: [SideSign] fetchAppIDs completed with 3 App ID(s)
+2026-10-15T20:28:30.059 [D]: [SyncAppIDsOperation] execute() took: 5.329s
+2026-10-15T20:28:31.711 [D]: [SideJITManager] resolveAddressIfNeeded: resolved IPs for 'sidejitserver._http._tcp.local': []
+2026-10-15T20:28:31.711 [D]: [SideJITManager] resolveAddressIfNeeded: default raw host -> http://sidejitserver._http._tcp.local:8080
+2026-10-15T20:28:31.711 [D]: [SideJITManager] resolveServerURL: fallback resolved to 'http://sidejitserver._http._tcp.local:8080'
+2026-10-15T20:28:31.712 [D]: [SideJITManager] isSideJITServerDetected: testing detection at http://sidejitserver._http._tcp.local:8080
+2026-10-15T20:28:32.217 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:32.246 [D]: [minimuxer] [iface] total: 8
+2026-10-15T20:28:32.247 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> unreachable
+2026-10-15T20:28:32.247 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:32.247 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:32.247 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 8
+  • probable-vpn host: nil
+  • probable-vpn mask: nil
+  • probable-vpn destination gateway IP: nil
+  • probable-vpn derived peer IP: nil
+  • probable-vpn derived peer mask: nil
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:32.248 [D]: [IdeviceGateway] setDeviceEndpointIp(nil) called
+2026-10-15T20:28:32.248 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already nil, skipping invalidation
+2026-10-15T20:28:32.248 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:32.248 [D]: [minimuxer] minimuxer not ready: no network connection
+2026-10-15T20:28:32.248 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:33.501 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:33.509 [D]: [minimuxer] [iface] total: 8
+2026-10-15T20:28:33.511 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> unreachable
+2026-10-15T20:28:33.511 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:33.511 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:33.511 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 8
+  • probable-vpn host: nil
+  • probable-vpn mask: nil
+  • probable-vpn destination gateway IP: nil
+  • probable-vpn derived peer IP: nil
+  • probable-vpn derived peer mask: nil
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:33.512 [D]: [IdeviceGateway] setDeviceEndpointIp(nil) called
+2026-10-15T20:28:33.512 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already nil, skipping invalidation
+2026-10-15T20:28:33.512 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:33.512 [D]: [minimuxer] minimuxer not ready: no network connection
+2026-10-15T20:28:33.512 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:33.722 [D]: [AppBootManager] Cannot find sideJITServer
+2026-10-15T20:28:33.722 [D]: [AppBootManager] performBootSequence(): JIT check completed
+2026-10-15T20:28:33.722 [D]: [AppBootManager] performBootSequence() exited
+2026-10-15T20:28:33.722 [D]: [AppDelegate] Boot sequence completed.
+2026-10-15T20:28:33.724 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:33.734 [D]: [minimuxer] [iface] total: 8
+2026-10-15T20:28:33.735 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> unreachable
+2026-10-15T20:28:33.735 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:33.735 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:33.736 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 8
+  • probable-vpn host: nil
+  • probable-vpn mask: nil
+  • probable-vpn destination gateway IP: nil
+  • probable-vpn derived peer IP: nil
+  • probable-vpn derived peer mask: nil
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:33.736 [D]: [IdeviceGateway] setDeviceEndpointIp(nil) called
+2026-10-15T20:28:33.736 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already nil, skipping invalidation
+2026-10-15T20:28:33.736 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:33.736 [D]: [minimuxer] minimuxer not ready: no network connection
+2026-10-15T20:28:33.736 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:36.184 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:36.204 [D]: [minimuxer] [iface] total: 8
+2026-10-15T20:28:36.205 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> unreachable
+2026-10-15T20:28:36.205 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:36.205 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:36.205 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 8
+  • probable-vpn host: nil
+  • probable-vpn mask: nil
+  • probable-vpn destination gateway IP: nil
+  • probable-vpn derived peer IP: nil
+  • probable-vpn derived peer mask: nil
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:36.205 [D]: [IdeviceGateway] setDeviceEndpointIp(nil) called
+2026-10-15T20:28:36.205 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already nil, skipping invalidation
+2026-10-15T20:28:36.205 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:36.244 [D]: [minimuxer] minimuxer not ready: tunnel peer IP not available despite tunnel iface being present
+2026-10-15T20:28:36.244 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:36.288 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:36.298 [D]: [minimuxer] [iface] total: 8
+2026-10-15T20:28:36.299 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:28:36.299 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:36.299 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:36.299 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 8
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:36.299 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:28:36.299 [D]: [IdeviceGateway] invalidateConnection() called - clearing stale adapter and handshake
+2026-10-15T20:28:36.299 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:36.318 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:36.318 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: nil, handshake: nil
+2026-10-15T20:28:36.607 [D]: [IdeviceGateway] ensureRPConnection() tunnel_create_rppairing succeeded, adapter: Optional(0x000000010ae863d0), handshake: Optional(0x000000016318b180)
+2026-10-15T20:28:36.612 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:36.612 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:36.623 [D]: [minimuxer] [iface] total: 9
+2026-10-15T20:28:36.624 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:28:36.625 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:36.625 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:36.625 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 9
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:36.625 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:28:36.625 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:28:36.625 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:36.636 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:36.636 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x000000010ae863d0), handshake: Optional(0x000000016318b180)
+2026-10-15T20:28:36.645 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:36.646 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:36.654 [D]: [minimuxer] [iface] total: 9
+2026-10-15T20:28:36.654 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:28:36.654 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:36.654 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:36.655 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 9
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:36.655 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:28:36.655 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:28:36.655 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:36.662 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:36.662 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x000000010ae863d0), handshake: Optional(0x000000016318b180)
+2026-10-15T20:28:36.666 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:36.701 [D]: [SceneDelegate] sceneDidBecomeActive() invoked
+2026-10-15T20:28:36.731 [D]: [AppDelegate] Checking for SideBackup log in group 'group.com.SideStore.SideStore.MMFMUA9BSU' at: /private/var/mobile/Containers/Shared/AppGroup/35A5C920-4B5A-4BAE-916D-40B86C861134/Logs/SideBackup.log
+2026-10-15T20:28:39.674 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:39.686 [D]: [minimuxer] [iface] total: 9
+2026-10-15T20:28:39.688 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:28:39.688 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:39.688 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:39.688 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 9
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:39.688 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:28:39.689 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:28:39.689 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:39.701 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:39.701 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x000000010ae863d0), handshake: Optional(0x000000016318b180)
+2026-10-15T20:28:39.706 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:40.251 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:40.269 [D]: [minimuxer] [iface] total: 7
+2026-10-15T20:28:40.269 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:40.269 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:40.269 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 7
+  • probable-vpn host: nil
+  • probable-vpn mask: nil
+  • probable-vpn destination gateway IP: nil
+  • probable-vpn derived peer IP: nil
+  • probable-vpn derived peer mask: nil
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:40.269 [D]: [IdeviceGateway] setDeviceEndpointIp(nil) called
+2026-10-15T20:28:40.269 [D]: [IdeviceGateway] invalidateConnection() called - clearing stale adapter and handshake
+2026-10-15T20:28:40.269 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:40.276 [D]: [minimuxer] minimuxer not ready: no utun interface found
+2026-10-15T20:28:40.276 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:42.264 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:42.273 [D]: [minimuxer] [iface] total: 8
+2026-10-15T20:28:42.274 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:28:42.274 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:42.275 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:42.277 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 8
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:42.277 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:28:42.277 [D]: [IdeviceGateway] invalidateConnection() called - clearing stale adapter and handshake
+2026-10-15T20:28:42.277 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:42.287 [D]: [ScheduleExpirationWarningNotificationOperation] execute() started
+2026-10-15T20:28:42.287 [D]: [ScheduleExpirationWarningNotificationOperation] executePreconditionCheck() started
+2026-10-15T20:28:42.287 [D]: [ScheduleExpirationWarningNotificationOperation] executePreconditionCheck() completed
+2026-10-15T20:28:42.292 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:42.292 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: nil, handshake: nil
+2026-10-15T20:28:42.297 [D]: [ScheduleExpirationWarningNotificationOperation] execute() took: 0.010s
+2026-10-15T20:28:42.402 [D]: [IdeviceGateway] ensureRPConnection() tunnel_create_rppairing succeeded, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:28:42.405 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:42.405 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:42.411 [D]: [minimuxer] [iface] total: 9
+2026-10-15T20:28:42.411 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:28:42.411 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:42.411 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:42.412 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 9
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:42.412 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:28:42.412 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:28:42.412 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:42.417 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:42.417 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:28:42.420 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:42.562 [D]: [SceneDelegate] sceneDidBecomeActive() invoked
+2026-10-15T20:28:42.568 [D]: [AppDelegate] Checking for SideBackup log in group 'group.com.SideStore.SideStore.MMFMUA9BSU' at: /private/var/mobile/Containers/Shared/AppGroup/35A5C920-4B5A-4BAE-916D-40B86C861134/Logs/SideBackup.log
+2026-10-15T20:28:42.703 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:42.716 [D]: [minimuxer] [iface] total: 9
+2026-10-15T20:28:42.720 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:28:42.720 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:42.720 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:42.720 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 9
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:42.720 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:28:42.720 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:28:42.720 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:42.746 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:42.746 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:28:42.750 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:42.794 [D]: [AnisetteProvider] Fetching anisette via On-Device Anisette (ODA)...
+2026-10-15T20:28:42.794 [D]: [OnDeviceAnisetteManager] [Fetch] Fetching on-device Anisette headers...
+2026-10-15T20:28:42.796 [D]: [OnDeviceAnisetteManager] [Fetch] Reusing existing adi.pb from Keychain (633 bytes)
+2026-10-15T20:28:43.071 [D]: [OnDeviceAnisetteManager] [Fetch] SUCCESS: AnisetteData generated successfully.
+2026-10-15T20:28:43.072 [D]: [SyncAppIDsOperation] execute() started
+2026-10-15T20:28:43.072 [D]: [SyncAppIDsOperation] executePreconditionCheck() started
+2026-10-15T20:28:43.072 [D]: [SyncAppIDsOperation] executePreconditionCheck() completed
+2026-10-15T20:28:43.076 [D]: [AnisetteProvider] Fetching anisette via On-Device Anisette (ODA)...
+2026-10-15T20:28:43.076 [D]: [OnDeviceAnisetteManager] [Fetch] Fetching on-device Anisette headers...
+2026-10-15T20:28:43.078 [D]: [OnDeviceAnisetteManager] [Fetch] Reusing existing adi.pb from Keychain (633 bytes)
+2026-10-15T20:28:43.321 [D]: [OnDeviceAnisetteManager] [Fetch] SUCCESS: AnisetteData generated successfully.
+2026-10-15T20:28:43.322 [D]: [SideSign] fetchAppIDs starting...
+2026-10-15T20:28:44.020 [D]: Fetch 'AltStore' Predicate: bundleIdentifier == "com.SideStore.SideStore"
+2026-10-15T20:28:44.025 [D]: [AppManager] refresh() called for apps: ["com.yourname.ipodplayer", "com.SideStore.SideStore"]
+2026-10-15T20:28:44.033 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:28:44.046 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:44.046 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:28:44.055 [D]: [AppManager] setProgress: <NSProgress: 0x10ae14100> : Parent: 0x0 (portion: 0) / Fraction completed: 0.0000 / Completed: 0 of 100   for operation: .refresh, totalUnitCount: 100
+2026-10-15T20:28:44.059 [D]: [AppManager] setProgress: <NSProgress: 0x10ae15880> : Parent: 0x0 (portion: 0) / Fraction completed: 0.0000 / Completed: 0 of 100   for operation: .refresh, totalUnitCount: 100
+2026-10-15T20:28:44.066 [D]: [PreflightChecksOperation] execute() started
+2026-10-15T20:28:44.067 [D]: [PreflightChecksOperation] executePreconditionCheck() started
+2026-10-15T20:28:44.067 [D]: [PreflightChecksOperation] executePreconditionCheck() completed
+2026-10-15T20:28:44.067 [D]: [PreflightChecksOperation] execute() took: 0.001s
+2026-10-15T20:28:44.067 [D]: [AppManager] performOperation: Starting execution for app: com.SideStore.SideStore
+2026-10-15T20:28:44.067 [D]: [AppManager] performOperation: Starting execution for app: com.yourname.ipodplayer
+2026-10-15T20:28:44.070 [D]: [UpdateAppCertificateOperation] execute() started
+2026-10-15T20:28:44.070 [D]: [UpdateAppCertificateOperation] executePreconditionCheck() started
+2026-10-15T20:28:44.071 [D]: [UpdateAppCertificateOperation] executePreconditionCheck() completed
+2026-10-15T20:28:44.071 [D]: [UpdateAppCertificateOperation] execute() started
+2026-10-15T20:28:44.071 [D]: [UpdateAppCertificateOperation] InstalledApp 'iPod' has custom certificate serial: '3A61AB49511982E56108D04BD65D8A23'
+2026-10-15T20:28:44.071 [D]: [UpdateAppCertificateOperation] executePreconditionCheck() started
+2026-10-15T20:28:44.071 [D]: [UpdateAppCertificateOperation] Loaded custom certificate '3A61AB49511982E56108D04BD65D8A23' for app 'iPod'. Setting context.overrideSigningCertificate.
+2026-10-15T20:28:44.071 [D]: [UpdateAppCertificateOperation] executePreconditionCheck() completed
+2026-10-15T20:28:44.071 [D]: [UpdateAppCertificateOperation] execute() took: 0.002s
+2026-10-15T20:28:44.071 [D]: [UpdateAppCertificateOperation] InstalledApp 'SideStore' has custom certificate serial: '3A61AB49511982E56108D04BD65D8A23'
+2026-10-15T20:28:44.072 [D]: [UpdateAppCertificateOperation] Loaded custom certificate '3A61AB49511982E56108D04BD65D8A23' for app 'SideStore'. Setting context.overrideSigningCertificate.
+2026-10-15T20:28:44.072 [D]: [UpdateAppCertificateOperation] execute() took: 0.001s
+2026-10-15T20:28:44.072 [D]: [VerifyCertificateOperation] execute() started (willResign: false)
+2026-10-15T20:28:44.072 [D]: [VerifyCertificateOperation] execute() started (willResign: false)
+2026-10-15T20:28:44.072 [D]: [VerifyCertificateOperation] executePreconditionCheck() started
+2026-10-15T20:28:44.072 [D]: [VerifyCertificateOperation] executePreconditionCheck() started
+2026-10-15T20:28:44.072 [D]: [VerifyCertificateOperation] executePreconditionCheck() completed
+2026-10-15T20:28:44.072 [D]: [VerifyCertificateOperation] executePreconditionCheck() completed
+2026-10-15T20:28:44.073 [D]: [AnisetteProvider] Fetching anisette via On-Device Anisette (ODA)...
+2026-10-15T20:28:44.073 [D]: [OnDeviceAnisetteManager] [Fetch] Fetching on-device Anisette headers...
+2026-10-15T20:28:44.074 [D]: [OnDeviceAnisetteManager] [Fetch] Reusing existing adi.pb from Keychain (633 bytes)
+2026-10-15T20:28:44.138 [D]: [OnDeviceAnisetteManager] [Fetch] SUCCESS: AnisetteData generated successfully.
+2026-10-15T20:28:44.138 [D]: [SideSign] fetchCertificates starting...
+2026-10-15T20:28:44.138 [D]: [SideSign] fetchCertificates starting...
+2026-10-15T20:28:44.616 [D]: [SideSign] fetchAppIDs completed with 3 App ID(s)
+2026-10-15T20:28:44.620 [D]: [SyncAppIDsOperation] execute() took: 1.548s
+2026-10-15T20:28:45.136 [D]: [SideSign] fetchCertificates completed with 1 certificate(s)
+2026-10-15T20:28:45.137 [D]: [VerifyCertificateOperation] Parameter Accountability for 'iPod' (com.yourname.ipodplayer):
+  • installedAppSerial           : 3A61AB49511982E56108D04BD65D8A23
+  • overrideCertSerial           : 3A61AB49511982E56108D04BD65D8A23
+  • activeCertSerial             : 3A61AB49511982E56108D04BD65D8A23
+  • targetSigningCertSerial      : 3A61AB49511982E56108D04BD65D8A23
+  • portalCertificateSerials (1)  : ["3A61AB49511982E56108D04BD65D8A23"]
+  • willResign                   : false
+2026-10-15T20:28:45.137 [D]: [VerifyCertificateOperation] Running in verification-only mode (!willResign) for 'iPod'...
+2026-10-15T20:28:45.148 [D]: [CertificateManager] getSigningCertificate: Loaded cached signing certificate from App Group /private/var/mobile/Containers/Shared/AppGroup/35A5C920-4B5A-4BAE-916D-40B86C861134/Apps/com.yourname.ipodplayer/signing_certificate.der (serial: 3A61AB49511982E56108D04BD65D8A23)
+2026-10-15T20:28:45.149 [D]: [VerifyCertificateOperation] validateCertificate: Found in portal (isCrossSigned: false).
+2026-10-15T20:28:45.150 [D]: [VerifyCertificateOperation] Target bundle binary certificate is VALID
+2026-10-15T20:28:45.150 [D]: [VerifyCertificateOperation] execute() took: 1.079s
+2026-10-15T20:28:45.150 [D]: [FetchProvisioningProfilesOperation] execute() started
+2026-10-15T20:28:45.151 [D]: [FetchProvisioningProfilesOperation] executePreconditionCheck() started
+2026-10-15T20:28:45.151 [D]: [FetchProvisioningProfilesOperation] executePreconditionCheck() completed
+2026-10-15T20:28:45.151 [D]: [FetchProvisioningProfiles] Executing for app com.yourname.ipodplayer, targetBundleID: com.yourname.ipodplayer, team: MMFMUA9BSU, useMainProfile: false
+2026-10-15T20:28:45.151 [D]: [FetchProvisioningProfiles] Preparing main provisioning profile for com.yourname.ipodplayer...
+2026-10-15T20:28:45.152 [D]: [FetchProvisioningProfiles] Constructed mangled bundleID: com.yourname.ipodplayer.MMFMUA9BSU (effectiveParent: com.yourname.ipodplayer, appendTeamID: true, team: MMFMUA9BSU)
+2026-10-15T20:28:45.152 [D]: [FetchProvisioningProfiles] Registering App ID with name 'iPod' and bundleID 'com.yourname.ipodplayer.MMFMUA9BSU'...
+2026-10-15T20:28:45.152 [D]: [FetchProvisioningProfiles] Fetching existing App IDs from Apple for team MMFMUA9BSU...
+2026-10-15T20:28:45.154 [D]: [AnisetteProvider] Fetching anisette via On-Device Anisette (ODA)...
+2026-10-15T20:28:45.154 [D]: [OnDeviceAnisetteManager] [Fetch] Fetching on-device Anisette headers...
+2026-10-15T20:28:45.155 [D]: [OnDeviceAnisetteManager] [Fetch] Reusing existing adi.pb from Keychain (633 bytes)
+2026-10-15T20:28:45.159 [D]: [SideSign] fetchCertificates completed with 1 certificate(s)
+2026-10-15T20:28:45.159 [D]: [VerifyCertificateOperation] Parameter Accountability for 'SideStore' (com.SideStore.SideStore):
+  • installedAppSerial           : 3A61AB49511982E56108D04BD65D8A23
+  • overrideCertSerial           : 3A61AB49511982E56108D04BD65D8A23
+  • activeCertSerial             : 3A61AB49511982E56108D04BD65D8A23
+  • targetSigningCertSerial      : 3A61AB49511982E56108D04BD65D8A23
+  • portalCertificateSerials (1)  : ["3A61AB49511982E56108D04BD65D8A23"]
+  • willResign                   : false
+2026-10-15T20:28:45.159 [D]: [VerifyCertificateOperation] Running in verification-only mode (!willResign) for 'SideStore'...
+2026-10-15T20:28:45.166 [D]: [CertificateManager] readBinaryCertificate: Found 3 certificate(s) in Mach-O chain.
+2026-10-15T20:28:45.168 [D]: [CertificateManager] readBinaryCertificate: Extracted leaf signing certificate from Mach-O (SideStore)
+2026-10-15T20:28:45.168 [D]: [CertificateManager] getSigningCertificate: Loaded signing certificate from main bundle Mach-O (serial: 3A61AB49511982E56108D04BD65D8A23).
+2026-10-15T20:28:45.169 [D]: [VerifyCertificateOperation] validateCertificate: Found in portal (isCrossSigned: false).
+2026-10-15T20:28:45.170 [D]: [VerifyCertificateOperation] Target bundle binary certificate is VALID
+2026-10-15T20:28:45.170 [D]: [VerifyCertificateOperation] execute() took: 1.098s
+2026-10-15T20:28:45.170 [D]: [FetchProvisioningProfilesOperation] execute() started
+2026-10-15T20:28:45.170 [D]: [FetchProvisioningProfilesOperation] executePreconditionCheck() started
+2026-10-15T20:28:45.170 [D]: [FetchProvisioningProfilesOperation] executePreconditionCheck() completed
+2026-10-15T20:28:45.170 [D]: [FetchProvisioningProfiles] Executing for app com.SideStore.SideStore, targetBundleID: com.SideStore.SideStore, team: MMFMUA9BSU, useMainProfile: false
+2026-10-15T20:28:45.171 [D]: [FetchProvisioningProfiles] Preparing main provisioning profile for com.SideStore.SideStore...
+2026-10-15T20:28:45.171 [D]: [FetchProvisioningProfiles] Constructed mangled bundleID: com.SideStore.SideStore.MMFMUA9BSU (effectiveParent: com.SideStore.SideStore, appendTeamID: true, team: MMFMUA9BSU)
+2026-10-15T20:28:45.171 [D]: [FetchProvisioningProfiles] Registering App ID with name 'SideStore' and bundleID 'com.SideStore.SideStore.MMFMUA9BSU'...
+2026-10-15T20:28:45.171 [D]: [FetchProvisioningProfiles] Fetching existing App IDs from Apple for team MMFMUA9BSU...
+2026-10-15T20:28:45.237 [D]: [OnDeviceAnisetteManager] [Fetch] SUCCESS: AnisetteData generated successfully.
+2026-10-15T20:28:45.238 [D]: [SideSign] fetchAppIDs starting...
+2026-10-15T20:28:45.660 [D]: [SideSign] fetchAppIDs completed with 3 App ID(s)
+2026-10-15T20:28:45.661 [D]: [FetchProvisioningProfiles] Found existing App ID on portal: com.yourname.ipodplayer.MMFMUA9BSU
+2026-10-15T20:28:45.661 [D]: [FetchProvisioningProfiles] Found existing App ID on portal: com.SideStore.SideStore.MMFMUA9BSU
+2026-10-15T20:28:45.661 [D]: [FetchProvisioningProfiles] App ID registered successfully: com.yourname.ipodplayer.MMFMUA9BSU (GQV7YBX6S7)
+2026-10-15T20:28:45.661 [D]: [FetchProvisioningProfiles] App ID registered successfully: com.SideStore.SideStore.MMFMUA9BSU (SN8785VKJ7)
+2026-10-15T20:28:45.662 [D]: [FetchProvisioningProfiles] Updating features for App ID com.yourname.ipodplayer.MMFMUA9BSU...
+2026-10-15T20:28:45.662 [D]: [FetchProvisioningProfiles] Updating features for App ID com.SideStore.SideStore.MMFMUA9BSU...
+2026-10-15T20:28:45.671 [D]: [FetchProvisioningProfiles] Dropped non-applicable features for team type free:
+  • increasedDebuggingMemoryLimit
+  • increasedMemoryLimit
+  • extendedVirtualAddressing
+2026-10-15T20:28:45.672 [D]: [AnisetteProvider] Fetching anisette via On-Device Anisette (ODA)...
+2026-10-15T20:28:45.673 [D]: [OnDeviceAnisetteManager] [Fetch] Fetching on-device Anisette headers...
+2026-10-15T20:28:45.674 [D]: [FetchProvisioningProfiles] Dropped non-applicable features for team type free:
+  • increasedDebuggingMemoryLimit
+  • increasedMemoryLimit
+  • extendedVirtualAddressing
+2026-10-15T20:28:45.674 [D]: [OnDeviceAnisetteManager] [Fetch] Reusing existing adi.pb from Keychain (633 bytes)
+2026-10-15T20:28:45.711 [D]: [OnDeviceAnisetteManager] [Fetch] SUCCESS: AnisetteData generated successfully.
+2026-10-15T20:28:45.711 [D]: [SideSign] updateAppID starting...
+2026-10-15T20:28:45.711 [D]: [SideSign] updateAppID starting...
+2026-10-15T20:28:45.719 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:45.724 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:28:45.725 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:28:45.725 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:45.725 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:45.725 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:45.725 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:28:45.725 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:28:45.725 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:45.731 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:45.731 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:28:45.739 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:46.119 [D]: [SideSign] updateAppID succeeded
+2026-10-15T20:28:46.120 [D]: [FetchProvisioningProfiles] Updating app groups for App ID com.SideStore.SideStore.MMFMUA9BSU...
+2026-10-15T20:28:46.125 [D]: [FetchProvisioningProfiles] Fetching existing App Groups from Apple for team MMFMUA9BSU...
+2026-10-15T20:28:46.133 [D]: [AnisetteProvider] Fetching anisette via On-Device Anisette (ODA)...
+2026-10-15T20:28:46.133 [D]: [OnDeviceAnisetteManager] [Fetch] Fetching on-device Anisette headers...
+2026-10-15T20:28:46.135 [D]: [OnDeviceAnisetteManager] [Fetch] Reusing existing adi.pb from Keychain (633 bytes)
+2026-10-15T20:28:46.142 [D]: [SideSign] updateAppID succeeded
+2026-10-15T20:28:46.143 [D]: [FetchProvisioningProfiles] Updating app groups for App ID com.yourname.ipodplayer.MMFMUA9BSU...
+2026-10-15T20:28:46.144 [D]: [FetchProvisioningProfiles] Fetching provisioning profile from Apple for App ID com.yourname.ipodplayer.MMFMUA9BSU...
+2026-10-15T20:28:46.178 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:46.183 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:28:46.184 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:28:46.184 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:46.184 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:46.184 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:46.184 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:28:46.184 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:28:46.184 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:46.189 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:46.189 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:28:46.203 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:46.222 [D]: [OnDeviceAnisetteManager] [Fetch] SUCCESS: AnisetteData generated successfully.
+2026-10-15T20:28:46.222 [D]: [SideSign] fetchAppGroups starting...
+2026-10-15T20:28:46.223 [D]: [SideSign] downloadProvisioningProfile starting (Xcode Team profile)...
+2026-10-15T20:28:46.571 [D]: [SideSign] fetchAppGroups completed with 2 app group(s)
+2026-10-15T20:28:46.579 [D]: [AnisetteProvider] Fetching anisette via On-Device Anisette (ODA)...
+2026-10-15T20:28:46.579 [D]: [OnDeviceAnisetteManager] [Fetch] Fetching on-device Anisette headers...
+2026-10-15T20:28:46.581 [D]: [OnDeviceAnisetteManager] [Fetch] Reusing existing adi.pb from Keychain (633 bytes)
+2026-10-15T20:28:46.623 [D]: [OnDeviceAnisetteManager] [Fetch] SUCCESS: AnisetteData generated successfully.
+2026-10-15T20:28:46.624 [D]: [SideSign] assignAppGroups starting...
+2026-10-15T20:28:46.733 [D]: [SideSign] downloadProvisioningProfile succeeded
+2026-10-15T20:28:46.734 [D]: [FetchProvisioningProfiles] Provisioning profile fetched for com.yourname.ipodplayer.MMFMUA9BSU (Name: iOS Team Provisioning Profile: com.yourname.ipodplayer.MMFMUA9BSU, Expiration: 2026-10-22 14:58:46 +0000)
+2026-10-15T20:28:46.734 [D]: [FetchProvisioningProfiles] Main profile prepared successfully for com.yourname.ipodplayer, expiration: 2026-10-22 14:58:46 +0000
+2026-10-15T20:28:46.734 [D]: [FetchProvisioningProfiles] Total profiles prepared: 1 -> keys: ["com.yourname.ipodplayer"]
+2026-10-15T20:28:46.735 [D]: [FetchProvisioningProfilesOperation] execute() took: 1.584s
+2026-10-15T20:28:46.735 [D]: [RefreshAppOperation] execute() started
+2026-10-15T20:28:46.735 [D]: [RefreshAppOperation] executePreconditionCheck() started
+2026-10-15T20:28:46.735 [D]: [RefreshAppOperation] executePreconditionCheck() completed
+2026-10-15T20:28:46.735 [D]: [SideStore] installProvisioningProfiles(profileData) invoked
+2026-10-15T20:28:46.735 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:28:46.735 [D]: [IdeviceGateway] installProvisioningProfile() called, profile length: 12520
+2026-10-15T20:28:46.735 [D]: [IdeviceGateway] performWithEitherService(misagent) started, mode = .rppairing
+2026-10-15T20:28:46.735 [D]: [IdeviceGateway] performWithService(misagent) started
+2026-10-15T20:28:46.735 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:28:46.782 [D]: [IdeviceGateway] installProvisioningProfile() misagent_install succeeded
+2026-10-15T20:28:46.782 [D]: [SideStore] installProvisioningProfiles(profileData) completed
+2026-10-15T20:28:46.784 [D]: [RefreshAppOperation] execute() took: 0.049s
+2026-10-15T20:28:46.784 [D]: [AppManager] setProgress: nil for operation: .refresh, totalUnitCount: 0
+2026-10-15T20:28:46.785 [D]: [AppManager] performOperation: completed successfully. progress was reset for installedApp: com.yourname.ipodplayer
+2026-10-15T20:28:46.787 [D]: [AppManager] performOperation: Context changes were saved for installedApp: com.yourname.ipodplayer
+2026-10-15T20:28:46.796 [D]: [AppManager] performOperation: Execution SUCCESS for app: com.yourname.ipodplayer
+2026-10-15T20:28:46.797 [D]: Operation Summary:
+===================================================
+|                OPERATION SUCCESS                |
+===================================================
+| • Operation: refresh                            |
+| • App ID: com.yourname.ipodplayer               |
+| • Status: SUCCESS                               |
+| • Elapsed: 2.771s                               |
+===================================================
+2026-10-15T20:28:46.797 [D]: [AppManager] performOperation: Reloading widget timelines...
+2026-10-15T20:28:46.797 [D]: Active Apps Fetch Request: Optional(isActive == 1)
+[WidgetDataManager] publishWidgetData: 2 active, 2 all items, 2 icons
+[WidgetDataManager] Successfully wrote snapshot JSON to /private/var/mobile/Containers/Shared/AppGroup/35A5C920-4B5A-4BAE-916D-40B86C861134/widget_data.json (797 bytes)
+[WidgetDataManager] Triggered WidgetCenter.shared.reloadAllTimelines()
+2026-10-15T20:28:46.811 [D]: [AppManager] performOperation: Reloading COMPLETE for widget timelines.
+2026-10-15T20:28:47.008 [D]: [SideSign] assignAppGroups succeeded
+2026-10-15T20:28:47.008 [D]: [FetchProvisioningProfiles] Assigned App ID com.SideStore.SideStore.MMFMUA9BSU to App Groups ["group.com.SideStore.SideStore.MMFMUA9BSU"].
+2026-10-15T20:28:47.009 [D]: [FetchProvisioningProfiles] Fetching provisioning profile from Apple for App ID com.SideStore.SideStore.MMFMUA9BSU...
+2026-10-15T20:28:47.017 [D]: [AnisetteProvider] Fetching anisette via On-Device Anisette (ODA)...
+2026-10-15T20:28:47.018 [D]: [OnDeviceAnisetteManager] [Fetch] Fetching on-device Anisette headers...
+2026-10-15T20:28:47.019 [D]: [OnDeviceAnisetteManager] [Fetch] Reusing existing adi.pb from Keychain (633 bytes)
+2026-10-15T20:28:47.110 [D]: [OnDeviceAnisetteManager] [Fetch] SUCCESS: AnisetteData generated successfully.
+2026-10-15T20:28:47.110 [D]: [SideSign] downloadProvisioningProfile starting (Xcode Team profile)...
+2026-10-15T20:28:47.784 [D]: [SideSign] downloadProvisioningProfile succeeded
+2026-10-15T20:28:47.784 [D]: [FetchProvisioningProfiles] Provisioning profile fetched for com.SideStore.SideStore.MMFMUA9BSU (Name: iOS Team Provisioning Profile: com.SideStore.SideStore.MMFMUA9BSU, Expiration: 2026-10-22 14:58:47 +0000)
+2026-10-15T20:28:47.785 [D]: [FetchProvisioningProfiles] Main profile prepared successfully for com.SideStore.SideStore, expiration: 2026-10-22 14:58:47 +0000
+2026-10-15T20:28:47.802 [D]: [FetchProvisioningProfiles] Preparing profiles for 1 app extensions...
+2026-10-15T20:28:47.806 [D]: [FetchProvisioningProfiles] Constructed mangled bundleID: com.SideStore.SideStore.MMFMUA9BSU.AltWidget (effectiveParent: com.SideStore.SideStore, appendTeamID: true, team: MMFMUA9BSU)
+2026-10-15T20:28:47.806 [D]: [FetchProvisioningProfiles] Registering App ID with name 'SideStore AltWidget' and bundleID 'com.SideStore.SideStore.MMFMUA9BSU.AltWidget'...
+2026-10-15T20:28:47.806 [D]: [FetchProvisioningProfiles] Using cached App IDs from shared context.
+2026-10-15T20:28:47.806 [D]: [FetchProvisioningProfiles] Found existing App ID on portal: com.SideStore.SideStore.MMFMUA9BSU.AltWidget
+2026-10-15T20:28:47.806 [D]: [FetchProvisioningProfiles] App ID registered successfully: com.SideStore.SideStore.MMFMUA9BSU.AltWidget (3QNV8532M8)
+2026-10-15T20:28:47.806 [D]: [FetchProvisioningProfiles] Updating features for App ID com.SideStore.SideStore.MMFMUA9BSU.AltWidget...
+2026-10-15T20:28:47.809 [D]: [FetchProvisioningProfiles] Dropped non-applicable features for team type free:
+  • extendedVirtualAddressing
+  • increasedMemoryLimit
+  • increasedDebuggingMemoryLimit
+2026-10-15T20:28:47.810 [D]: [AnisetteProvider] Fetching anisette via On-Device Anisette (ODA)...
+2026-10-15T20:28:47.810 [D]: [OnDeviceAnisetteManager] [Fetch] Fetching on-device Anisette headers...
+2026-10-15T20:28:47.811 [D]: [OnDeviceAnisetteManager] [Fetch] Reusing existing adi.pb from Keychain (633 bytes)
+2026-10-15T20:28:47.840 [D]: [OnDeviceAnisetteManager] [Fetch] SUCCESS: AnisetteData generated successfully.
+2026-10-15T20:28:47.840 [D]: [SideSign] updateAppID starting...
+2026-10-15T20:28:48.278 [D]: [SideSign] updateAppID succeeded
+2026-10-15T20:28:48.279 [D]: [FetchProvisioningProfiles] Updating app groups for App ID com.SideStore.SideStore.MMFMUA9BSU.AltWidget...
+2026-10-15T20:28:48.283 [D]: [FetchProvisioningProfiles] Using cached App Groups from shared context.
+2026-10-15T20:28:48.291 [D]: [AnisetteProvider] Fetching anisette via On-Device Anisette (ODA)...
+2026-10-15T20:28:48.292 [D]: [OnDeviceAnisetteManager] [Fetch] Fetching on-device Anisette headers...
+2026-10-15T20:28:48.293 [D]: [OnDeviceAnisetteManager] [Fetch] Reusing existing adi.pb from Keychain (633 bytes)
+2026-10-15T20:28:48.381 [D]: [OnDeviceAnisetteManager] [Fetch] SUCCESS: AnisetteData generated successfully.
+2026-10-15T20:28:48.381 [D]: [SideSign] assignAppGroups starting...
+2026-10-15T20:28:48.759 [D]: [SideSign] assignAppGroups succeeded
+2026-10-15T20:28:48.760 [D]: [FetchProvisioningProfiles] Assigned App ID com.SideStore.SideStore.MMFMUA9BSU.AltWidget to App Groups ["group.com.SideStore.SideStore.MMFMUA9BSU"].
+2026-10-15T20:28:48.760 [D]: [FetchProvisioningProfiles] Fetching provisioning profile from Apple for App ID com.SideStore.SideStore.MMFMUA9BSU.AltWidget...
+2026-10-15T20:28:48.769 [D]: [AnisetteProvider] Fetching anisette via On-Device Anisette (ODA)...
+2026-10-15T20:28:48.769 [D]: [OnDeviceAnisetteManager] [Fetch] Fetching on-device Anisette headers...
+2026-10-15T20:28:48.770 [D]: [OnDeviceAnisetteManager] [Fetch] Reusing existing adi.pb from Keychain (633 bytes)
+2026-10-15T20:28:48.793 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:48.801 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:28:48.801 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:28:48.801 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:48.801 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:48.802 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:48.802 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:28:48.802 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:28:48.802 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:48.808 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:48.808 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:28:48.811 [D]: [OnDeviceAnisetteManager] [Fetch] SUCCESS: AnisetteData generated successfully.
+2026-10-15T20:28:48.811 [D]: [SideSign] downloadProvisioningProfile starting (Xcode Team profile)...
+2026-10-15T20:28:48.814 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:49.337 [D]: [SideSign] downloadProvisioningProfile succeeded
+2026-10-15T20:28:49.337 [D]: [FetchProvisioningProfiles] Provisioning profile fetched for com.SideStore.SideStore.MMFMUA9BSU.AltWidget (Name: iOS Team Provisioning Profile: com.SideStore.SideStore.MMFMUA9BSU.AltWidget, Expiration: 2026-10-22 14:58:49 +0000)
+2026-10-15T20:28:49.338 [D]: [FetchProvisioningProfiles] Added profile for extension bundle ID: com.SideStore.SideStore.AltWidget
+2026-10-15T20:28:49.338 [D]: [FetchProvisioningProfiles] Total profiles prepared: 2 -> keys: ["com.SideStore.SideStore.AltWidget", "com.SideStore.SideStore"]
+2026-10-15T20:28:49.338 [D]: [FetchProvisioningProfilesOperation] execute() took: 4.168s
+2026-10-15T20:28:49.339 [D]: [RefreshAppOperation] execute() started
+2026-10-15T20:28:49.339 [D]: [RefreshAppOperation] executePreconditionCheck() started
+2026-10-15T20:28:49.339 [D]: [RefreshAppOperation] executePreconditionCheck() completed
+2026-10-15T20:28:49.339 [D]: [SideStore] installProvisioningProfiles(profileData) invoked
+2026-10-15T20:28:49.339 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:28:49.339 [D]: [IdeviceGateway] installProvisioningProfile() called, profile length: 12603
+2026-10-15T20:28:49.339 [D]: [IdeviceGateway] performWithEitherService(misagent) started, mode = .rppairing
+2026-10-15T20:28:49.339 [D]: [IdeviceGateway] performWithService(misagent) started
+2026-10-15T20:28:49.339 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:28:49.364 [D]: [IdeviceGateway] installProvisioningProfile() misagent_install succeeded
+2026-10-15T20:28:49.364 [D]: [SideStore] installProvisioningProfiles(profileData) completed
+2026-10-15T20:28:49.364 [D]: [SideStore] installProvisioningProfiles(profileData) invoked
+2026-10-15T20:28:49.364 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:28:49.364 [D]: [IdeviceGateway] installProvisioningProfile() called, profile length: 12533
+2026-10-15T20:28:49.364 [D]: [IdeviceGateway] performWithEitherService(misagent) started, mode = .rppairing
+2026-10-15T20:28:49.364 [D]: [IdeviceGateway] performWithService(misagent) started
+2026-10-15T20:28:49.364 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:28:49.384 [D]: [IdeviceGateway] installProvisioningProfile() misagent_install succeeded
+2026-10-15T20:28:49.385 [D]: [SideStore] installProvisioningProfiles(profileData) completed
+2026-10-15T20:28:49.386 [D]: [RefreshAppOperation] execute() took: 0.047s
+2026-10-15T20:28:49.386 [D]: [AppManager] setProgress: nil for operation: .refresh, totalUnitCount: 0
+2026-10-15T20:28:49.387 [D]: [AppManager] performOperation: completed successfully. progress was reset for installedApp: com.SideStore.SideStore
+2026-10-15T20:28:49.388 [D]: [AppManager] performOperation: Context changes were saved for installedApp: com.SideStore.SideStore
+2026-10-15T20:28:49.394 [D]: [AppManager] performOperation: Execution SUCCESS for app: com.SideStore.SideStore
+2026-10-15T20:28:49.394 [D]: Operation Summary:
+===================================================
+|                OPERATION SUCCESS                |
+===================================================
+| • Operation: refresh                            |
+| • App ID: com.SideStore.SideStore               |
+| • Status: SUCCESS                               |
+| • Elapsed: 5.369s                               |
+===================================================
+2026-10-15T20:28:49.394 [D]: [AppManager] performOperation: Reloading widget timelines...
+2026-10-15T20:28:49.394 [D]: Active Apps Fetch Request: Optional(isActive == 1)
+[WidgetDataManager] publishWidgetData: 2 active, 2 all items, 2 icons
+[WidgetDataManager] Successfully wrote snapshot JSON to /private/var/mobile/Containers/Shared/AppGroup/35A5C920-4B5A-4BAE-916D-40B86C861134/widget_data.json (797 bytes)
+[WidgetDataManager] Triggered WidgetCenter.shared.reloadAllTimelines()
+2026-10-15T20:28:49.405 [D]: [AppManager] performOperation: Reloading COMPLETE for widget timelines.
+2026-10-15T20:28:49.406 [D]: [ScheduleExpirationWarningNotificationOperation] execute() started
+2026-10-15T20:28:49.406 [D]: [ScheduleExpirationWarningNotificationOperation] executePreconditionCheck() started
+2026-10-15T20:28:49.406 [D]: [ScheduleExpirationWarningNotificationOperation] executePreconditionCheck() completed
+2026-10-15T20:28:49.431 [D]: [ScheduleExpirationWarningNotificationOperation] execute() took: 0.025s
+2026-10-15T20:28:49.436 [D]: [AppManager] setProgress: nil for operation: .refresh, totalUnitCount: 0
+2026-10-15T20:28:49.437 [D]: [AppManager] setProgress: nil for operation: .refresh, totalUnitCount: 0
+2026-10-15T20:28:51.186 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:51.190 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:28:51.191 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:28:51.191 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:51.191 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:51.191 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:51.191 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:28:51.191 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:28:51.191 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:51.197 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:51.197 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:28:51.212 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:51.796 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:51.806 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:28:51.809 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:28:51.809 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:51.809 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:51.809 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:51.809 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:28:51.809 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:28:51.809 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:51.818 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:51.818 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:28:51.832 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:28:52.487 [D]: [AppManager] install() called for target: url(iPod-Playr-unsigned.ipa)
+2026-10-15T20:28:52.491 [D]: [AppManager] performSingleOperation started for: com.kerem.iPlayr
+2026-10-15T20:28:52.491 [D]: [AppManager] performSingleOperation executing task for: com.kerem.iPlayr
+2026-10-15T20:28:52.513 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:28:52.529 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:52.529 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:28:52.536 [D]: [AppManager] setProgress: <NSProgress: 0x163318580> : Parent: 0x0 (portion: 0) / Fraction completed: 0.0000 / Completed: 0 of 100   for operation: .install, totalUnitCount: 100
+2026-10-15T20:28:52.537 [D]: [PreflightChecksOperation] execute() started
+2026-10-15T20:28:52.537 [D]: [PreflightChecksOperation] executePreconditionCheck() started
+2026-10-15T20:28:52.537 [D]: [PreflightChecksOperation] executePreconditionCheck() completed
+2026-10-15T20:28:52.538 [D]: [PreflightChecksOperation] execute() took: 0.001s
+2026-10-15T20:28:52.537 [D]: [AppManager] performOperation: Starting execution for app: com.kerem.iPlayr
+2026-10-15T20:28:52.538 [D]: [UserCustomizationOperation] execute() started
+2026-10-15T20:28:52.538 [D]: [UserCustomizationOperation] executePreconditionCheck() started
+2026-10-15T20:28:52.538 [D]: [UserCustomizationOperation] executePreconditionCheck() completed
+2026-10-15T20:28:52.538 [D]: [UserCustomizationOperation] execute() took: 0.000s
+2026-10-15T20:28:52.539 [D]: [DownloadAppOperation] execute() started
+2026-10-15T20:28:52.539 [D]: [DownloadAppOperation] executePreconditionCheck() started
+2026-10-15T20:28:52.539 [D]: [DownloadAppOperation] executePreconditionCheck() completed
+2026-10-15T20:28:52.540 [D]: [DownloadAppOperation] Downloading App: com.kerem.iPlayr
+2026-10-15T20:28:52.569 [D]: [DownloadAppOperation] execute() took: 0.029s
+2026-10-15T20:28:52.568 [D]: [AppManager] setProgress: nil for operation: .install, totalUnitCount: 0
+2026-10-15T20:28:52.568 [D]: [AppManager] performOperation: Execution FAILED for app: com.kerem.iPlayr with error: The app is in an invalid format.
+2026-10-15T20:28:52.568 [D]: Operation Summary:
+===================================================
+|                OPERATION FAILED                 |
+===================================================
+| • Operation: install                            |
+| • App ID: com.kerem.iPlayr                      |
+| • Status: FAILED                                |
+| • Elapsed: 0.082s                               |
+| • Error: The app is in an invalid format.       |
+===================================================
+2026-10-15T20:28:52.569 [D]: [AppManager] setProgress: nil for operation: .install, totalUnitCount: 0
+2026-10-15T20:28:52.569 [D]: [AppManager] log() error: The app is in an invalid format.
+  • domain: 'SideStore.OperationError'
+  • code: 2
+2026-10-15 20:28:52.570 SideStore[69585:9769152] [UIMotionEffects][UIMotionEffectBody 0x163136b50] _startUpdatingBodyToken: token=<CMBodyToken: 0x1218f9830> bodyID=(null) thread=<_NSMainThread: 0x1021a8a00>{number = 1, name = main}
+2026-10-15T20:28:52.575 [D]: Sideloaded app at file:///private/var/mobile/Containers/Data/Application/17EDC4AA-95B8-4D72-92F5-6FC2046A76A9/tmp/com.SideStore.SideStore.MMFMUA9BSU-Inbox/iPod-Playr-unsigned.ipa with result: failure(SideStore.OperationError.invalidApp(reason: nil))
+2026-10-15T20:28:54.795 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:28:54.807 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:28:54.808 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:28:54.808 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:28:54.808 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:28:54.809 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:28:54.809 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:28:54.809 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:28:54.809 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:28:54.817 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:28:54.817 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:28:54.826 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15 20:28:57.880 SideStore[69585:9769152] [UIMotionEffects][UIMotionEffectBody 0x163136b50] _stopUpdatingBodyToken: token=<CMBodyToken: 0x1218f9830>
+2026-10-15 20:29:03.341 SideStore[69585:9769152] [UIMotionEffects][UIMotionEffectBody 0x16370e280] _startUpdatingBodyToken: token=<CMBodyToken: 0x1218f9860> bodyID=(null) thread=<_NSMainThread: 0x1021a8a00>{number = 1, name = main}
+2026-10-15T20:29:03.341 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:03.358 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:03.359 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:03.359 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:03.359 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:03.359 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:03.359 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:03.359 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:03.359 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15 20:29:03.370 SideStore[69585:9769152] [UIMotionEffects][UIMotionEffectBody 0x16370e280] _stopUpdatingBodyToken: token=<CMBodyToken: 0x1218f9860>
+2026-10-15T20:29:03.383 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:03.383 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:03.387 [D]: [ScheduleExpirationWarningNotificationOperation] execute() started
+2026-10-15T20:29:03.388 [D]: [ScheduleExpirationWarningNotificationOperation] executePreconditionCheck() started
+2026-10-15T20:29:03.389 [D]: [ScheduleExpirationWarningNotificationOperation] executePreconditionCheck() completed
+2026-10-15T20:29:03.388 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:03.397 [D]: [ScheduleExpirationWarningNotificationOperation] execute() took: 0.010s
+2026-10-15T20:29:03.397 [D]: [CacheAppOperation] DELETING CACHED APP: com.yourname.ipodplayer
+2026-10-15T20:29:03.801 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:03.812 [D]: [SceneDelegate] sceneDidBecomeActive() invoked
+2026-10-15T20:29:03.830 [D]: [AppDelegate] Checking for SideBackup log in group 'group.com.SideStore.SideStore.MMFMUA9BSU' at: /private/var/mobile/Containers/Shared/AppGroup/35A5C920-4B5A-4BAE-916D-40B86C861134/Logs/SideBackup.log
+2026-10-15T20:29:03.834 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:03.841 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:03.841 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:03.842 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:03.842 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:03.842 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:03.842 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:03.842 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:03.846 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:03.846 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:03.854 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:04.478 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:04.487 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:04.487 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:04.487 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:04.488 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:04.488 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:04.488 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:04.488 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:04.488 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:04.496 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:04.496 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:04.499 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:05.671 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:05.702 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:05.705 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:05.705 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:05.705 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:05.705 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:05.705 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:05.705 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:05.705 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:05.720 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:05.720 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:05.725 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:06.267 [D]: [AppManager] install() called for target: url(iPod-Playr-unsigned.ipa)
+2026-10-15T20:29:06.274 [D]: [AppManager] performSingleOperation started for: com.kerem.iPlayr
+2026-10-15T20:29:06.274 [D]: [AppManager] performSingleOperation executing task for: com.kerem.iPlayr
+2026-10-15T20:29:06.288 [D]: [IdeviceGateway] setPort(49152, for: .rppairing) called
+2026-10-15T20:29:06.307 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:06.307 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:06.311 [D]: [AppManager] setProgress: <NSProgress: 0x163318d80> : Parent: 0x0 (portion: 0) / Fraction completed: 0.0000 / Completed: 0 of 100   for operation: .install, totalUnitCount: 100
+2026-10-15T20:29:06.312 [D]: [PreflightChecksOperation] execute() started
+2026-10-15T20:29:06.312 [D]: [PreflightChecksOperation] executePreconditionCheck() started
+2026-10-15T20:29:06.312 [D]: [PreflightChecksOperation] executePreconditionCheck() completed
+2026-10-15T20:29:06.312 [D]: [PreflightChecksOperation] execute() took: 0.000s
+2026-10-15T20:29:06.312 [D]: [AppManager] performOperation: Starting execution for app: com.kerem.iPlayr
+2026-10-15T20:29:06.312 [D]: [UserCustomizationOperation] execute() started
+2026-10-15T20:29:06.312 [D]: [UserCustomizationOperation] executePreconditionCheck() started
+2026-10-15T20:29:06.312 [D]: [UserCustomizationOperation] executePreconditionCheck() completed
+2026-10-15T20:29:06.312 [D]: [UserCustomizationOperation] execute() took: 0.000s
+2026-10-15T20:29:06.313 [D]: [DownloadAppOperation] execute() started
+2026-10-15T20:29:06.313 [D]: [DownloadAppOperation] executePreconditionCheck() started
+2026-10-15T20:29:06.313 [D]: [DownloadAppOperation] executePreconditionCheck() completed
+2026-10-15T20:29:06.313 [D]: [DownloadAppOperation] Downloading App: com.kerem.iPlayr
+2026-10-15T20:29:06.345 [D]: [DownloadAppOperation] execute() took: 0.032s
+2026-10-15T20:29:06.345 [D]: [AppManager] setProgress: nil for operation: .install, totalUnitCount: 0
+2026-10-15T20:29:06.345 [D]: [AppManager] performOperation: Execution FAILED for app: com.kerem.iPlayr with error: The app is in an invalid format.
+2026-10-15T20:29:06.345 [D]: Operation Summary:
+===================================================
+|                OPERATION FAILED                 |
+===================================================
+| • Operation: install                            |
+| • App ID: com.kerem.iPlayr                      |
+| • Status: FAILED                                |
+| • Elapsed: 0.078s                               |
+| • Error: The app is in an invalid format.       |
+===================================================
+2026-10-15T20:29:06.345 [D]: [AppManager] setProgress: nil for operation: .install, totalUnitCount: 0
+2026-10-15T20:29:06.345 [D]: [AppManager] log() error: The app is in an invalid format.
+  • domain: 'SideStore.OperationError'
+  • code: 2
+2026-10-15 20:29:06.346 SideStore[69585:9769152] [UIMotionEffects][UIMotionEffectBody 0x10ae10270] _startUpdatingBodyToken: token=<CMBodyToken: 0x1218faf00> bodyID=(null) thread=<_NSMainThread: 0x1021a8a00>{number = 1, name = main}
+2026-10-15T20:29:06.349 [D]: Sideloaded app at file:///private/var/mobile/Containers/Data/Application/17EDC4AA-95B8-4D72-92F5-6FC2046A76A9/tmp/com.SideStore.SideStore.MMFMUA9BSU-Inbox/iPod-Playr-unsigned.ipa with result: failure(SideStore.OperationError.invalidApp(reason: nil))
+2026-10-15T20:29:06.839 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:06.848 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:06.852 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:06.852 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:06.852 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:06.854 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:06.854 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:06.854 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:06.854 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:06.868 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:06.868 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:06.883 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15 20:29:07.886 SideStore[69585:9769152] [UIMotionEffects][UIMotionEffectBody 0x10ae10270] _stopUpdatingBodyToken: token=<CMBodyToken: 0x1218faf00>
+2026-10-15T20:29:08.045 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:08.053 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:08.059 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:08.062 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:08.064 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:08.066 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:08.066 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:08.070 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:08.070 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:08.082 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:08.082 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:08.086 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:10.439 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:10.447 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:10.448 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:10.449 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:10.449 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:10.449 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:10.450 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:10.450 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:10.450 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:10.466 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:10.466 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:10.473 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:12.872 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:12.884 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:12.887 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:12.887 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:12.889 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:12.889 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:12.889 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:12.890 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:12.890 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:12.902 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:12.902 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:12.906 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:15.877 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:15.887 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:15.889 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:15.889 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:15.889 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:15.890 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:15.890 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:15.890 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:15.890 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:15.904 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:15.904 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:15.912 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:21.996 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:22.007 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:22.009 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:22.009 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:22.009 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:22.009 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:22.009 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:22.009 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:22.009 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:22.024 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:22.024 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:22.029 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:23.726 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:23.754 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:23.755 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:23.755 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:23.755 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:23.755 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:23.755 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:23.755 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:23.755 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:23.764 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:23.764 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:23.769 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:24.931 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:24.939 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:24.940 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:24.940 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:24.940 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:24.940 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:24.940 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:24.940 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:24.940 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:24.948 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:24.948 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:24.964 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:29.734 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:29.744 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:29.749 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:29.749 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:29.749 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:29.749 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:29.749 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:29.749 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:29.749 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:29.768 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:29.768 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:29.774 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:30.888 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:30.899 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:30.904 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:30.906 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:30.906 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:30.910 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:30.910 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:30.910 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:30.910 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:30.920 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:30.920 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:30.925 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:33.850 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:33.862 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:33.863 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:33.863 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:33.863 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:33.863 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:33.863 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:33.863 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:33.863 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:33.870 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:33.870 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:33.878 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:34.548 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:34.557 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:34.558 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:34.561 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:34.561 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:34.561 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:34.561 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:34.561 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:34.562 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:34.576 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:34.576 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:34.581 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:35.734 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:35.745 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:35.749 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:35.749 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:35.749 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:35.749 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:35.749 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:35.749 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:35.749 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:35.774 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:35.775 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:35.779 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:36.944 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:36.954 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:36.957 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:36.960 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:36.960 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:36.969 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:36.969 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:36.969 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:36.969 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:36.982 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:36.982 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:36.988 [D]: [minimuxer] [net] publishing status update to subscribers
+2026-10-15T20:29:39.971 [D]: [minimuxer] [iface] scan requested...
+2026-10-15T20:29:39.982 [D]: [minimuxer] [iface] total: 10
+2026-10-15T20:29:39.987 [D]: [minimuxer] [iface] tcpProbe 10.7.0.1:49152 (protocol: .rppairing) -> reachable
+2026-10-15T20:29:39.987 [D]: [minimuxer] [iface] tcpProbe skipped — IP is nil or empty
+2026-10-15T20:29:39.987 [D]: [minimuxer] [iface] using the first uTun vpn interface info
+2026-10-15T20:29:39.988 [D]: [minimuxer] [iface] refresh - rescan routes
+  • mode: .localVPN
+  • local iface count: 10
+  • probable-vpn host: 10.7.1.1
+  • probable-vpn mask: 255.255.255.255
+  • probable-vpn destination gateway IP: 10.7.1.1
+  • probable-vpn derived peer IP: 10.7.0.1
+  • probable-vpn derived peer mask: 255.255.255.255
+  • override peer IP: nil
+  • override peer reachable: false
+
+2026-10-15T20:29:39.988 [D]: [IdeviceGateway] setDeviceEndpointIp(10.7.0.1) called
+2026-10-15T20:29:39.988 [D]: [IdeviceGateway] setDeviceEndpointIp: IP is already 10.7.0.1, skipping invalidation
+2026-10-15T20:29:39.988 [D]: [minimuxer] [net] dispatching status update to subscribers
+2026-10-15T20:29:40.003 [D]: [IdeviceGateway] fetchUDID() started, mode = .rppairing
+2026-10-15T20:29:40.003 [D]: [IdeviceGateway] ensureRPConnection() started, adapter: Optional(0x0000000163115c80), handshake: Optional(0x0000000163189200)
+2026-10-15T20:29:40.016 [D]: [minimuxer] [net] publishing status update to subscribers
+sandbox_extension_issue_file failed for /var/mobile/Containers/Data/Application/17EDC4AA-95B8-4D72-92F5-6FC2046A76A9: 1 (Operation not permitted)
+sandbox_extension_issue_file failed for /var/mobile/Containers/Data/Application: 1 (Operation not permitted)
+sandbox_extension_issue_file failed for /var/mobile/Containers/Data: 1 (Operation not permitted)
+sandbox_extension_issue_file failed for /var/mobile/Containers: 1 (Operation not permitted)
