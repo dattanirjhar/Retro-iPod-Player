@@ -25,7 +25,7 @@ split-screen artwork pane, and the hardware is drawn live from twenty fixed them
 
 ## Appearance
 
-<img width="624" height="750" alt="image" src="https://github.com/user-attachments/assets/4af287d8-22c5-4576-b218-0caccf18ad75" />
+<img width="624" height="750" alt="image" src="https://github.com/user-attachments/assets/4af287d8-22c5-4576-b218-0caccf18ad75" style="display: block; margin: 0 auto;/>
 
 
 Two independent choices under Settings › App Settings:
