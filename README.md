@@ -25,6 +25,9 @@ split-screen artwork pane, and the hardware is drawn live from twenty fixed them
 
 ## Appearance
 
+<img width="624" height="750" alt="image" src="https://github.com/user-attachments/assets/4af287d8-22c5-4576-b218-0caccf18ad75" />
+
+
 Two independent choices under Settings › App Settings:
 
 - **Theme** picks one of 20 presets that set the body, click wheel, wheel style, finish, label
