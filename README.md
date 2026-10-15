@@ -1,4 +1,4 @@
-# iPlayr
+# iPod-Playr (still in dev)
 
 A faithful iPod classic recreation for iOS, built entirely in SwiftUI on top of Apple Music.
 
@@ -84,6 +84,11 @@ docker run --rm -v "$PWD":/repo -w /repo/ThemeCore swift:6.0-jammy swift test
 - `THEME_MIGRATION_STATUS.md`: per-item status of the Theme + Mode work.
 - `PHASE2_MAC_HANDOFF.md`: build, test, screenshot and device-check steps for the Mac phase.
 - `BETA_TEST_LOG.md`: template for logging issues found on the device.
+
+## Acknowledgments & Credit
+
+A heavily modified version of keremersu35/iPodPlayer project. The original repo has no license; published here with happy attribution :)
+This is my second and slightly different version.
 
 ## Contributing
 
