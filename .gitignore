@@ -68,3 +68,10 @@ iPlayr/iPlayr.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolve
 
 # Session memory tooling
 .remember/
+
+# Xcode build output
+DerivedData/
+*.xcresult
+
+# Raw simulator screenshots (grids are committed, raw shots are not)
+design/shots/
