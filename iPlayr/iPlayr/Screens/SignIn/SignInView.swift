@@ -1,0 +1,68 @@
+import SwiftUI
+import MusicKit
+
+struct SignInView: View {
+    @Environment(iPlayrButtonController.self) private var iPlayrController
+    @Environment(MusicAuthorizationManager.self) private var authManager
+    @Environment(\.navigate) private var navigate
+    @State private var scope = FocusScope(id: "login")
+    @State private var isShowingModal = false
+    @State private var menus: [Menu] = [
+        Menu(id: 1, name: String(localized: "Apple Music"), next: true),
+    ]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            StatusBar(title: String(localized: "Sign In"))
+            ForEach(menus.indices, id: \.self) { index in
+                MenuItemView(menu: menus[index], isSelected: scope.selection == index)
+            }
+            Spacer()
+        }
+        .shadowedBackground()
+        .onAppear(perform: setup)
+        .alert("Permission Required", isPresented: $isShowingModal) {
+            Button("Go to Settings") {
+                openAppSettings()
+            }
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("This app requires access to Apple Music. Please enable it in Settings.")
+        }
+    }
+
+    private func setup() {
+        scope.configure(itemCount: menus.count)
+        scope.onAction = { action in
+            switch action {
+            case .menu:
+                navigate(.pop)
+            case .select:
+                Task { await handleAppleMusicSignIn() }
+            default:
+                break
+            }
+        }
+        iPlayrController.activate(scope)
+    }
+
+    private func handleAppleMusicSignIn() async {
+        let status = authManager.authorizationStatus
+
+        if status == .denied {
+            isShowingModal = true
+            return
+        }
+
+        let granted = await authManager.requestAuthorization()
+        if granted {
+            navigate(.pop)
+        }
+    }
+
+    private func openAppSettings() {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(url)
+        }
+    }
+}
