@@ -1,5 +1,7 @@
 # Beta handoff for prod-dev-team — 16 October 2026
 
+> **16 October update:** the four issues below are implemented; see [HANDOFF_2026-10-16.md](HANDOFF_2026-10-16.md) for the fix details and tonight's verification list.
+
 Prepared from the user's 15 October 2026 beta session on an iPhone 17 running iOS 27.0.1.
 This is the current plan and acceptance checklist. It replaces the earlier Mac setup/simulator
 plan and the empty device checklist. Their previous versions are preserved in the
