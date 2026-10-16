@@ -131,7 +131,7 @@ def draw_cell(page, x0, y0, t, mode):
     pd.text((sx + sw - 34, py - 5), "-2:10", fill=rgb(surf["secondary"]) + (255,), font=font(10))
 
     # wheel
-    ratio = 0.68 if t["compact"] else 0.62
+    ratio = 0.76 if t["compact"] else 0.70
     dia = int(bw * ratio); cx, cy = x0 + bw // 2, sy + sh + 6 + 20 + dia // 2
     r = dia // 2
     hair = (0, 0, 0, int(255 * 0.14)) if light_body else (255, 255, 255, int(255 * 0.18))

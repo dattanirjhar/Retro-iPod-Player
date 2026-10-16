@@ -67,19 +67,26 @@ struct iPlayrView: View {
     @ViewBuilder
     private func deviceLayout(size: CGSize) -> some View {
         if size.width > size.height {
-            HStack(spacing: 12) {
+            // Screen at the leading side; the wheel gets a square at the trailing
+            // edge, as large as the height allows, instead of a narrow centred
+            // column (first beta: wheel too far inward and too small).
+            let screenWidth = min(size.height * 1.25, size.width * 0.56)
+            let wheelSide = min(size.height * 0.84, size.width - screenWidth - 56)
+            HStack(spacing: 0) {
                 iPlayrScreen()
                     .environment(iPlayrController)
                     .environment(theme)
                     .environment(immersiveFlow)
-                    .frame(width: min(size.height * 1.25, size.width * 0.56), height: 300)
-                iPlayrButtons()
+                    .frame(width: screenWidth, height: 300)
+                Spacer(minLength: 16)
+                iPlayrButtons(sizing: .fillContainer)
                     .environment(iPlayrController)
                     .environment(theme)
-                    .frame(width: min(size.height * 0.78, size.width * 0.34), height: size.height * 0.78)
+                    .frame(width: wheelSide, height: wheelSide)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(.horizontal, 8)
+            .padding(.leading, 16)
+            .padding(.trailing, 20)
         } else {
             VStack(spacing: 0) {
                 Spacer()

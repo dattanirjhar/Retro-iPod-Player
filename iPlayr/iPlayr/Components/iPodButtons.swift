@@ -72,7 +72,16 @@ struct WheelLook {
 
 // MARK: - The wheel
 
+/// How the wheel picks its diameter from the space it is given.
+enum WheelSizing {
+    /// Portrait: a fraction of the body width (70%, 76% on compact bodies).
+    case bodyWidth
+    /// Landscape: fill the square the layout reserves at the trailing edge.
+    case fillContainer
+}
+
 struct iPlayrButtons: View {
+    var sizing: WheelSizing = .bodyWidth
     @State private var input = WheelInputModel()
     @State private var pressedRegion: WheelRegion = .none
     @State private var pressedClearTask: Task<Void, Never>?
@@ -82,9 +91,14 @@ struct iPlayrButtons: View {
     var body: some View {
         GeometryReader { proxy in
             let spec = theme.theme
-            // 62% of the body width, 68% on compact (mini / nano) bodies.
-            let ratio: CGFloat = spec.isCompact ? 0.68 : 0.62
-            let diameter = min(proxy.size.width * ratio, proxy.size.height - WheelGeometry.slop * 2)
+            // 70% of the body width, 76% on compact (mini / nano) bodies; raised
+            // from 62% / 68% after the first device beta found the wheel too small.
+            let ratio: CGFloat = spec.isCompact ? 0.76 : 0.70
+            let available = min(proxy.size.width, proxy.size.height) - WheelGeometry.slop * 2
+            let diameter: CGFloat = switch sizing {
+            case .bodyWidth: min(proxy.size.width * ratio, available)
+            case .fillContainer: available
+            }
             let geometry = WheelGeometry(diameter: max(diameter, 44))
             let look = WheelLook(theme: spec)
 
