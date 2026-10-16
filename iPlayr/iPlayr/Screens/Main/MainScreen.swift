@@ -4,19 +4,31 @@ import Observation
 @MainActor
 @Observable
 final class ImmersiveFlowState {
-    var isPresented = false
+    private var presentation = CoverFlowPresentation()
+    var isPresented: Bool { presentation.isPresented }
+    var isVisible: Bool { presentation.isVisible }
     @ObservationIgnored private var onDismiss: (() -> Void)?
+    @ObservationIgnored private var onPlay: ((String, Int) -> Void)?
 
-    func present(onDismiss: @escaping () -> Void) {
+    func present(onPlay: @escaping (String, Int) -> Void, onDismiss: @escaping () -> Void) {
+        self.onPlay = onPlay
         self.onDismiss = onDismiss
-        isPresented = true
+        presentation.present()
     }
+
+    func play(albumID: String, trackIndex: Int) {
+        guard let onPlay, presentation.beginPlayback() else { return }
+        onPlay(albumID, trackIndex)
+    }
+
+    func resume() { presentation.resume() }
 
     func dismiss() {
         guard isPresented else { return }
-        isPresented = false
+        presentation.dismiss()
         let action = onDismiss
         onDismiss = nil
+        onPlay = nil
         action?()
     }
 }
@@ -27,17 +39,33 @@ struct iPlayrView: View {
     @Environment(ThemeManager.self) private var theme
     @Environment(AppleMusicManager.self) private var playerManager
 
+    private var statusBarColorScheme: ColorScheme {
+        guard !immersiveFlow.isVisible else { return .dark }
+        let top = theme.theme.body.adjustingLightness(by: theme.theme.finish == .matte ? 0.02 : 0.06)
+        return top.contrast(with: .black) >= top.contrast(with: .white) ? .light : .dark
+    }
+
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 deviceLayout(size: geometry.size)
-                    .opacity(immersiveFlow.isPresented ? 0 : 1)
-                    .allowsHitTesting(!immersiveFlow.isPresented)
+                    .opacity(immersiveFlow.isVisible ? 0 : 1)
+                    .allowsHitTesting(!immersiveFlow.isVisible)
+                    .accessibilityHidden(immersiveFlow.isVisible)
 
                 if immersiveFlow.isPresented {
-                    CoverFlowView(onExitImmersive: { immersiveFlow.dismiss() })
+                    CoverFlowView(
+                        onExitImmersive: { immersiveFlow.dismiss() },
+                        onPlayImmersive: { albumID, trackIndex in
+                            immersiveFlow.play(albumID: albumID, trackIndex: trackIndex)
+                        }
+                    )
                         .environment(iPlayrController)
                         .environment(theme)
+                        .environment(\.colorScheme, .dark)
+                        .opacity(immersiveFlow.isVisible ? 1 : 0)
+                        .allowsHitTesting(immersiveFlow.isVisible)
+                        .accessibilityHidden(!immersiveFlow.isVisible)
                         .transition(.opacity)
                         .zIndex(2)
                 }
@@ -45,7 +73,9 @@ struct iPlayrView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(ChassisBackgroundView(theme: theme.theme))
         }
-        .preferredColorScheme(theme.mode == .dark ? .dark : .light)
+        // The system status bar sits on the chassis, outside the simulated screen.
+        .preferredColorScheme(statusBarColorScheme)
+        .environment(\.colorScheme, theme.mode == .dark ? .dark : .light)
         .environment(\.locale, theme.language.locale)
         .onAppear {
             iPlayrController.setGlobalPlaybackHandler { action in
@@ -64,44 +94,34 @@ struct iPlayrView: View {
         }
     }
 
-    @ViewBuilder
     private func deviceLayout(size: CGSize) -> some View {
-        if size.width > size.height {
-            // Screen at the leading side; the wheel gets a square at the trailing
-            // edge, as large as the height allows, instead of a narrow centred
-            // column (first beta: wheel too far inward and too small).
-            let screenWidth = min(size.height * 1.25, size.width * 0.56)
-            let wheelSide = min(size.height * 0.84, size.width - screenWidth - 56)
-            HStack(spacing: 0) {
-                iPlayrScreen()
-                    .environment(iPlayrController)
-                    .environment(theme)
-                    .environment(immersiveFlow)
-                    .frame(width: screenWidth, height: 300)
-                Spacer(minLength: 16)
-                iPlayrButtons(sizing: .fillContainer)
-                    .environment(iPlayrController)
-                    .environment(theme)
-                    .frame(width: wheelSide, height: wheelSide)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(.leading, 16)
-            .padding(.trailing, 20)
-        } else {
-            VStack(spacing: 0) {
-                Spacer()
-                iPlayrScreen()
-                    .environment(iPlayrController)
-                    .environment(theme)
-                    .environment(immersiveFlow)
-                    .padding(.horizontal)
-                Spacer()
-                iPlayrButtons()
-                    .environment(iPlayrController)
-                    .environment(theme)
-                Spacer()
-            }
+        let landscape = size.width > size.height
+        let screenWidth = landscape ? min(size.height * 1.25, size.width * 0.56) : max(0, size.width - 32)
+        let wheelSide = max(60, min(size.height * 0.84, size.width - screenWidth - 56))
+        let portraitWheelHeight = max(60, min(size.width, size.height - 324))
+        let layout = landscape ? AnyLayout(HStackLayout(spacing: 0)) : AnyLayout(VStackLayout(spacing: 0))
+
+        // AnyLayout preserves the same screen and player instances across rotation.
+        return layout {
+            Spacer(minLength: 0)
+                .frame(width: landscape ? 0 : nil, height: landscape ? 0 : nil)
+            iPlayrScreen()
+                .environment(iPlayrController)
+                .environment(theme)
+                .environment(immersiveFlow)
+                .frame(width: screenWidth, height: 300)
+            Spacer(minLength: landscape ? 16 : 12)
+            iPlayrButtons(sizing: landscape ? .fillContainer : .bodyWidth)
+                .environment(iPlayrController)
+                .environment(theme)
+                .frame(width: landscape ? wheelSide : size.width,
+                       height: landscape ? wheelSide : portraitWheelHeight)
+            Spacer(minLength: 0)
+                .frame(width: landscape ? 0 : nil, height: landscape ? 0 : nil)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.leading, landscape ? 16 : 0)
+        .padding(.trailing, landscape ? 20 : 0)
     }
 }
 

@@ -47,15 +47,28 @@ struct PlayerView: View {
     private var artworkKey: String? { activeArtwork?.url(width: 64, height: 64)?.absoluteString }
 
     private var atmosphereSpec: AtmosphereSpec? {
-        guard atmosphereEnabled, let palette else { return nil }
+        guard atmosphereEnabled, theme.theme.atmosphere != .ambientScreen, let palette else { return nil }
         return AtmosphereSpec.make(palette: palette, tokens: tokens, atmosphere: theme.theme.atmosphere)
     }
 
-    private var primaryTextColor: Color { atmosphereSpec?.textColor.color ?? tokens.primaryText.color }
-    private var secondaryTextColor: Color { atmosphereSpec.map { $0.textColor.color.opacity(0.78) } ?? tokens.secondaryText.color }
-    private var mutedTextColor: Color { atmosphereSpec.map { $0.textColor.color.opacity(0.62) } ?? tokens.mutedText.color }
+    private var ambientScreenSpec: AmbientScreenSpec? {
+        guard atmosphereEnabled, theme.theme.atmosphere == .ambientScreen else { return nil }
+        return .make(primary: palette?.primary ?? theme.theme.accent.oklch,
+                     secondary: palette?.secondary ?? theme.theme.wheel.oklch,
+                     screen: tokens.screenBackground, mode: tokens.mode)
+    }
+
+    private var atmosphereText: RGB? { ambientScreenSpec?.textColor ?? atmosphereSpec?.textColor }
+    private var primaryTextColor: Color { atmosphereText?.color ?? tokens.primaryText.color }
+    private var secondaryTextColor: Color { atmosphereText.map { $0.color.opacity(0.78) } ?? tokens.secondaryText.color }
+    private var mutedTextColor: Color { atmosphereText.map { $0.color.opacity(0.62) } ?? tokens.mutedText.color }
 
     private var progressStyle: ProgressBarStyle {
+        if let spec = ambientScreenSpec {
+            return ProgressBarStyle(track: spec.textColor.color.opacity(0.24),
+                                    fill: spec.progressFill(accent: tokens.accent).color,
+                                    text: spec.textColor.color)
+        }
         if let spec = atmosphereSpec {
             return ProgressBarStyle(track: Color.white.opacity(0.24),
                                     fill: spec.progressFill(accent: tokens.accent).color,
@@ -146,12 +159,22 @@ struct PlayerView: View {
 
     // MARK: - Background
 
-    /// Screen background, plus the artwork atmosphere when enabled. With no
-    /// usable artwork the fallback is an 8% accent glow behind the artwork.
+    /// Album Glow owns broad LCD lighting; glass themes keep a neutral LCD and
+    /// view artwork through their wheel. Midnight retains its earlier atmosphere.
     private var background: some View {
         ZStack {
             tokens.screenBackground.color
-            if let spec = atmosphereSpec {
+            if let spec = ambientScreenSpec {
+                GeometryReader { proxy in
+                    let side = max(proxy.size.width, proxy.size.height)
+                    ZStack {
+                        RadialGradient(colors: [spec.primary.color.opacity(spec.primaryOpacity), .clear],
+                                       center: UnitPoint(x: 0.18, y: 0.25), startRadius: 0, endRadius: side * 0.95)
+                        RadialGradient(colors: [spec.secondary.color.opacity(spec.secondaryOpacity), .clear],
+                                       center: UnitPoint(x: 0.85, y: 0.82), startRadius: 0, endRadius: side * 0.8)
+                    }
+                }
+            } else if let spec = atmosphereSpec {
                 LinearGradient(stops: spec.stops, startPoint: spec.startPoint, endPoint: spec.endPoint)
                 spec.screen.color.opacity(spec.overlayOpacity)
             } else if atmosphereEnabled {
@@ -160,6 +183,7 @@ struct PlayerView: View {
             }
         }
         .animation(reduceMotion ? nil : .easeInOut(duration: 0.6), value: atmosphereSpec)
+        .animation(reduceMotion ? nil : .easeInOut(duration: 0.6), value: ambientScreenSpec)
         .ignoresSafeArea()
     }
 
@@ -167,7 +191,9 @@ struct PlayerView: View {
     @ViewBuilder
     private func platter<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
         let shape = RoundedRectangle(cornerRadius: 12, style: .continuous)
-        if atmosphereSpec != nil {
+        if ambientScreenSpec != nil {
+            content().background(tokens.raisedPanel.color, in: shape)
+        } else if atmosphereSpec != nil {
             if reduceTransparency {
                 content()
                     .background(tokens.raisedPanel.color.opacity(0.85), in: shape)

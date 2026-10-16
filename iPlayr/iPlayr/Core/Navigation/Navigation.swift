@@ -111,6 +111,7 @@ enum Route: Hashable, Identifiable, Sendable {
     case player(source: PlaybackSource, trackIndex: Int, isFromCoverFlow: Bool = false)
     case settings
     case nowPlaying
+    case immersiveCoverFlowPlayer(albumID: String, trackIndex: Int)
     case queue
     case extras
     case appearanceSetting(AppearanceSetting)
@@ -123,7 +124,7 @@ extension Route {
     /// Screens that already show the player; the Now Playing shortcut is a no-op on them.
     var isPlayerScreen: Bool {
         switch self {
-        case .player, .nowPlaying: return true
+        case .player, .nowPlaying, .immersiveCoverFlowPlayer: return true
         default: return false
         }
     }
@@ -135,7 +136,7 @@ extension Route {
             return false
         case .playlists, .artists, .albums, .songs, .genres, .composers,
              .artistAlbums, .playlistTracks, .albumTracks, .composerSongs,
-             .coverFlow, .player, .nowPlaying, .queue:
+             .coverFlow, .player, .nowPlaying, .immersiveCoverFlowPlayer, .queue:
             return true
         }
     }
@@ -193,6 +194,8 @@ extension Route {
             PlayerView(source: source, trackIndex: trackIndex, isFromCoverFlow: isFromCoverFlow)
         case .nowPlaying:
             PlayerView(source: nil, trackIndex: 0, isFromCoverFlow: false)
+        case .immersiveCoverFlowPlayer(let albumID, let trackIndex):
+            PlayerView(source: .album(id: albumID), trackIndex: trackIndex, isFromCoverFlow: false)
         case .queue:
             QueueView()
         case .settings:

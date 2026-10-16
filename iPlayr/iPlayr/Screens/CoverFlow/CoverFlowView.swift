@@ -3,9 +3,11 @@ import MusicKit
 
 struct CoverFlowView: View {
     var onExitImmersive: (() -> Void)? = nil
+    var onPlayImmersive: ((String, Int) -> Void)? = nil
     @Environment(iPlayrButtonController.self) var iPlayrController
     @Environment(MusicLibraryStore.self) private var libraryStore
     @Environment(AppleMusicManager.self) private var playerManager
+    @Environment(ThemeManager.self) private var theme
     @Environment(\.navigate) private var navigate
     @State private var scrollAnimator = CoverFlowScrollAnimator()
     @State private var carouselScope = FocusScope(id: "coverFlow")
@@ -22,7 +24,6 @@ struct CoverFlowView: View {
     @State private var songAction: QueueCandidate?
     private let itemStep = CoverFlowMetrics.itemStep
     private let tilt = CoverFlowMetrics.tilt
-    private let cfSpacing = CoverFlowMetrics.spacing
 
     private var scrollOffset: CGFloat { scrollAnimator.scrollOffset }
     private var selectedAlbum: Album? { albums.indices.contains(selectedIndex) ? albums[selectedIndex] : nil }
@@ -36,11 +37,27 @@ struct CoverFlowView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            let coverSize = min(geometry.size.height * 0.56, geometry.size.width * 0.7, 310)
+            let headerHeight = onExitImmersive == nil ? StatusBar.height : 44.0
+            let controlsHeight = onExitImmersive == nil ? 0.0 : 58.0
+            let available = max(0, geometry.size.height - headerHeight - controlsHeight)
+            let coverSize = max(44, min((available - 64) / 1.24, geometry.size.width * 0.7, 310))
             ZStack {
                 coverFlowBackdrop(size: geometry.size)
                 VStack(spacing: 0) {
-                    StatusBar(title: isPlayerView ? String(localized: "Now Playing") : String(localized: "Cover Flow"))
+                    HStack(spacing: 0) {
+                        StatusBar(title: isPlayerView ? String(localized: "Now Playing") : String(localized: "Cover Flow"))
+                        if let onExitImmersive {
+                            Button(action: onExitImmersive) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .font(.system(size: 24))
+                                    .foregroundStyle(.white.opacity(0.9))
+                                    .frame(width: 44, height: 44)
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel(String(localized: "Return to iPod"))
+                        }
+                    }
+                    .frame(height: headerHeight)
                     ZStack {
                         if viewState == .content {
                             contentView(coverSize: coverSize)
@@ -76,18 +93,6 @@ struct CoverFlowView: View {
                         immersiveControls
                     }
                 }
-                if onExitImmersive != nil {
-                    Button(action: { onExitImmersive?() }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 28))
-                            .foregroundStyle(.white.opacity(0.9))
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel(String(localized: "Return to iPod"))
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                    .padding(.top, 32)
-                    .padding(.trailing, 18)
-                }
             }
             // Pin the whole view to the measured size so no child (the artwork
             // backdrop in particular) can inflate the layout and shift the
@@ -107,35 +112,43 @@ struct CoverFlowView: View {
 
     @ViewBuilder
     private func contentView(coverSize: CGFloat) -> some View {
-        if !isPlayerView {
-            VStack(spacing: 0) {
+        if isSongList, !isPlayerView, let album = selectedAlbum {
+            // Both presentations reserve their full content area for the list.
+            // A fixed flip card can exceed the embedded screen's height and
+            // collide with the album labels below the carousel.
+            SongListView(album: album, isSelected: true, isSongList: $isSongList,
+                         scope: songListScope, onSelectTrack: playTrack)
+                .frame(maxWidth: 420, maxHeight: .infinity)
+                .background(theme.tokens().screenBackground.color)
+                .padding(.horizontal, onExitImmersive == nil ? 8 : 16)
+                .padding(.vertical, 8)
+        } else if !isPlayerView {
+            VStack(spacing: 8) {
                 Spacer(minLength: 0)
                 GeometryReader { geometry in
                     ZStack {
                         ForEach(visibleAlbums, id: \.album.id) { item in
                             let offset = relativeOffset(for: item.index)
-                            AlbumCover(album: item.album, isSelected: item.index == selectedIndex, isSongList: $isSongList, songListScope: songListScope, coverSize: coverSize)
-                                .frame(width: isSongList && item.index == selectedIndex ? CoverFlowMetrics.expandedSize : coverSize,
-                                       height: isSongList && item.index == selectedIndex ? CoverFlowMetrics.expandedSize : coverSize)
+                            AlbumCover(album: item.album, coverSize: coverSize)
+                                .frame(width: coverSize, height: coverSize)
                                 .rotation3DEffect(.degrees(rotation(offset)), axis: (x: 0, y: 1, z: 0), perspective: 0.3)
                                 .scaleEffect(scale(offset))
                                 .offset(x: xOffset(offset, coverSize: coverSize))
-                                .zIndex(isSongList && item.index == selectedIndex ? 1000 : zIndex(offset))
+                                .zIndex(zIndex(offset))
                         }
                     }
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                    .position(x: geometry.size.width / 2, y: coverSize / 2)
                 }
-                .frame(maxWidth: .infinity, maxHeight: coverSize + 28)
+                .frame(height: coverSize * 1.24)
                 .contentShape(Rectangle())
                 .simultaneousGesture(dragGesture)
-                Spacer(minLength: 4)
+                if !albums.isEmpty {
+                    albumInfo
+                        .frame(height: 48)
+                }
+                Spacer(minLength: 0)
             }
             .zIndex(isSongList ? 2 : 0)
-
-            if !albums.isEmpty {
-                albumInfo
-                    .padding(.bottom, 8)
-            }
         }
     }
 
@@ -178,18 +191,12 @@ struct CoverFlowView: View {
             .buttonStyle(.bordered)
 
             Button {
-                if isSongList {
-                    handleSelectAction()
-                } else {
-                    selectedTrackIndex = 0
-                    playerViewId = UUID()
-                    isPlayerView = true
-                }
+                playTrack(isSongList ? songListScope.selection : 0)
             } label: {
                 Label(String(localized: "Play"), systemImage: "play.fill")
             }
             .buttonStyle(.borderedProminent)
-            .disabled(selectedAlbum == nil)
+            .disabled(selectedAlbum == nil || viewState != .content || (isSongList && songListScope.itemCount == 0))
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 10)
@@ -200,7 +207,6 @@ struct CoverFlowView: View {
     private var albumInfo: some View {
         let album = albums.indices.contains(selectedIndex) ? albums[selectedIndex] : nil
         return VStack(spacing: 2) {
-            Spacer()
             Text(album?.title ?? "")
                 .font(.system(size: 16, weight: .bold))
                 .multilineTextAlignment(.center)
@@ -222,8 +228,9 @@ struct CoverFlowView: View {
 
     private var dragGesture: some Gesture {
         DragGesture()
-            .onChanged { dragOffset = $0.translation.width }
+            .onChanged { if !isSongList { dragOffset = $0.translation.width } }
             .onEnded { value in
+                guard !isSongList else { return }
                 let projected = scrollOffset + value.translation.width + value.predictedEndTranslation.width / 2
                 let index = Int(max(0, min(CGFloat(albums.count - 1), round(-projected / itemStep))))
                 navigateTo(index)
@@ -246,8 +253,7 @@ struct CoverFlowView: View {
     }
 
     private func xOffset(_ offset: CGFloat, coverSize: CGFloat) -> CGFloat {
-        let clamped = max(-2, min(2, offset))
-        return clamped * coverSize * 0.72 + clamped * cfSpacing * coverSize
+        CGFloat(CoverFlowLayout.horizontalOffset(position: Double(offset), coverSize: Double(coverSize)))
     }
 
     private func scale(_ offset: CGFloat) -> CGFloat {
@@ -336,16 +342,25 @@ struct CoverFlowView: View {
 
     private func handleSelectAction() {
         if isSongList && iPlayrController.activeScope === songListScope {
-            let trackIndex = songListScope.selection
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-                playerViewId = UUID()
-                selectedTrackIndex = trackIndex
-                isPlayerView = true
-            }
+            playTrack(songListScope.selection)
         } else if !isSongList && !isPlayerView {
+            songListScope.configure(itemCount: 0)
             isSongList = true
             songListScope.onAction = { handleButtonAction($0) }
             iPlayrController.activate(songListScope)
+        }
+    }
+
+    private func playTrack(_ index: Int) {
+        guard let album = selectedAlbum, index >= 0,
+              !isSongList || index < songListScope.itemCount else { return }
+        if isSongList { songListScope.select(index) }
+        selectedTrackIndex = index
+        if let onPlayImmersive {
+            onPlayImmersive(album.id.rawValue, index)
+        } else {
+            playerViewId = UUID()
+            isPlayerView = true
         }
     }
 

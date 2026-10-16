@@ -6,6 +6,7 @@ struct SongListView: View {
     let isSelected: Bool
     @Binding var isSongList: Bool
     var scope: FocusScope
+    var onSelectTrack: ((Int) -> Void)? = nil
     @Environment(MusicLibraryStore.self) private var libraryStore
     @Environment(ThemeManager.self) private var theme
     @State private var isLoading = true
@@ -16,7 +17,11 @@ struct SongListView: View {
         VStack(spacing: 0) {
             Group {
                 albumHeader
-                tracksList
+                if tracks.isEmpty && !isLoading {
+                    StateView(state: .empty(message: String(localized: "No tracks found")))
+                } else {
+                    tracksList
+                }
             }
             .opacity(isLoading ? 0 : 1)
 
@@ -25,8 +30,8 @@ struct SongListView: View {
             }
         }
         .onDisappear(perform: cleanup)
-        .onChange(of: shouldLoad, initial: false) { _, shouldLoad in
-            if shouldLoad { loadTracks() }
+        .task(id: shouldLoad) {
+            if shouldLoad { await loadTracks() }
         }
     }
 
@@ -63,10 +68,19 @@ struct SongListView: View {
             ScrollView {
                 LazyVStack(spacing: 0) {
                     ForEach(Array(tracks.enumerated()), id: \.offset) { index, track in
-                        MenuItemView(
-                            menu: Menu(id: index, name: track.title, next: scope.selection == index),
-                            isSelected: scope.selection == index
-                        )
+                        Button {
+                            scope.select(index)
+                            onSelectTrack?(index)
+                        } label: {
+                            MenuItemView(
+                                menu: Menu(id: index, name: track.title, next: scope.selection == index),
+                                isSelected: scope.selection == index
+                            )
+                            .frame(minHeight: 44)
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityHint(String(localized: "Play this track"))
                         .id(index)
                     }
                 }
@@ -79,16 +93,15 @@ struct SongListView: View {
                     }
                 }
             }
-            .padding(.bottom, 26)
         }
     }
 
-    private func loadTracks() {
-        Task {
-            tracks = await libraryStore.albumTracks(id: album.id.rawValue) ?? []
-            scope.configure(itemCount: tracks.count)
-            isLoading = false
-        }
+    private func loadTracks() async {
+        let loaded = await libraryStore.albumTracks(id: album.id.rawValue) ?? []
+        guard !Task.isCancelled else { return }
+        tracks = loaded
+        scope.configure(itemCount: tracks.count, selection: scope.selection)
+        isLoading = false
     }
 
     private func cleanup() {

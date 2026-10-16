@@ -1,8 +1,19 @@
 # Beta handoff for prod-dev-team — 16 October 2026
 
+> **17 October follow-up:** immersive Cover Flow now selects individual tracks, opens normal
+> Now Playing, and preserves the album/list for MENU return. Denser album spacing, landscape label
+> layout, status-bar contrast, and the 22-theme gallery are updated in source. Cover Flow uses the chosen
+> 0.70 / 0.36 spacing. Ceramic, Engraved, Frosted and Clear are implemented, with artwork light behind
+> both glass wheels at 75% Frosted / 50% Clear. Their LCD stays neutral. Album Glow now uses Ambient Screen
+> at 80% preferred intensity, retaining violet hardware. All 28 tests (594 fixed contrast checks plus
+> dynamic lighting checks), Release compilation and fresh Release analysis pass. Version **1.0 (3)**
+> is packaged and verified; only this IPA is retained. Variant labels wrap and embedded track lists
+> use the available area. Device acceptance remains pending; see `design/beta/2026-10-17/README.md`.
+
 > **16 October Mac update:** the four beta fixes and later queue/seek/shortcut features compile
-> successfully. Three follow-up fixes are local and uncommitted; all 20 ThemeCore tests and the
-> unsigned Debug iOS build pass. A new IPA and device acceptance remain pending. See
+> successfully. Three follow-up fixes are committed in `4b188ef`; all 20 ThemeCore tests and the
+> unsigned Debug iOS build pass. Release version 1.0 (2) is built and its IPA passes packaging
+> checks; manual installation and device acceptance remain pending. See
 > [the detailed log](BETA_TEST_LOG.md#mac-review-and-follow-up-fixes--16-october-2026) and
 > [the updated technical handoff](HANDOFF_2026-10-16.md).
 
@@ -25,11 +36,16 @@ implemented. The Immersive Mode setting changes presentation and does not disabl
 
 ## Current build and verification
 
-- Latest source: pulled `main` at `1c58974`, plus five locally modified source/package files for
-  MAC-01 through MAC-03. All 20 native Mac ThemeCore tests and unsigned Debug compilation for
+- Latest source: `4b188ef`, including MAC-01 through MAC-03, plus the local build-number bump to 2.
+  All 20 native Mac ThemeCore tests and unsigned Debug compilation for
   `generic/platform=iOS` pass. Only the existing App Intents metadata warning was emitted by Xcode.
-- The candidate details below describe the **previous 15 October IPA**. No new IPA has been
-  generated or installed during the 16 October review/fix session.
+- New candidate: `DerivedData/Artifacts/iPod-Playr-SideStore-1.0-2.ipa`, version 1.0 (2),
+  unsigned Release for arm64 iPhoneOS, minimum iOS 17.0. Build and packaging checks passed;
+  manual SideStore installation and device checks remain pending. The exact checksum and
+  saved validation logs are in `BETA_TEST_LOG.md`.
+- The candidate details below describe the **previous 15 October installed IPA**. Its saved
+  archive and the duplicate unversioned 1.0 (2) IPA were deleted on 17 October at the user's
+  request. Only `DerivedData/Artifacts/iPod-Playr-SideStore-1.0-2.ipa` remains for distribution.
 - App version: 1.0 (1), built from baseline `679be9b` plus uncommitted Phase 2 fixes.
 - Tools: Xcode 27.0 (27A266a), iOS 27.0 SDK, Apple silicon Mac on macOS 27.0.1.
 - Device: iPhone 17, iOS 27.0.1; user manually signs/installs through SideStore with a free Apple ID.
@@ -151,12 +167,12 @@ changes and automated checks below do not establish that visual or playback beha
 - [x] Run native Mac ThemeCore tests: 20 tests, zero failures after declaring macOS 13 in the package.
 - [x] Compile Debug for `generic/platform=iOS` with signing disabled: passed with the existing
       App Intents metadata warning only. See the saved logs linked from `BETA_TEST_LOG.md`.
-- [ ] Run a new Analyze action for the updated source; the previous pass was on the 15 October candidate.
+- [x] Run a fresh Release Analyze action for build 3: passed, saved in the 17 October evidence folder.
 - [x] Apply MAC-01 through MAC-03 locally: Mac package minimum, embedded-player shortcut guard,
       and immediate seek commit on MENU/focus handoff.
 - [ ] Verify the embedded-player shortcut and immediate seek commit on MENU/hold MENU on the phone.
-- [ ] Build a new IPA using `bash scripts/build_ipa.sh`; give it a distinct build number or filename so
-      the user can identify the next candidate. Preserve the metadata-free SideStore packaging check.
+- [x] Build a new IPA using `bash scripts/build_ipa.sh`: version 1.0 (3), saved with a distinct
+      filename. Metadata-free packaging, device platform/architecture, and archive integrity pass.
 - [ ] Hand the new IPA to the user for manual SideStore installation and before/after screenshots.
 - [ ] Obtain the user's review of wheel size/right alignment and Cover Flow's corrected appearance.
 

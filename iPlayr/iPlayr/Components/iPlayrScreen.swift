@@ -96,7 +96,9 @@ struct iPlayrScreen: View {
                 // instances that raced for the clickwheel's active scope. Instead,
                 // remember the launching menu's scope and hand the wheel back on exit.
                 let restoreScope = iPlayrController.activeScope
-                immersiveFlow.present { activate(restoreScope) }
+                immersiveFlow.present(onPlay: { albumID, trackIndex in
+                    handleNavigation(.push(.immersiveCoverFlowPlayer(albumID: albumID, trackIndex: trackIndex)))
+                }, onDismiss: { activate(restoreScope) })
                 return
             }
             isNavigating = true
@@ -107,6 +109,8 @@ struct iPlayrScreen: View {
             pop(isFullScreen ? $fullScreen : $menu)
 
         case .popToRoot:
+            // Hold MENU leaves the entire session, including suspended Cover Flow.
+            immersiveFlow.dismiss()
             guard fullScreen.canPop || menu.canPop else { return }
             let restoreScope = menu.rootRestoreScope ?? fullScreen.rootRestoreScope
             withAnimation(Self.pushAnimation) {
@@ -124,7 +128,7 @@ struct iPlayrScreen: View {
     /// layer remembers the launching screen's focus scope and keeps the screen
     /// mounted, so MENU returns to the exact row the user left.
     private func openNowPlayingShortcut() {
-        guard playerManager.currentTrack != nil, !immersiveFlow.isPresented else { return }
+        guard playerManager.currentTrack != nil, !immersiveFlow.isVisible else { return }
         // Cover Flow embeds its player without changing the outer route.
         guard iPlayrController.activeScope?.isPlayerScreen != true else { return }
         if let top = fullScreen.topRoute, top.isPlayerScreen { return }
@@ -133,9 +137,16 @@ struct iPlayrScreen: View {
 
     private func pop(_ layer: Binding<NavigationLayer>) {
         guard layer.wrappedValue.canPop else { return }
+        let returnsToCoverFlow: Bool
+        if case .immersiveCoverFlowPlayer = layer.wrappedValue.topRoute {
+            returnsToCoverFlow = immersiveFlow.isPresented
+        } else {
+            returnsToCoverFlow = false
+        }
         let restoreScope = layer.wrappedValue.topRestoreScope
         withAnimation(Self.pushAnimation) {
             layer.wrappedValue.pop()
+            if returnsToCoverFlow { immersiveFlow.resume() }
         } completion: {
             layer.wrappedValue.trim()
         }

@@ -32,6 +32,8 @@ final class WheelInputModel {
 // MARK: - Appearance (paint only; the hit layer never reads it)
 
 struct WheelLook {
+    let material: WheelMaterial
+    let isPorcelain: Bool
     let style: RingStyle
     let body: RGB
     let wheel: RGB
@@ -40,6 +42,8 @@ struct WheelLook {
     let glyph: RGB
 
     init(theme: ThemeSpec) {
+        material = theme.material
+        isPorcelain = theme.material == .ceramic
         style = theme.wheelStyle
         body = theme.body
         wheel = theme.wheel
@@ -52,8 +56,8 @@ struct WheelLook {
     var hairline: Color { body.isLight ? Color.black.opacity(0.14) : Color.white.opacity(0.18) }
     var ringEdge: Color { wheel.adjustingLightness(by: -0.10).color }
 
-    /// The centre button is the body colour in both styles.
-    var centerFill: Color { body.color }
+    /// Porcelain keeps a ceramic centre; other themes use the body colour.
+    var centerFill: Color { (isPorcelain ? wheel : body).color }
 
     var centerStroke: (color: Color, width: CGFloat) {
         switch style {
@@ -87,6 +91,13 @@ struct iPlayrButtons: View {
     @State private var pressedClearTask: Task<Void, Never>?
     @Environment(iPlayrButtonController.self) private var buttonController
     @Environment(ThemeManager.self) private var theme
+    @Environment(AppleMusicManager.self) private var playerManager
+    @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
+    @Environment(\.colorSchemeContrast) private var contrast
+
+    private var glassAtmosphereEnabled: Bool {
+        theme.theme.material.isGlass && !reduceTransparency && contrast != .increased
+    }
 
     var body: some View {
         GeometryReader { proxy in
@@ -103,6 +114,12 @@ struct iPlayrButtons: View {
             let look = WheelLook(theme: spec)
 
             ZStack {
+                if glassAtmosphereEnabled {
+                    GlassWheelArtwork(artwork: playerManager.currentTrack?.artwork, theme: spec)
+                        .frame(width: geometry.diameter, height: geometry.diameter)
+                        .allowsHitTesting(false)
+                        .accessibilityHidden(true)
+                }
                 WheelPaintLayer(geometry: geometry, look: look, pressed: pressedRegion)
                     .allowsHitTesting(false)
                 WheelLabelLayer(geometry: geometry, look: look)
@@ -112,6 +129,7 @@ struct iPlayrButtons: View {
             .frame(width: geometry.frameSize, height: geometry.frameSize)
             .position(x: proxy.size.width / 2, y: proxy.size.height / 2)
         }
+        .clipped()
     }
 
     // MARK: Hit layer (identical in both styles)
@@ -300,20 +318,50 @@ private struct WheelPaintLayer: View {
             }
             .frame(width: geometry.diameter, height: geometry.diameter)
         case .minimalIcons:
-            Circle()
-                .strokeBorder(look.wheel.color, lineWidth: 2)
-                .frame(width: geometry.diameter, height: geometry.diameter)
+            if look.material.isGlass {
+                GlassWheelSurface(material: look.material, fallback: look.wheel)
+                    .environment(\.colorScheme, look.body.isLight ? .light : .dark)
+                    .frame(width: geometry.diameter, height: geometry.diameter)
+            } else if look.isPorcelain {
+                // A warm ceramic face and a shallow edge give Porcelain substance.
+                Circle()
+                    .fill(look.wheel.color)
+                    .overlay {
+                        Circle().strokeBorder(look.body.adjustingLightness(by: -0.12).color, lineWidth: 1)
+                    }
+                    .shadow(color: look.body.adjustingLightness(by: -0.25).color.opacity(0.18), radius: 3, y: 2)
+                    .frame(width: geometry.diameter, height: geometry.diameter)
+            } else if look.material == .engraved {
+                Circle()
+                    .strokeBorder(look.wheel.color, lineWidth: 1.5)
+                    .overlay {
+                        Circle().inset(by: 2).stroke(Color.white.opacity(0.65), lineWidth: 1)
+                    }
+                    .frame(width: geometry.diameter, height: geometry.diameter)
+            } else {
+                Circle()
+                    .strokeBorder(look.wheel.color, lineWidth: 2)
+                    .frame(width: geometry.diameter, height: geometry.diameter)
+            }
         }
     }
 
     private var centerButton: some View {
         ZStack {
-            Circle().fill(look.centerFill)
+            if look.material.isGlass {
+                // The centre shares the single glass disk; avoid stacking glass.
+                Circle().fill(look.wheel.color.opacity(0.12))
+            } else {
+                Circle().fill(look.centerFill)
+            }
             if pressed == .center {
                 Circle().fill(look.pressedFill)
             }
             Circle().strokeBorder(look.centerStroke.color, lineWidth: look.centerStroke.width)
             Circle().stroke(look.hairline, lineWidth: 1)
+            if look.isPorcelain {
+                Circle().strokeBorder(look.body.adjustingLightness(by: -0.12).color, lineWidth: 1)
+            }
         }
         .frame(width: geometry.centerDiameter, height: geometry.centerDiameter)
     }
@@ -330,15 +378,19 @@ private struct WheelLabelLayer: View {
             Text("MENU")
                 .font(.system(size: 11, weight: .semibold))
                 .tracking(11 * 0.06)
+                .modifier(WheelGlyphBacking(look: look))
                 .position(geometry.labelPosition(for: .menu))
             Image(systemName: ImageNames.System.forwardEndAlt)
                 .font(.system(size: 14, weight: .semibold))
+                .modifier(WheelGlyphBacking(look: look))
                 .position(geometry.labelPosition(for: .next))
             Image(systemName: ImageNames.System.playPause)
                 .font(.system(size: 14, weight: .semibold))
+                .modifier(WheelGlyphBacking(look: look))
                 .position(geometry.labelPosition(for: .playPause))
             Image(systemName: ImageNames.System.backwardEndAlt)
                 .font(.system(size: 14, weight: .semibold))
+                .modifier(WheelGlyphBacking(look: look))
                 .position(geometry.labelPosition(for: .previous))
         }
         .foregroundStyle(look.glyph.color)

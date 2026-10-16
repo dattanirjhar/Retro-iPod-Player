@@ -1,0 +1,35 @@
+{
+  "artifact": "DerivedData/Artifacts/iPod-Playr-SideStore-1.0-2.ipa",
+  "version": "1.0",
+  "build": "2",
+  "bundle_identifier": "com.kerem.iPlayr",
+  "minimum_ios": "17.0",
+  "size_bytes": 5733147,
+  "sha256": "7e6f86404d32175b154f83c30f3d231bd64298d81cb8181fdc57b27d3f11a9d2",
+  "checks_passed": [
+    "ZIP integrity",
+    "single app directory in Payload",
+    "no AppleDouble or __MACOSX metadata",
+    "arm64 Mach-O executable",
+    "iOS device platform",
+    "executable permissions",
+    "music privacy description",
+    "background audio mode",
+    "unsigned app with no embedded provisioning profile"
+  ],
+  "installation": "Not performed; SideStore must sign during manual installation",
+  "preserved_previous_candidate": null,
+  "source_commit": "4b188ef",
+  "local_build_change": "CURRENT_PROJECT_VERSION = 2 in Debug and Release",
+  "cleanup_2026_10_17": {
+    "retained": "DerivedData/Artifacts/iPod-Playr-SideStore-1.0-2.ipa",
+    "removed": [
+      "/Users/thejester/Retro-iPod-Player/DerivedData/Artifacts/iPod-Playr-SideStore-1.0-1.ipa",
+      "/Users/thejester/Retro-iPod-Player/DerivedData/Artifacts/iPod-Playr-SideStore.ipa",
+      "/Users/thejester/Retro-iPod-Player/DerivedData/Build/Products/Debug-iphoneos",
+      "/Users/thejester/Retro-iPod-Player/DerivedData/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos",
+      "/private/tmp/ipod-review-derived"
+    ],
+    "latest_sha256_unchanged": true
+  }
+}

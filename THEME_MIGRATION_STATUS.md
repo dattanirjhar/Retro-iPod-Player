@@ -1,9 +1,23 @@
 # Theme + Mode migration status
 
+**17 October source update:** immersive Cover Flow tracks now open standard Now Playing, with
+MENU restoring the preserved immersive session. Dense album stacking, landscape title allocation,
+system status-bar contrast, and all four approved material variants are implemented locally. The
+gallery has 22 themes, including Porcelain Ceramic/Engraved and Liquid Glass Frosted/Clear. Glass
+uses native iOS 26+ APIs with system-material and opaque accessibility fallbacks, and current artwork
+behind the controls at 75% for Frosted and 50% for Clear; their LCD has no artwork wash. Modern Album
+Glow uses the selected Ambient Screen at 80% preferred intensity, with fixed violet hardware. Hardware
+colors and screen mode remain independent. Cover Flow spacing is 0.70 / 0.36. All 28 native Mac tests
+(594 fixed contrast checks plus dynamic lighting checks), Release compilation and fresh Release
+analysis pass. Version **1.0 (3)** packages these changes and the final wrapping theme labels and
+embedded track-list layout; IPA packaging verification passes. Build 3 is the only retained IPA.
+See the latest entry in `BETA_TEST_LOG.md` for sources, research, logs and device checks.
+
 **Current product handoff:** [16 October prod-dev-team fix plan](PHASE2_MAC_HANDOFF.md).
 **Latest Mac validation, 16 October:** all 20 ThemeCore tests and unsigned Debug iOS compilation
-pass on `1c58974` plus the three locally applied review fixes. A new IPA and device checks remain
-pending. See [the current verification log](BETA_TEST_LOG.md#mac-review-and-follow-up-fixes--16-october-2026).
+pass on `1c58974` plus the three review fixes (now committed in `4b188ef`). Release version 1.0 (2) has also
+been built and its IPA passes packaging checks; installation and device checks remain pending.
+See [the current verification log](BETA_TEST_LOG.md#mac-review-and-follow-up-fixes--16-october-2026).
 The 15 October device beta reported four issues: iPod heading, broken Cover Flow in both immersive
 settings, landscape wheel alignment, and wheel size. See [observations](BETA_TEST_LOG.md) and
 [saved evidence](design/beta/2026-10-15/README.md). This file retains the technical history below;
@@ -120,3 +134,19 @@ or device acceptance was performed. The original 15 October candidate remains th
 reference; the build number is unchanged. The two interaction fixes, all four beta UI outcomes, and
 queue behavior await manual device verification. Exact commands and durable build/test evidence are
 linked from [BETA_TEST_LOG.md](BETA_TEST_LOG.md#mac-review-and-follow-up-fixes--16-october-2026).
+
+### Release packaging — 2026-10-16, 23:47 IST
+
+`CURRENT_PROJECT_VERSION` is now `2` in Debug and Release. `bash scripts/build_ipa.sh` succeeded
+on source `4b188ef` plus this local build-number bump and produced unsigned version 1.0 (2), preserved as
+`DerivedData/Artifacts/iPod-Playr-SideStore-1.0-2.ipa`. The previous 1.0 (1) IPA is preserved
+separately. ZIP integrity, single app candidate, metadata-free packaging, arm64/iOS device
+executable, permissions, required music/background-audio metadata, and absence of signing/profile
+files passed. The App Intents metadata warning remains the only Xcode warning. The release build
+log, SHA-256, and packaging report are linked from `BETA_TEST_LOG.md`. Installation and device
+acceptance remain pending; no new Analyze action was run.
+
+**17 October build cleanup:** at the user's request, removed the previous 1.0 (1) IPA, the
+duplicate unversioned 1.0 (2) IPA, older Debug products/intermediates, and the temporary Debug
+build directory. The sole distributable is `DerivedData/Artifacts/iPod-Playr-SideStore-1.0-2.ipa`;
+its ZIP integrity and unchanged SHA-256 were verified. Latest Release products and saved logs remain.

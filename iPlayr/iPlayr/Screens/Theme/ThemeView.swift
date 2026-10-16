@@ -106,8 +106,10 @@ struct ThemePickerView: View {
                                 SectionHeaderRow(title: group.rawValue)
                                     .id(row.id)
                             case .theme(let spec, let index):
+                                let name = spec.name.components(separatedBy: " · ")
                                 ChoiceRow(
-                                    title: spec.name,
+                                    title: name[0],
+                                    subtitle: name.count > 1 ? name[1] : nil,
                                     swatch: AnyView(ThemeSwatch(theme: spec)),
                                     isCurrent: theme.savedTheme.id == spec.id,
                                     isSelected: scope.selection == index
@@ -269,6 +271,7 @@ struct SectionHeaderRow: View {
 /// A row with an optional swatch, a title, and a tick when it is the saved value.
 struct ChoiceRow: View {
     let title: String
+    var subtitle: String? = nil
     var swatch: AnyView? = nil
     let isCurrent: Bool
     let isSelected: Bool
@@ -279,9 +282,18 @@ struct ChoiceRow: View {
         let tokens = theme.tokens(increasedContrast: contrast == .increased)
         HStack(spacing: 10) {
             if let swatch { swatch }
-            Text(title)
-                .font(.system(size: 17, weight: .regular))
-                .lineLimit(1)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.system(size: 17, weight: .regular))
+                    .fixedSize(horizontal: false, vertical: true)
+                if let subtitle {
+                    Text(subtitle)
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundStyle(isSelected ? tokens.selectionText.color : tokens.secondaryText.color)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .layoutPriority(1)
             Spacer(minLength: 0)
             if isCurrent {
                 Image(systemName: "checkmark")
@@ -292,6 +304,7 @@ struct ChoiceRow: View {
         .padding(.vertical, 5)
         .foregroundColor(isSelected ? tokens.selectionText.color : tokens.primaryText.color)
         .background(SelectedRowBackground(tokens: tokens, isSelected: isSelected))
+        .accessibilityElement(children: .combine)
     }
 }
 

@@ -1,0 +1,32 @@
+{
+  "artifact": "DerivedData/Artifacts/iPod-Playr-SideStore-1.0-3.ipa",
+  "version": "1.0",
+  "build": "3",
+  "bundle_identifier": "com.kerem.iPlayr",
+  "minimum_ios": "17.0",
+  "size_bytes": 5771238,
+  "sha256": "f8979db390420b56dfdfb836f885baa08f2817304c2846bd5223f60475f55fa9",
+  "architecture": "arm64",
+  "executable_sha256": "acb63db68010ca21ce00f6ab959e0c916cd825f3d80dc3e29ae1894d355e9ad8",
+  "source_base_commit": "4b188ef",
+  "source_note": "Includes the local 17 October Cover Flow, 22-theme, captured lighting and beta follow-up changes prepared in this release commit.",
+  "checks_passed": [
+    "ZIP integrity",
+    "single app directory in Payload",
+    "no AppleDouble or __MACOSX metadata",
+    "arm64 Mach-O executable",
+    "iOS device platform",
+    "executable permissions",
+    "music privacy description",
+    "background audio mode",
+    "unsigned app with no embedded provisioning profile",
+    "archive executable matches Release product"
+  ],
+  "installation": "Not performed; manually import into SideStore for signing and installation",
+  "removed_previous_ipas": [
+    "DerivedData/Artifacts/iPod-Playr-SideStore-1.0-2.ipa"
+  ],
+  "removed_build_directories": [
+    "/private/tmp/ipod-oct17-build"
+  ]
+}

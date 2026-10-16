@@ -1,0 +1,101 @@
+warning: /Users/thejester/Library/org.swift.swiftpm/configuration is not accessible or not writable, disabling user-level cache features.
+warning: /Users/thejester/Library/org.swift.swiftpm/security is not accessible or not writable, disabling user-level cache features.
+warning: /Users/thejester/Library/Caches/org.swift.swiftpm is not accessible or not writable, disabling user-level cache features.
+warning: 'themecore': failed storing manifest for 'themecore' in cache: attempt to write a readonly database
+Building for debugging...
+[2 / 11] ThemeCore
+[5 / 14] ThemeCore
+[12 / 15] ThemeCoreTests-product
+[14 / 17] ThemeCoreTests-product
+[19 / 21] ThemeCoreTests-product
+Build complete! (1.25 secs)
+Test Suite 'All tests' started at 2026-10-17 01:33:09.156.
+Test Suite 'ThemeCoreTests.xctest' started at 2026-10-17 01:33:09.157.
+Test Suite 'AlbumLightingTests' started at 2026-10-17 01:33:09.157.
+Test Case '-[ThemeCoreTests.AlbumLightingTests testAlbumGlowAndGlassHaveSeparateColorRegions]' started.
+Test Case '-[ThemeCoreTests.AlbumLightingTests testAlbumGlowAndGlassHaveSeparateColorRegions]' passed (0.001 seconds).
+Test Case '-[ThemeCoreTests.AlbumLightingTests testArtworkChangesScreenLightWhileKeepingVioletHardware]' started.
+Test Case '-[ThemeCoreTests.AlbumLightingTests testArtworkChangesScreenLightWhileKeepingVioletHardware]' passed (0.001 seconds).
+Test Case '-[ThemeCoreTests.AlbumLightingTests testTextAndProgressRemainReadableAcrossArtworkAndScreenShapes]' started.
+Test Case '-[ThemeCoreTests.AlbumLightingTests testTextAndProgressRemainReadableAcrossArtworkAndScreenShapes]' passed (0.013 seconds).
+Test Suite 'AlbumLightingTests' passed at 2026-10-17 01:33:09.171.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.014 (0.015) seconds
+Test Suite 'ColorMathTests' started at 2026-10-17 01:33:09.171.
+Test Case '-[ThemeCoreTests.ColorMathTests testHexRoundTrip]' started.
+Test Case '-[ThemeCoreTests.ColorMathTests testHexRoundTrip]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.ColorMathTests testLightnessStep]' started.
+Test Case '-[ThemeCoreTests.ColorMathTests testLightnessStep]' passed (0.000 seconds).
+Test Suite 'ColorMathTests' passed at 2026-10-17 01:33:09.172.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'ContrastTests' started at 2026-10-17 01:33:09.172.
+Test Case '-[ThemeCoreTests.ContrastTests testAllFortyFourCombinations]' started.
+Test Case '-[ThemeCoreTests.ContrastTests testAllFortyFourCombinations]' passed (0.000 seconds).
+Test Suite 'ContrastTests' passed at 2026-10-17 01:33:09.172.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'CoverFlowTests' started at 2026-10-17 01:33:09.172.
+Test Case '-[ThemeCoreTests.CoverFlowTests testDenseFanKeepsFartherAlbumsDistinctAndSymmetric]' started.
+Test Case '-[ThemeCoreTests.CoverFlowTests testDenseFanKeepsFartherAlbumsDistinctAndSymmetric]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.CoverFlowTests testDismissWhilePlayingCannotReopenTheSession]' started.
+Test Case '-[ThemeCoreTests.CoverFlowTests testDismissWhilePlayingCannotReopenTheSession]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.CoverFlowTests testFanIsContinuousWhenAnAlbumPassesTheNeighbourPosition]' started.
+Test Case '-[ThemeCoreTests.CoverFlowTests testFanIsContinuousWhenAnAlbumPassesTheNeighbourPosition]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.CoverFlowTests testPlaybackHidesBrowsingWithoutEndingTheSession]' started.
+Test Case '-[ThemeCoreTests.CoverFlowTests testPlaybackHidesBrowsingWithoutEndingTheSession]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.CoverFlowTests testPlayRequestsOnlyStartFromVisibleBrowsing]' started.
+Test Case '-[ThemeCoreTests.CoverFlowTests testPlayRequestsOnlyStartFromVisibleBrowsing]' passed (0.000 seconds).
+Test Suite 'CoverFlowTests' passed at 2026-10-17 01:33:09.173.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+Test Suite 'SeekScrubberTests' started at 2026-10-17 01:33:09.173.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testCancelDropsPending]' started.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testCancelDropsPending]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SeekScrubberTests testClampsToTrack]' started.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testClampsToTrack]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SeekScrubberTests testCommitReturnsTargetOnceAndClears]' started.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testCommitReturnsTargetOnceAndClears]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SeekScrubberTests testDisplayedPositionPrefersPending]' started.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testDisplayedPositionPrefersPending]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SeekScrubberTests testFirstClickStartsFromLivePositionThenAccumulates]' started.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testFirstClickStartsFromLivePositionThenAccumulates]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SeekScrubberTests testSettleDelay]' started.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testSettleDelay]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SeekScrubberTests testStepIsOneSixtiethWithOneSecondFloor]' started.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testStepIsOneSixtiethWithOneSecondFloor]' passed (0.000 seconds).
+Test Suite 'SeekScrubberTests' passed at 2026-10-17 01:33:09.174.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'SelectionStateTests' started at 2026-10-17 01:33:09.174.
+Test Case '-[ThemeCoreTests.SelectionStateTests testMigration]' started.
+Test Case '-[ThemeCoreTests.SelectionStateTests testMigration]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SelectionStateTests testModeChangeLeavesThemeUnchanged]' started.
+Test Case '-[ThemeCoreTests.SelectionStateTests testModeChangeLeavesThemeUnchanged]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SelectionStateTests testNoThemeForcesAMode]' started.
+Test Case '-[ThemeCoreTests.SelectionStateTests testNoThemeForcesAMode]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SelectionStateTests testPickerPreviewConfirmCancel]' started.
+Test Case '-[ThemeCoreTests.SelectionStateTests testPickerPreviewConfirmCancel]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SelectionStateTests testThemeChangeLeavesModeUnchanged]' started.
+Test Case '-[ThemeCoreTests.SelectionStateTests testThemeChangeLeavesModeUnchanged]' passed (0.000 seconds).
+Test Suite 'SelectionStateTests' passed at 2026-10-17 01:33:09.174.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+Test Suite 'ThemeTableTests' started at 2026-10-17 01:33:09.174.
+Test Case '-[ThemeCoreTests.ThemeTableTests testEveryThemeConstant]' started.
+Test Case '-[ThemeCoreTests.ThemeTableTests testEveryThemeConstant]' passed (0.001 seconds).
+Test Case '-[ThemeCoreTests.ThemeTableTests testModeTokenConstants]' started.
+Test Case '-[ThemeCoreTests.ThemeTableTests testModeTokenConstants]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.ThemeTableTests testTwentyTwoThemesInGalleryOrder]' started.
+Test Case '-[ThemeCoreTests.ThemeTableTests testTwentyTwoThemesInGalleryOrder]' passed (0.000 seconds).
+Test Suite 'ThemeTableTests' passed at 2026-10-17 01:33:09.175.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'WheelGeometryTests' started at 2026-10-17 01:33:09.175.
+Test Case '-[ThemeCoreTests.WheelGeometryTests testHitMapIsStyleIndependent]' started.
+Test Case '-[ThemeCoreTests.WheelGeometryTests testHitMapIsStyleIndependent]' passed (0.001 seconds).
+Test Case '-[ThemeCoreTests.WheelGeometryTests testRegionsAndTargets]' started.
+Test Case '-[ThemeCoreTests.WheelGeometryTests testRegionsAndTargets]' passed (0.000 seconds).
+Test Suite 'WheelGeometryTests' passed at 2026-10-17 01:33:09.176.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'ThemeCoreTests.xctest' passed at 2026-10-17 01:33:09.176.
+	 Executed 28 tests, with 0 failures (0 unexpected) in 0.018 (0.019) seconds
+Test Suite 'All tests' passed at 2026-10-17 01:33:09.176.
+	 Executed 28 tests, with 0 failures (0 unexpected) in 0.018 (0.020) seconds
+◇ Test run started.
+↳ Testing Library Version: 2084
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

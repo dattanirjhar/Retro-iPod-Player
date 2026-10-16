@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Design-review contact sheets for the 20 iPlayr themes, Dark and Light.
+"""Design-review contact sheets for the 22 iPlayr themes, Dark and Light.
 
 Reads the constants straight out of the Swift sources (ThemeTable.swift and
 ModeTokens.swift); nothing is retyped here. Output: design/contact-dark.png and
-design/contact-light.png, each a 5 x 4 grid in gallery order. This is a review
-aid drawn with Pillow, not a render of the real app.
+design/contact-light.png, in gallery order. This is a review aid drawn with
+Pillow, not a render of the real app; glass is shown using its opaque fallback.
 """
 import re, sys
 from pathlib import Path
@@ -26,7 +26,8 @@ theme_re = re.compile(
     r'theme\("(\w+)", "([^"]+)", \.(\w+), body: "(\w+)", wheel: "(\w+)", glyph: "(\w+)", accent: "(\w+)",\s*'
     r'dark: \("(\w+)", "(\w+)", "(\w+)"\), light: \("(\w+)", "(\w+)", "(\w+)"\),\s*'
     r'style: \.(\w+), finish: \.(\w+), atmosphere: \.(\w+), compact: (true|false)'
-    r'(?:, edge: "(\w+)")?(?:,\s*darkSurfaces: (\w+), lightSurfaces: (\w+))?', re.S)
+    r'(?:, edge: "(\w+)")?(?:,\s*darkSurfaces: (\w+), lightSurfaces: (\w+))?'
+    r'(?:, material: \.(\w+))?', re.S)
 themes = []
 for m in theme_re.finditer(table_src):
     g = m.groups()
@@ -34,8 +35,8 @@ for m in theme_re.finditer(table_src):
                        dark=dict(sel=g[7], seltext=g[8], fill=g[9]), light=dict(sel=g[10], seltext=g[11], fill=g[12]),
                        style=g[13], finish=g[14], atmosphere=g[15], compact=g[16] == "true", edge=g[17],
                        darkSurfaces=overrides.get(g[18]) if g[18] else None,
-                       lightSurfaces=overrides.get(g[19]) if g[19] else None))
-assert len(themes) == 20, f"parsed {len(themes)} themes, expected 20"
+                       lightSurfaces=overrides.get(g[19]) if g[19] else None, material=g[20] or "standard"))
+assert len(themes) == 22, f"parsed {len(themes)} themes, expected 22"
 
 mode_re = re.compile(
     r'static let (dark|light) = SurfaceTokens\(\s*screenBackground: \.hex\("(\w+)"\), panelBackground: \.hex\("(\w+)"\), '
@@ -67,12 +68,14 @@ def lerp(a, b, t): return tuple(round(a[i] + (b[i] - a[i]) * t) for i in range(3
 
 # ---------- drawing ----------
 def font(size, bold=False):
-    for path in ["/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" if bold else "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"]:
+    for path in ["/System/Library/Fonts/Supplemental/Arial Bold.ttf" if bold else "/System/Library/Fonts/Supplemental/Arial.ttf",
+                 "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" if bold else "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"]:
         if Path(path).exists(): return ImageFont.truetype(path, size)
     return ImageFont.load_default()
 
 CELL_W, CELL_H, GAP, MARGIN = 360, 540, 24, 40
-COLS, ROWS = 5, 4
+COLS = 5
+ROWS = (len(themes) + COLS - 1) // COLS
 
 def draw_cell(page, x0, y0, t, mode):
     surf = dict(modes[mode]); over = t["darkSurfaces"] if mode == "dark" else t["lightSurfaces"]
@@ -135,18 +138,22 @@ def draw_cell(page, x0, y0, t, mode):
     dia = int(bw * ratio); cx, cy = x0 + bw // 2, sy + sh + 6 + 20 + dia // 2
     r = dia // 2
     hair = (0, 0, 0, int(255 * 0.14)) if light_body else (255, 255, 255, int(255 * 0.18))
-    if t["style"] == "classic":
+    glass = t["material"] in ("glassFrosted", "glassClear")
+    if t["style"] == "classic" or t["material"] == "ceramic" or glass:
         pd.ellipse([cx - r, cy - r, cx + r, cy + r], fill=wheel + (255,))
         if t["finish"] == "gloss":
             pd.ellipse([cx - int(r * 0.7), cy - int(r * 0.72), cx - int(r * 0.1), cy - int(r * 0.12)], fill=(255, 255, 255, 20))
         pd.ellipse([cx - r + 1, cy - r + 1, cx + r - 1, cy + r - 1], outline=adjust(wheel, -0.10) + (255,), width=1)
     else:
         pd.ellipse([cx - r + 1, cy - r + 1, cx + r - 1, cy + r - 1], outline=wheel + (255,), width=2)
+        if t["material"] == "engraved":
+            pd.ellipse([cx - r + 3, cy - r + 3, cx + r - 3, cy + r - 3], outline=(255, 255, 255, 165), width=1)
     pd.ellipse([cx - r, cy - r, cx + r, cy + r], outline=hair, width=1)
-    # centre button = body colour in both styles
+    # Ceramic and the opaque glass fallback retain the wheel surface at centre.
     cr = int(dia * 0.36 / 2)
     stroke = wheel + (int(255 * (0.40 if t["style"] == "classic" else 0.60)),)
-    pd.ellipse([cx - cr, cy - cr, cx + cr, cy + cr], fill=body + (255,))
+    center = wheel if t["material"] == "ceramic" or glass else body
+    pd.ellipse([cx - cr, cy - cr, cx + cr, cy + cr], fill=center + (255,))
     pd.ellipse([cx - cr + 1, cy - cr + 1, cx + cr - 1, cy + cr - 1], outline=stroke, width=1 if t["style"] == "classic" else 2)
     pd.ellipse([cx - cr, cy - cr, cx + cr, cy + cr], outline=hair, width=1)
     # labels at 68% radius
@@ -173,7 +180,7 @@ def render(mode):
     # RGB page: Pillow only alpha-blends "RGBA" draws onto RGB images.
     page = Image.new("RGB", (W, H), (236, 237, 239))
     hd = ImageDraw.Draw(page)
-    hd.text((MARGIN, MARGIN), f"iPlayr themes - {mode.title()} mode  (20 themes, gallery order; selected row and progress use that mode's constants)",
+    hd.text((MARGIN, MARGIN), f"iPlayr themes - {mode.title()} mode  ({len(themes)} themes; glass shown with opaque fallback; Pillow approximation)",
             fill=(20, 20, 20), font=font(18, True))
     for i, t in enumerate(themes):
         col, row = i % COLS, i // COLS

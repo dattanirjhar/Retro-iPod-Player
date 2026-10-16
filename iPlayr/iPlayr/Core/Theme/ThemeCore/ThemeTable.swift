@@ -17,8 +17,23 @@ enum WheelFinish: String, CaseIterable, Sendable {
     case satin, gloss, matte
 }
 
+enum WheelMaterial: String, Sendable {
+    case standard, ceramic, engraved, glassFrosted, glassClear
+
+    var isGlass: Bool { self == .glassFrosted || self == .glassClear }
+
+    /// Artwork opacity beneath the material, independent of screen mode.
+    var artworkIntensity: Double {
+        switch self {
+        case .glassFrosted: 0.75
+        case .glassClear: 0.50
+        default: 0
+        }
+    }
+}
+
 enum Atmosphere: String, CaseIterable, Sendable {
-    case off, subtle, rich
+    case off, subtle, rich, ambientScreen
 }
 
 /// Selection and progress colours for one theme in one mode. Stored, not derived.
@@ -37,14 +52,14 @@ struct SurfaceOverride: Hashable, Sendable {
     let progressTrack: RGB
 }
 
-/// One of the twenty fixed themes: hardware plus accent constants.
+/// One of the fixed themes: hardware plus accent constants.
 struct ThemeSpec: Identifiable, Hashable, Sendable {
     let id: String
     let name: String
     let group: ThemeGroup
     let body: RGB
     let wheel: RGB
-    /// Label colour on its real surface: the ring fill for Classic, the body for Minimal.
+    /// Label colour on glyphSurface: ring, ceramic face, glass label backing or body.
     let glyph: RGB
     /// The base accent, shown by the picker's swatch dot.
     let accent: RGB
@@ -59,6 +74,12 @@ struct ThemeSpec: Identifiable, Hashable, Sendable {
     let bodyEdgeOverride: RGB?
     let darkSurfaces: SurfaceOverride?
     let lightSurfaces: SurfaceOverride?
+    let material: WheelMaterial
+
+    /// The opaque surface under wheel labels, including glass label backings.
+    var glyphSurface: RGB {
+        wheelStyle == .classic || material == .ceramic || material.isGlass ? wheel : body
+    }
 
     func accent(for mode: ScreenMode) -> ModeAccent { mode == .dark ? dark : light }
     func surfaceOverride(for mode: ScreenMode) -> SurfaceOverride? { mode == .dark ? darkSurfaces : lightSurfaces }
@@ -78,11 +99,11 @@ enum ThemeTable {
         screenBackground: .hex("F4F2FB"), panelBackground: .hex("FFFFFF"), raisedPanel: .hex("ECE9F8"),
         divider: .hex("D9D4EF"), progressTrack: .hex("DCD7F2"))
     static let liquidGlassDark = SurfaceOverride(
-        screenBackground: .hex("14263F"), panelBackground: .hex("1B2F4C"), raisedPanel: .hex("233A59"),
-        divider: .hex("33496D"), progressTrack: .hex("233650"))
+        screenBackground: .hex("161D24"), panelBackground: .hex("222B33"), raisedPanel: .hex("2A3540"),
+        divider: .hex("3E4B57"), progressTrack: .hex("293540"))
     static let liquidGlassLight = SurfaceOverride(
-        screenBackground: .hex("F1F5FA"), panelBackground: .hex("FFFFFF"), raisedPanel: .hex("E7EEF7"),
-        divider: .hex("D0DCEA"), progressTrack: .hex("D3DEEB"))
+        screenBackground: .hex("F3F5F4"), panelBackground: .hex("FAFCFB"), raisedPanel: .hex("E6EBE9"),
+        divider: .hex("C9D2D0"), progressTrack: .hex("D4DCDA"))
 
     // One line per theme, in the reference gallery's order. The contact-sheet
     // script parses these literals directly, so keep the shape unchanged.
@@ -91,13 +112,14 @@ enum ThemeTable {
                               dark: (String, String, String), light: (String, String, String),
                               style: RingStyle, finish: WheelFinish, atmosphere: Atmosphere, compact: Bool,
                               edge: String? = nil, darkSurfaces: SurfaceOverride? = nil,
-                              lightSurfaces: SurfaceOverride? = nil) -> ThemeSpec {
+                              lightSurfaces: SurfaceOverride? = nil, material: WheelMaterial = .standard) -> ThemeSpec {
         ThemeSpec(id: id, name: name, group: group,
                   body: .hex(body), wheel: .hex(wheel), glyph: .hex(glyph), accent: .hex(accent),
                   dark: ModeAccent(selectionBackground: .hex(dark.0), selectionText: .hex(dark.1), progressFill: .hex(dark.2)),
                   light: ModeAccent(selectionBackground: .hex(light.0), selectionText: .hex(light.1), progressFill: .hex(light.2)),
                   wheelStyle: style, finish: finish, atmosphere: atmosphere, isCompact: compact,
-                  bodyEdgeOverride: edge.map { RGB.hex($0) }, darkSurfaces: darkSurfaces, lightSurfaces: lightSurfaces)
+                  bodyEdgeOverride: edge.map { RGB.hex($0) }, darkSurfaces: darkSurfaces, lightSurfaces: lightSurfaces,
+                  material: material)
     }
 
     static let all: [ThemeSpec] = [
@@ -154,17 +176,24 @@ enum ThemeTable {
 
         theme("modernAlbumGlow", "Modern Album Glow", .modern, body: "1B1B23", wheel: "C9C7FF", glyph: "F1F0FA", accent: "6A58E0",
               dark: ("6A58E0", "FFFFFF", "7E6CE5"), light: ("6A58E0", "FFFFFF", "6A58E0"),
-              style: .minimalIcons, finish: .satin, atmosphere: .subtle, compact: false,
+              style: .minimalIcons, finish: .satin, atmosphere: .ambientScreen, compact: false,
               darkSurfaces: modernAlbumGlowDark, lightSurfaces: modernAlbumGlowLight),
         theme("midnightStudio", "Midnight Studio", .modern, body: "121212", wheel: "2A2A2A", glyph: "FFFFFF", accent: "1ED760",
               dark: ("1ED760", "000000", "1ED760"), light: ("0F853E", "FFFFFF", "0F8A40"),
               style: .classic, finish: .satin, atmosphere: .subtle, compact: false),
-        theme("porcelain", "Porcelain", .modern, body: "E7E5E0", wheel: "F8F7F4", glyph: "2B2B2B", accent: "E5531A",
+        theme("porcelain", "Porcelain · Ceramic", .modern, body: "E7E5E0", wheel: "F8F7F4", glyph: "2B2B2B", accent: "E5531A",
               dark: ("CC4916", "FFFFFF", "E5531A"), light: ("CC4916", "FFFFFF", "D64D17"),
-              style: .minimalIcons, finish: .matte, atmosphere: .off, compact: false, edge: "D3D0C9"),
-        theme("liquidGlass", "Liquid Glass", .modern, body: "22262E", wheel: "8E96A3", glyph: "FFFFFF", accent: "0A84FF",
+              style: .minimalIcons, finish: .matte, atmosphere: .off, compact: false, edge: "D3D0C9", material: .ceramic),
+        theme("porcelainEngraved", "Porcelain · Engraved", .modern, body: "E7E5E0", wheel: "AEA69A", glyph: "30332F", accent: "E5531A",
+              dark: ("CC4916", "FFFFFF", "E5531A"), light: ("CC4916", "FFFFFF", "D64D17"),
+              style: .minimalIcons, finish: .matte, atmosphere: .off, compact: false, edge: "D3D0C9", material: .engraved),
+        theme("liquidGlass", "Liquid Glass · Frosted", .modern, body: "1D2329", wheel: "38444E", glyph: "F5F7F8", accent: "0A84FF",
               dark: ("0073EB", "FFFFFF", "0A84FF"), light: ("0073EB", "FFFFFF", "0078F5"),
-              style: .minimalIcons, finish: .satin, atmosphere: .rich, compact: false,
-              darkSurfaces: liquidGlassDark, lightSurfaces: liquidGlassLight),
+              style: .minimalIcons, finish: .satin, atmosphere: .off, compact: false,
+              darkSurfaces: liquidGlassDark, lightSurfaces: liquidGlassLight, material: .glassFrosted),
+        theme("liquidGlassClear", "Liquid Glass · Clear", .modern, body: "DFE5E4", wheel: "DFE5E4", glyph: "1F2C2E", accent: "0A84FF",
+              dark: ("0073EB", "FFFFFF", "0A84FF"), light: ("0073EB", "FFFFFF", "0078F5"),
+              style: .minimalIcons, finish: .satin, atmosphere: .off, compact: false,
+              darkSurfaces: liquidGlassDark, lightSurfaces: liquidGlassLight, material: .glassClear),
     ]
 }

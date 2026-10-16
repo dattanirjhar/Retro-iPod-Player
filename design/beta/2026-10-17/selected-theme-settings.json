@@ -1,0 +1,34 @@
+{
+  "capturedOn": "2026-10-17",
+  "source": "User-selected comparison settings, explicitly requested to be captured",
+  "themes": {
+    "modernAlbumGlow": {
+      "treatment": "ambientScreen",
+      "preferredArtworkIntensity": 0.80,
+      "region": "nowPlayingScreen",
+      "contrastProtection": true
+    },
+    "liquidGlass": {
+      "material": "glassFrosted",
+      "artworkIntensity": 0.75,
+      "region": "beneathWheel"
+    },
+    "liquidGlassClear": {
+      "material": "glassClear",
+      "artworkIntensity": 0.50,
+      "region": "beneathWheel"
+    }
+  },
+  "coverFlow": {
+    "nearestAlbumSpacing": 0.70,
+    "stackSpacing": 0.36
+  },
+  "previewContext": {
+    "screenMode": "dark",
+    "visibleGlassVariant": "Frosted",
+    "artworkColorEnabled": true,
+    "artworkTitle": "Silk and Cologne",
+    "artist": "EI8HT & Offset"
+  },
+  "notes": "Intensities apply in both screen modes. Preview context does not change the app's saved mode or theme. Album Glow may reduce its preferred intensity to preserve text contrast; accessibility overrides remain active."
+}

@@ -22,20 +22,22 @@ private let expectedThemes: [(String, String, String, String, String, [String], 
     ("nanoPurple", "6E4BA8", "F3F5F7", "4D5A66", "6E4BA8", ["724FB0", "FFFFFF", "8D73C2"], ["6E4BA8", "FFFFFF", "6E4BA8"], .classic, .satin, .off, true),
     ("nanoOrange", "E7792B", "F3F5F7", "4D5A66", "B4541A", ["B4541A", "FFFFFF", "CC6020"], ["B4541A", "FFFFFF", "B4541A"], .classic, .satin, .off, true),
     ("nanoYellow", "E9C63C", "F3F5F7", "4D5A66", "8A6D00", ["E9C63C", "1D2228", "E9C63C"], ["8A6D00", "FFFFFF", "8A6D00"], .classic, .satin, .off, true),
-    ("modernAlbumGlow", "1B1B23", "C9C7FF", "F1F0FA", "6A58E0", ["6A58E0", "FFFFFF", "7E6CE5"], ["6A58E0", "FFFFFF", "6A58E0"], .minimalIcons, .satin, .subtle, false),
+    ("modernAlbumGlow", "1B1B23", "C9C7FF", "F1F0FA", "6A58E0", ["6A58E0", "FFFFFF", "7E6CE5"], ["6A58E0", "FFFFFF", "6A58E0"], .minimalIcons, .satin, .ambientScreen, false),
     ("midnightStudio", "121212", "2A2A2A", "FFFFFF", "1ED760", ["1ED760", "000000", "1ED760"], ["0F853E", "FFFFFF", "0F8A40"], .classic, .satin, .subtle, false),
     ("porcelain", "E7E5E0", "F8F7F4", "2B2B2B", "E5531A", ["CC4916", "FFFFFF", "E5531A"], ["CC4916", "FFFFFF", "D64D17"], .minimalIcons, .matte, .off, false),
-    ("liquidGlass", "22262E", "8E96A3", "FFFFFF", "0A84FF", ["0073EB", "FFFFFF", "0A84FF"], ["0073EB", "FFFFFF", "0078F5"], .minimalIcons, .satin, .rich, false),
+    ("porcelainEngraved", "E7E5E0", "AEA69A", "30332F", "E5531A", ["CC4916", "FFFFFF", "E5531A"], ["CC4916", "FFFFFF", "D64D17"], .minimalIcons, .matte, .off, false),
+    ("liquidGlass", "1D2329", "38444E", "F5F7F8", "0A84FF", ["0073EB", "FFFFFF", "0A84FF"], ["0073EB", "FFFFFF", "0078F5"], .minimalIcons, .satin, .off, false),
+    ("liquidGlassClear", "DFE5E4", "DFE5E4", "1F2C2E", "0A84FF", ["0073EB", "FFFFFF", "0A84FF"], ["0073EB", "FFFFFF", "0078F5"], .minimalIcons, .satin, .off, false),
 ]
 
 final class ThemeTableTests: XCTestCase {
-    func testTwentyThemesInGalleryOrder() {
-        XCTAssertEqual(ThemeTable.all.count, 20)
+    func testTwentyTwoThemesInGalleryOrder() {
+        XCTAssertEqual(ThemeTable.all.count, 22)
         XCTAssertEqual(ThemeTable.all.map(\.id), expectedThemes.map { $0.0 })
         XCTAssertEqual(ThemeTable.defaultId, "silverClassic")
         XCTAssertEqual(ThemeTable.all.map(\.group), [ThemeGroup](repeating: .classic, count: 6)
                        + [ThemeGroup](repeating: .mini, count: 4) + [ThemeGroup](repeating: .nano, count: 6)
-                       + [ThemeGroup](repeating: .modern, count: 4))
+                       + [ThemeGroup](repeating: .modern, count: 6))
     }
 
     func testEveryThemeConstant() {
@@ -54,7 +56,7 @@ final class ThemeTableTests: XCTestCase {
         }
         XCTAssertEqual(ThemeTable.find("porcelain")?.bodyEdgeOverride?.hex, "#D3D0C9")
         XCTAssertNil(ThemeTable.find("silverClassic")?.bodyEdgeOverride)
-        XCTAssertEqual(ThemeTable.all.filter { $0.darkSurfaces != nil }.map(\.id), ["modernAlbumGlow", "liquidGlass"])
+        XCTAssertEqual(ThemeTable.all.filter { $0.darkSurfaces != nil }.map(\.id), ["modernAlbumGlow", "liquidGlass", "liquidGlassClear"])
     }
 
     func testModeTokenConstants() {
@@ -69,9 +71,9 @@ final class ThemeTableTests: XCTestCase {
         XCTAssertEqual([mag.lightSurfaces!.screenBackground, mag.lightSurfaces!.panelBackground, mag.lightSurfaces!.raisedPanel, mag.lightSurfaces!.divider, mag.lightSurfaces!.progressTrack].map(\.hex),
                        ["#F4F2FB", "#FFFFFF", "#ECE9F8", "#D9D4EF", "#DCD7F2"])
         XCTAssertEqual([lg.darkSurfaces!.screenBackground, lg.darkSurfaces!.panelBackground, lg.darkSurfaces!.raisedPanel, lg.darkSurfaces!.divider, lg.darkSurfaces!.progressTrack].map(\.hex),
-                       ["#14263F", "#1B2F4C", "#233A59", "#33496D", "#233650"])
+                       ["#161D24", "#222B33", "#2A3540", "#3E4B57", "#293540"])
         XCTAssertEqual([lg.lightSurfaces!.screenBackground, lg.lightSurfaces!.panelBackground, lg.lightSurfaces!.raisedPanel, lg.lightSurfaces!.divider, lg.lightSurfaces!.progressTrack].map(\.hex),
-                       ["#F1F5FA", "#FFFFFF", "#E7EEF7", "#D0DCEA", "#D3DEEB"])
+                       ["#F3F5F4", "#FAFCFB", "#E6EBE9", "#C9D2D0", "#D4DCDA"])
         // Overrides never touch text colours.
         let t = InterfaceTokens.resolve(theme: mag, mode: .dark)
         XCTAssertEqual([t.primaryText, t.secondaryText, t.mutedText].map(\.hex), ["#F5F7FA", "#BBC4CF", "#9AA5B3"])
@@ -85,11 +87,11 @@ final class ContrastTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(ratio, floor, "\(label): \(a.hex) on \(b.hex) = \(String(format: "%.2f", ratio)):1, need \(floor):1")
     }
 
-    /// 20 themes × 2 modes, every rule from the spec and the addendum.
-    func testAllFortyCombinations() {
+    /// 22 themes × 2 modes, including opaque glass accessibility fallbacks.
+    func testAllFortyFourCombinations() {
         var checks = 0
         for theme in ThemeTable.all {
-            let surface = theme.wheelStyle == .classic ? theme.wheel : theme.body
+            let surface = theme.glyphSurface
             assertRatio(theme.glyph, surface, atLeast: 4.5, "\(theme.name) glyph"); checks += 1
             for mode in ScreenMode.allCases {
                 let t = InterfaceTokens.resolve(theme: theme, mode: mode)
@@ -107,7 +109,7 @@ final class ContrastTests: XCTestCase {
                 checks += 4
             }
         }
-        XCTAssertEqual(checks, 540)
+        XCTAssertEqual(checks, 594)
     }
 }
 
@@ -138,6 +140,10 @@ final class SelectionStateTests: XCTestCase {
 
     func testMigration() {
         typealias V = ThemeMigration.StoredValues
+        for id in ["porcelain", "liquidGlass", "porcelainEngraved", "liquidGlassClear"] {
+            XCTAssertEqual(ThemeMigration.migrateTheme(V(themeId: id)), id,
+                           "Existing saved IDs and new variants must remain selectable")
+        }
         XCTAssertEqual(ThemeMigration.migrate(V()), .default)
         XCTAssertEqual(ThemeMigration.migrate(V(themeId: "nanoPink", modeRaw: "light")), ThemeSelection(themeId: "nanoPink", mode: .light))
         XCTAssertEqual(ThemeMigration.migrateTheme(V(presetId: "midnightStudio")), "midnightStudio")
@@ -281,5 +287,59 @@ final class SeekScrubberTests: XCTestCase {
 
     func testSettleDelay() {
         XCTAssertEqual(SeekScrubber.settleDelay, .milliseconds(400))
+    }
+}
+
+final class CoverFlowTests: XCTestCase {
+    func testPlaybackHidesBrowsingWithoutEndingTheSession() {
+        var flow = CoverFlowPresentation()
+        flow.present()
+        XCTAssertTrue(flow.isVisible)
+        XCTAssertTrue(flow.beginPlayback())
+        XCTAssertTrue(flow.isPresented, "Keep the album/track views mounted during normal Now Playing")
+        XCTAssertFalse(flow.isVisible)
+        flow.resume()
+        XCTAssertTrue(flow.isVisible, "MENU returns to the same immersive session")
+    }
+
+    func testPlayRequestsOnlyStartFromVisibleBrowsing() {
+        var flow = CoverFlowPresentation()
+        XCTAssertFalse(flow.beginPlayback())
+        flow.present()
+        XCTAssertTrue(flow.beginPlayback())
+        XCTAssertFalse(flow.beginPlayback(), "Repeated taps must not push another player")
+    }
+
+    func testDismissWhilePlayingCannotReopenTheSession() {
+        var flow = CoverFlowPresentation()
+        flow.present()
+        flow.beginPlayback()
+        flow.dismiss()
+        flow.resume()
+        XCTAssertFalse(flow.isPresented)
+        XCTAssertFalse(flow.isVisible)
+    }
+
+    func testDenseFanKeepsFartherAlbumsDistinctAndSymmetric() {
+        let positions = (0...5).map { CoverFlowLayout.horizontalOffset(position: Double($0), coverSize: 200) }
+        XCTAssertEqual(positions.first, 0)
+        for index in 1..<positions.count {
+            XCTAssertGreaterThan(positions[index], positions[index - 1], "Farther covers must not collapse onto the same offset")
+            XCTAssertEqual(CoverFlowLayout.horizontalOffset(position: -Double(index), coverSize: 200), -positions[index])
+        }
+        // At the approved 0.70 spacing the projected nearest edge has only a
+        // small gap; farther albums continue at the approved 0.36 stack step.
+        let neighbourHalfWidth = cos(63 * .pi / 180) * 0.85 * 100
+        XCTAssertLessThan(positions[1] - neighbourHalfWidth - 100, 5)
+        XCTAssertEqual(positions[1], 140, accuracy: 0.0001)
+        XCTAssertEqual(positions[2] - positions[1], 72, accuracy: 0.0001)
+    }
+
+    func testFanIsContinuousWhenAnAlbumPassesTheNeighbourPosition() {
+        let before = CoverFlowLayout.horizontalOffset(position: 0.999, coverSize: 200)
+        let after = CoverFlowLayout.horizontalOffset(position: 1.001, coverSize: 200)
+        XCTAssertLessThan(abs(after - before), 1, "Swiping must not jump between spacing segments")
+        XCTAssertEqual(CoverFlowLayout.horizontalOffset(position: 1, coverSize: 100),
+                       CoverFlowLayout.horizontalOffset(position: 1, coverSize: 200) / 2)
     }
 }
