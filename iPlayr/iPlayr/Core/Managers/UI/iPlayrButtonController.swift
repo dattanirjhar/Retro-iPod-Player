@@ -5,7 +5,11 @@ import Observation
 
 enum ButtonAction: Hashable, Sendable {
     case menu, forwardEndAlt, backwardEndAlt, playPause, select
-    case forwardLongPress, backwardLongPress, forwardLongPressEnd, backwardLongPressEnd
+    /// Hold SELECT: the queue from Now Playing, song actions from a song row.
+    case selectLongPress
+    /// Hold Play/Pause: jump to Now Playing from anywhere. Handled globally,
+    /// never routed to a scope.
+    case playPauseLongPress
 }
 
 @MainActor
@@ -15,6 +19,7 @@ final class iPlayrButtonController {
 
     @ObservationIgnored private var globalPlaybackHandler: ((ButtonAction) -> Void)?
     @ObservationIgnored var onMenuLongPress: (() -> Void)?
+    @ObservationIgnored var onNowPlayingShortcut: (() -> Void)?
 
     @ObservationIgnored private let selectionFeedback = UISelectionFeedbackGenerator()
     @ObservationIgnored private let impactFeedback = UIImpactFeedbackGenerator(style: .light)
@@ -60,9 +65,16 @@ final class iPlayrButtonController {
     }
 
     private func handleInput(_ action: ButtonAction) {
-        if action == .menu || action == .select {
+        switch action {
+        case .menu, .select:
             guard consumeDebounce(for: action) else { return }
             playPressFeedback()
+        case .selectLongPress:
+            // Shares SELECT's debounce window so a tap and a hold never double-fire.
+            guard consumeDebounce(for: .select) else { return }
+            playPressFeedback()
+        default:
+            break
         }
 
         activeScope?.onAction?(action)
@@ -86,14 +98,16 @@ final class iPlayrButtonController {
     }
 
     func selectButtonPressed() { handleInput(.select) }
+    func selectLongPressed() { handleInput(.selectLongPress) }
     func forwardEndAltButtonPressed() { handleInput(.forwardEndAlt) }
     func backwardEndAltButtonPressed() { handleInput(.backwardEndAlt) }
     func playPauseButtonPressed() { handleInput(.playPause) }
 
-    func forwardLongPressStarted() { handleInput(.forwardLongPress) }
-    func forwardLongPressEnded() { handleInput(.forwardLongPressEnd) }
-    func backwardLongPressStarted() { handleInput(.backwardLongPress) }
-    func backwardLongPressEnded() { handleInput(.backwardLongPressEnd) }
+    func playPauseLongPressed() {
+        guard consumeDebounce(for: .playPauseLongPress) else { return }
+        playPressFeedback()
+        onNowPlayingShortcut?()
+    }
 
     func scrollUp() {
         guard let scope = activeScope, scope.moveUp() else { return }

@@ -12,6 +12,8 @@ struct CollectionMenuItem: View {
     @Environment(\.colorSchemeContrast) private var contrast
     var model: CollectionMenuModel
     var isSelected: Bool
+    /// Optional SF Symbol shown before the chevron (the Queue screen marks the playing entry).
+    var trailingSymbol: String? = nil
 
     var body: some View {
         let tokens = theme.tokens(increasedContrast: contrast == .increased)
@@ -30,6 +32,10 @@ struct CollectionMenuItem: View {
                 }
             }
             Spacer(minLength: 0)
+            if let trailingSymbol {
+                Image(systemName: trailingSymbol)
+                    .font(.system(size: 12, weight: .semibold))
+            }
             if isSelected {
                 Image(systemName: ImageNames.System.chevronRight)
                     .font(.system(size: 13, weight: .semibold))

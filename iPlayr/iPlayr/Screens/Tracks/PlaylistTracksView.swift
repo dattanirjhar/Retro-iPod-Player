@@ -14,7 +14,8 @@ struct PlaylistTracksView: View {
             load: { await libraryStore.playlistTracks(id: playlist.id) },
             onSelect: { _, index in
                 navigate(.push(.player(source: .playlist(id: playlist.id), trackIndex: index)))
-            }
+            },
+            queueCandidate: { track in QueueCandidate(item: .track(track), title: track.title) }
         ) { track, isSelected in
             CollectionMenuItem(model: track.toCollectionMenuModel(), isSelected: isSelected)
         }

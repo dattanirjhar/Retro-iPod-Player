@@ -125,13 +125,16 @@ struct SongProgressView: View {
 
 struct ScrubberView: View {
     var style: ProgressBarStyle?
+    /// Set while the wheel is scrubbing; the playhead follows it instead of playback.
+    var pendingPosition: TimeInterval? = nil
     @Environment(AppleMusicManager.self) private var playerManager
 
     private var duration: TimeInterval { playerManager.currentTrack?.duration ?? 0 }
 
     private var progress: Double {
         guard duration > 0 else { return 0 }
-        return min(1, playerManager.currentPlaybackTime / duration)
+        let position = pendingPosition ?? playerManager.currentPlaybackTime
+        return min(1, max(0, position / duration))
     }
 
     var body: some View {

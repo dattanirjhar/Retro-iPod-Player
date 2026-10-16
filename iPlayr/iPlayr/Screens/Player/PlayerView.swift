@@ -20,9 +20,8 @@ struct PlayerView: View {
     @State private var currentDegree: Double = 80
     @State private var currentOpacity: Double = 0
     @State private var isScaleAnimation: Bool = true
-    @State private var seekTask: Task<Void, Never>?
-    @State private var seekStartTime: Date?
-    @State private var currentSeekSpeed: Double = 1.0
+    @State private var pendingSeek: TimeInterval?
+    @State private var seekCommitTask: Task<Void, Never>?
     @State private var playbackErrorMessage: String?
     @State private var mode: NowPlayingMode = .volume
     @State private var volumeLevel: Float?
@@ -96,7 +95,10 @@ struct PlayerView: View {
         }
         .task(id: "\(artworkKey ?? "")|\(atmosphereEnabled)") { await loadPalette() }
         .onDisappear {
-            stopSeeking()
+            flushPendingSeek()
+        }
+        .onChange(of: playerManager.currentTrack) { _, _ in
+            discardPendingSeek()
         }
     }
 
@@ -325,7 +327,7 @@ struct PlayerView: View {
                 case .volume:
                     SongProgressView(style: progressStyle)
                 case .seek:
-                    ScrubberView(style: progressStyle)
+                    ScrubberView(style: progressStyle, pendingPosition: pendingSeek)
                 }
             }
         }
@@ -405,6 +407,7 @@ struct PlayerView: View {
 
     private func setMode(_ value: NowPlayingMode) {
         guard value != .seek || isSeekAvailable else { return }
+        flushPendingSeek()
         withAnimation(.easeInOut(duration: 0.18)) {
             mode = value
             volumeLevel = nil
@@ -418,12 +421,41 @@ struct PlayerView: View {
             withAnimation(.easeInOut(duration: 0.18)) { volumeLevel = newLevel }
             return true
         case .seek:
+            // Audio keeps playing; the playhead follows the wheel and one seek is
+            // committed once the wheel has been still for SeekScrubber.settleDelay.
             guard let duration = playerManager.currentTrack?.duration, duration.isFinite, duration > 0 else { return false }
-            let step = max(1, duration / 60)
-            let target = min(max(playerManager.currentPlaybackTime + Double(delta) * step, 0), duration)
-            playerManager.seek(to: target)
+            var scrubber = SeekScrubber(duration: duration, pending: pendingSeek)
+            scrubber.move(by: delta, from: playerManager.currentPlaybackTime)
+            pendingSeek = scrubber.pending
+            scheduleSeekCommit()
             return true
         }
+    }
+
+    private func scheduleSeekCommit() {
+        seekCommitTask?.cancel()
+        seekCommitTask = Task { @MainActor in
+            try? await Task.sleep(for: SeekScrubber.settleDelay)
+            guard !Task.isCancelled else { return }
+            flushPendingSeek()
+        }
+    }
+
+    /// Commits the pending position now, if there is one, and ends the gesture.
+    private func flushPendingSeek() {
+        seekCommitTask?.cancel()
+        seekCommitTask = nil
+        if let target = pendingSeek {
+            playerManager.seek(to: target)
+        }
+        pendingSeek = nil
+    }
+
+    /// Drops the pending position without seeking (the track changed under it).
+    private func discardPendingSeek() {
+        seekCommitTask?.cancel()
+        seekCommitTask = nil
+        pendingSeek = nil
     }
 
     private func setupButtonListener() {
@@ -438,6 +470,9 @@ struct PlayerView: View {
                 }
             case .select:
                 setMode(mode.next)
+            case .selectLongPress:
+                flushPendingSeek()
+                navigate(.push(.queue))
             case .forwardEndAlt:
                 Task { try? await playerManager.skipToNextTrack() }
             case .backwardEndAlt:
@@ -446,62 +481,11 @@ struct PlayerView: View {
                 Task {
                     try? await playerManager.togglePlayPause()
                 }
-            case .forwardLongPress:
-                startSeeking(forward: true)
-            case .forwardLongPressEnd:
-                stopSeeking()
-            case .backwardLongPress:
-                startSeeking(forward: false)
-            case .backwardLongPressEnd:
-                stopSeeking()
+            case .playPauseLongPress:
+                break
             }
         }
         iPlayrController.activate(scope)
     }
 
-    /// Press-and-hold seeking runs as a main-actor task so every read and
-    /// write stays on the main actor; it is cancelled on release.
-    private func startSeeking(forward: Bool) {
-        guard seekTask == nil else { return }
-        seekStartTime = Date()
-        currentSeekSpeed = 1.0
-
-        seekTask = Task { @MainActor in
-            while !Task.isCancelled {
-                updateSeekSpeed()
-                if forward {
-                    playerManager.seekForward(seconds: currentSeekSpeed)
-                } else {
-                    playerManager.seekBackward(seconds: currentSeekSpeed)
-                }
-                try? await Task.sleep(for: .milliseconds(100))
-            }
-        }
-    }
-
-    private func stopSeeking() {
-        seekTask?.cancel()
-        seekTask = nil
-        seekStartTime = nil
-        currentSeekSpeed = 1.0
-    }
-
-    @MainActor
-    private func updateSeekSpeed() {
-        guard let startTime = seekStartTime else { return }
-
-        let elapsedTime = Date().timeIntervalSince(startTime)
-        switch elapsedTime {
-        case 0..<1:
-            currentSeekSpeed = 1.0
-        case 1..<3:
-            currentSeekSpeed = 2.0
-        case 3..<5:
-            currentSeekSpeed = 5.0
-        case 5..<10:
-            currentSeekSpeed = 10.0
-        default:
-            currentSeekSpeed = 20.0
-        }
-    }
 }

@@ -8,6 +8,7 @@ struct iPlayrScreen: View {
     @State private var fullScreen = NavigationLayer()
     @State private var isNavigating = false
     @Environment(iPlayrButtonController.self) private var iPlayrController
+    @Environment(AppleMusicManager.self) private var playerManager
     @Environment(ThemeManager.self) private var theme
     @Environment(ImmersiveFlowState.self) private var immersiveFlow
 
@@ -28,6 +29,7 @@ struct iPlayrScreen: View {
         .onNavigate(handleNavigation)
         .onAppear {
             iPlayrController.onMenuLongPress = { handleNavigation(.popToRoot) }
+            iPlayrController.onNowPlayingShortcut = { openNowPlayingShortcut() }
         }
     }
 
@@ -116,6 +118,15 @@ struct iPlayrScreen: View {
             }
             activate(restoreScope)
         }
+    }
+
+    /// Hold Play/Pause: push Now Playing on top of whatever is showing. The
+    /// layer remembers the launching screen's focus scope and keeps the screen
+    /// mounted, so MENU returns to the exact row the user left.
+    private func openNowPlayingShortcut() {
+        guard playerManager.currentTrack != nil, !immersiveFlow.isPresented else { return }
+        if let top = fullScreen.topRoute, top.isPlayerScreen { return }
+        handleNavigation(.push(.nowPlaying))
     }
 
     private func pop(_ layer: Binding<NavigationLayer>) {

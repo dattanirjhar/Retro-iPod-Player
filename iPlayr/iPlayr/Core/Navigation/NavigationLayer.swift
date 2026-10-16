@@ -24,6 +24,12 @@ struct NavigationLayer {
     }
 
     var isEmpty: Bool { visibleDepth == 0 }
+
+    /// The route the user currently sees in this layer, if any.
+    var topRoute: Route? {
+        guard visibleDepth > 0, entries.indices.contains(visibleDepth - 1) else { return nil }
+        return entries[visibleDepth - 1].route
+    }
     var canPop: Bool { visibleDepth > minimumDepth }
 
     var topRestoreScope: FocusScope? {

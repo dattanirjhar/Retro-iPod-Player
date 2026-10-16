@@ -229,3 +229,57 @@ final class ColorMathTests: XCTestCase {
         XCTAssertFalse(RGB.hex("17191D").isLight)
     }
 }
+
+final class SeekScrubberTests: XCTestCase {
+    func testStepIsOneSixtiethWithOneSecondFloor() {
+        XCTAssertEqual(SeekScrubber(duration: 300).stepSize, 5)
+        XCTAssertEqual(SeekScrubber(duration: 30).stepSize, 1)
+    }
+
+    func testFirstClickStartsFromLivePositionThenAccumulates() {
+        var s = SeekScrubber(duration: 300)
+        XCTAssertFalse(s.isScrubbing)
+        s.move(by: 1, from: 100)
+        XCTAssertEqual(s.pending, 105)
+        XCTAssertTrue(s.isScrubbing)
+        s.move(by: 2, from: 999)
+        XCTAssertEqual(s.pending, 115, "later clicks ignore the live position")
+        s.move(by: -5, from: 0)
+        XCTAssertEqual(s.pending, 90)
+    }
+
+    func testClampsToTrack() {
+        var s = SeekScrubber(duration: 300)
+        s.move(by: -3, from: 4)
+        XCTAssertEqual(s.pending, 0)
+        s.move(by: 100, from: 0)
+        XCTAssertEqual(s.pending, 300)
+    }
+
+    func testCommitReturnsTargetOnceAndClears() {
+        var s = SeekScrubber(duration: 300)
+        XCTAssertNil(s.commit())
+        s.move(by: 3, from: 10)
+        XCTAssertEqual(s.commit(), 25)
+        XCTAssertNil(s.pending)
+        XCTAssertNil(s.commit())
+    }
+
+    func testCancelDropsPending() {
+        var s = SeekScrubber(duration: 300)
+        s.move(by: 1, from: 10)
+        s.cancel()
+        XCTAssertFalse(s.isScrubbing)
+    }
+
+    func testDisplayedPositionPrefersPending() {
+        var s = SeekScrubber(duration: 200)
+        XCTAssertEqual(s.displayedPosition(live: 42), 42)
+        s.move(by: 1, from: 42)
+        XCTAssertEqual(s.displayedPosition(live: 60), 45.333, accuracy: 0.01)
+    }
+
+    func testSettleDelay() {
+        XCTAssertEqual(SeekScrubber.settleDelay, .milliseconds(400))
+    }
+}

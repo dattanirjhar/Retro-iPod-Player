@@ -80,7 +80,7 @@ enum InfoPage: String, Hashable, Sendable {
     var message: String {
         switch self {
         case .gestures:
-            String(localized: "Rotate the wheel to move through lists. Press the center button to select. In Now Playing, use the on-screen Wheel control to choose Volume or Seek. Press MENU to go back; press and hold MENU to return to the main menu. Hold the previous or next buttons to seek.")
+            String(localized: "Rotate the wheel to move through lists. Press the center button to select. Press and hold the center button on a song for Play Now, Play Next and Add to End of Queue, or on Now Playing to see the queue. Press MENU to go back; press and hold MENU to return to the main menu. Press and hold Play/Pause anywhere to open Now Playing. In Now Playing, use the on-screen Wheel control to choose Volume or Seek; seeking takes effect once the wheel settles.")
         case .tutorial:
             String(localized: "Browse your Apple Music library from Music. Open Cover Flow to browse album artwork, then press the center button to view tracks or select a track to play. Settings lets you customize the simulated iPod and clickwheel.")
         case .whatsNew:
@@ -111,6 +111,7 @@ enum Route: Hashable, Identifiable, Sendable {
     case player(source: PlaybackSource, trackIndex: Int, isFromCoverFlow: Bool = false)
     case settings
     case nowPlaying
+    case queue
     case extras
     case appearanceSetting(AppearanceSetting)
     case info(InfoPage)
@@ -119,6 +120,14 @@ enum Route: Hashable, Identifiable, Sendable {
 }
 
 extension Route {
+    /// Screens that already show the player; the Now Playing shortcut is a no-op on them.
+    var isPlayerScreen: Bool {
+        switch self {
+        case .player, .nowPlaying: return true
+        default: return false
+        }
+    }
+
     var isFullScreen: Bool {
         switch self {
         case .home, .music, .settings, .signIn, .theme, .extras,
@@ -126,7 +135,7 @@ extension Route {
             return false
         case .playlists, .artists, .albums, .songs, .genres, .composers,
              .artistAlbums, .playlistTracks, .albumTracks, .composerSongs,
-             .coverFlow, .player, .nowPlaying:
+             .coverFlow, .player, .nowPlaying, .queue:
             return true
         }
     }
@@ -184,6 +193,8 @@ extension Route {
             PlayerView(source: source, trackIndex: trackIndex, isFromCoverFlow: isFromCoverFlow)
         case .nowPlaying:
             PlayerView(source: nil, trackIndex: 0, isFromCoverFlow: false)
+        case .queue:
+            QueueView()
         case .settings:
             SettingsView()
         }

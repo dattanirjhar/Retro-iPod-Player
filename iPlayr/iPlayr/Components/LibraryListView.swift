@@ -6,14 +6,19 @@ struct LibraryListView<Item, Row: View>: View {
     let cached: () -> [Item]?
     let load: () async -> [Item]?
     let onSelect: (Item, Int) -> Void
+    /// Rows that return a candidate get the hold-SELECT song menu
+    /// (Play Now / Play Next / Add to End of Queue). Nil for non-song lists.
+    let queueCandidate: ((Item) -> QueueCandidate?)?
     let row: (Item, Bool) -> Row
 
     @Environment(iPlayrButtonController.self) private var iPlayrController
     @Environment(MusicLibraryStore.self) private var libraryStore
+    @Environment(AppleMusicManager.self) private var playerManager
     @Environment(\.navigate) private var navigate
     @State private var scope: FocusScope
     @State private var viewState: ViewState = .loading
     @State private var items: [Item] = []
+    @State private var actionIndex: Int?
 
     init(
         title: String,
@@ -22,6 +27,7 @@ struct LibraryListView<Item, Row: View>: View {
         cached: @escaping () -> [Item]? = { nil },
         load: @escaping () async -> [Item]?,
         onSelect: @escaping (Item, Int) -> Void,
+        queueCandidate: ((Item) -> QueueCandidate?)? = nil,
         @ViewBuilder row: @escaping (Item, Bool) -> Row
     ) {
         self.title = title
@@ -29,6 +35,7 @@ struct LibraryListView<Item, Row: View>: View {
         self.cached = cached
         self.load = load
         self.onSelect = onSelect
+        self.queueCandidate = queueCandidate
         self.row = row
         _scope = State(initialValue: FocusScope(id: scopeID))
     }
@@ -43,6 +50,7 @@ struct LibraryListView<Item, Row: View>: View {
                 StateView(state: viewState)
             }
         }
+        .overlay(alignment: .trailing) { songActionOverlay }
         .shadowedBackground()
         .onAppear(perform: setup)
         .taskAfterNavigation { await loadItems() }
@@ -66,6 +74,20 @@ struct LibraryListView<Item, Row: View>: View {
                     proxy.scrollTo(scope.selection)
                 }
             }
+        }
+    }
+
+    /// Slides in over the list when SELECT is held on a queueable row.
+    @ViewBuilder
+    private var songActionOverlay: some View {
+        if let index = actionIndex, items.indices.contains(index), let candidate = queueCandidate?(items[index]) {
+            SongActionMenu(title: candidate.title,
+                           onPick: { action in perform(action, candidate: candidate, index: index) },
+                           onDismiss: dismissActions)
+                .frame(width: 236)
+                .frame(maxHeight: .infinity)
+                .padding(.top, StatusBar.height)
+                .transition(.move(edge: .trailing))
         }
     }
 
@@ -107,8 +129,33 @@ struct LibraryListView<Item, Row: View>: View {
         case .select:
             guard items.indices.contains(scope.selection) else { return }
             onSelect(items[scope.selection], scope.selection)
+        case .selectLongPress:
+            guard let queueCandidate, items.indices.contains(scope.selection),
+                  queueCandidate(items[scope.selection]) != nil else { return }
+            withAnimation(.easeOut(duration: 0.22)) {
+                actionIndex = scope.selection
+            }
         default:
             break
         }
+    }
+
+    private func perform(_ action: SongAction, candidate: QueueCandidate, index: Int) {
+        dismissActions()
+        switch action {
+        case .playNow:
+            onSelect(items[index], index)
+        case .playNext:
+            Task { try? await playerManager.playNext(candidate.item) }
+        case .addToQueue:
+            Task { try? await playerManager.addToQueue(candidate.item) }
+        }
+    }
+
+    private func dismissActions() {
+        withAnimation(.easeIn(duration: 0.18)) {
+            actionIndex = nil
+        }
+        iPlayrController.activate(scope)
     }
 }

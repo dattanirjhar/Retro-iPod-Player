@@ -17,7 +17,8 @@ struct ComposerSongsView: View {
             },
             onSelect: { _, index in
                 navigate(.push(.player(source: .composer(name: composer), trackIndex: index)))
-            }
+            },
+            queueCandidate: { song in QueueCandidate(item: .song(song), title: song.title) }
         ) { song, isSelected in
             CollectionMenuItem(model: song.toCollectionMenuModel(), isSelected: isSelected)
         }

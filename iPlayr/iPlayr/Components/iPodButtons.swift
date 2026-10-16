@@ -141,6 +141,8 @@ struct iPlayrButtons: View {
             .accessibilityAction(named: "Play or pause") { buttonController.playPauseButtonPressed() }
             .accessibilityAction(named: "Next track") { buttonController.forwardEndAltButtonPressed() }
             .accessibilityAction(named: "Previous track") { buttonController.backwardEndAltButtonPressed() }
+            .accessibilityAction(named: "Queue or song actions") { buttonController.selectLongPressed() }
+            .accessibilityAction(named: "Now Playing") { buttonController.playPauseLongPressed() }
     }
 
     private func touchChanged(_ location: CGPoint, geometry: WheelGeometry) {
@@ -189,11 +191,6 @@ struct iPlayrButtons: View {
         let region = input.pressRegion
 
         if input.longPressFired {
-            switch region {
-            case .next: buttonController.forwardLongPressEnded()
-            case .previous: buttonController.backwardLongPressEnded()
-            default: break
-            }
             clearPressedSoon()
             return
         }
@@ -224,15 +221,15 @@ struct iPlayrButtons: View {
 
     private func scheduleLongPress() {
         let region = input.pressRegion
-        guard region == .menu || region == .next || region == .previous else { return }
+        guard region == .menu || region == .center || region == .playPause else { return }
         input.longPressTask = Task { @MainActor in
             try? await Task.sleep(for: WheelInputModel.longPressDuration)
             guard !Task.isCancelled, input.isActive, !input.scrolled else { return }
             input.longPressFired = true
             switch region {
             case .menu: buttonController.menuLongPressed()
-            case .next: buttonController.forwardLongPressStarted()
-            case .previous: buttonController.backwardLongPressStarted()
+            case .center: buttonController.selectLongPressed()
+            case .playPause: buttonController.playPauseLongPressed()
             default: break
             }
         }

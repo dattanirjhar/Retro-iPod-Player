@@ -18,6 +18,8 @@ final class AppleMusicManager {
     private(set) var isLast: Bool = false
     private(set) var isFirst: Bool = false
     private(set) var queuePosition: String?
+    /// Snapshot of the player's queue for the Queue screen.
+    private(set) var queueEntries: [QueueEntryInfo] = []
 
     @ObservationIgnored private nonisolated(unsafe) let musicPlayer = ApplicationMusicPlayer.shared
     @ObservationIgnored private var cancellables = Set<AnyCancellable>()
@@ -123,6 +125,42 @@ final class AppleMusicManager {
         }
     }
 
+    // MARK: Queue
+
+    /// Makes the given queue entry current and plays it.
+    func jump(toEntryID id: String) async throws {
+        guard let entry = musicPlayer.queue.entries.first(where: { String(describing: $0.id) == id }) else {
+            throw MusicPlayerError.trackNotFound
+        }
+        musicPlayer.queue.currentEntry = entry
+        try await musicPlayer.play()
+        await updatePlayerState()
+    }
+
+    func playNext(_ item: QueueableItem) async throws {
+        try await insert(item, position: .afterCurrentEntry)
+    }
+
+    func addToQueue(_ item: QueueableItem) async throws {
+        try await insert(item, position: .tail)
+    }
+
+    /// With nothing queued, both actions simply start playing the item.
+    private func insert(_ item: QueueableItem, position: MusicPlayer.Queue.EntryInsertionPosition) async throws {
+        if musicPlayer.queue.entries.isEmpty {
+            switch item {
+            case .song(let song): try await playSongs([song])
+            case .track(let track): try await playTracks([track])
+            }
+            return
+        }
+        switch item {
+        case .song(let song): try await musicPlayer.queue.insert(song, position: position)
+        case .track(let track): try await musicPlayer.queue.insert(track, position: position)
+        }
+        await updatePlayerState()
+    }
+
     private func setupSongObserver() {
         Publishers.Merge(
             musicPlayer.state.objectWillChange,
@@ -163,6 +201,11 @@ final class AppleMusicManager {
         } else {
             queuePosition = nil
         }
+        queueEntries = entries.map { entry in
+            QueueEntryInfo(id: String(describing: entry.id), title: entry.title,
+                           subtitle: entry.subtitle ?? "", artwork: entry.artwork,
+                           isCurrent: entry.id == currentPlayingEntryId)
+        }
         shuffleMode = musicPlayer.state.shuffleMode ?? .off
         repeatMode = musicPlayer.state.repeatMode ?? MusicPlayer.RepeatMode.none
         await updateCurrentTrack()
@@ -191,22 +234,23 @@ final class AppleMusicManager {
         }
     }
 
-    func seekForward(seconds: Double = 5.0) {
-        let currentTime = musicPlayer.playbackTime
-        guard let duration = currentTrack?.duration else { return }
-        let newTime = min(currentTime + seconds, duration)
-        musicPlayer.playbackTime = newTime
-    }
-
-    func seekBackward(seconds: Double = 5.0) {
-        let currentTime = musicPlayer.playbackTime
-        let newTime = max(currentTime - seconds, 0.0)
-        musicPlayer.playbackTime = newTime
-    }
-
     var currentPlaybackTime: TimeInterval {
         return musicPlayer.playbackTime
     }
+}
+
+/// A song or track a list row can offer to the queue.
+enum QueueableItem: Sendable {
+    case song(Song)
+    case track(Track)
+}
+
+struct QueueEntryInfo: Identifiable, Hashable, Sendable {
+    let id: String
+    let title: String
+    let subtitle: String
+    let artwork: Artwork?
+    let isCurrent: Bool
 }
 
 enum MusicPlayerError: LocalizedError, Sendable {

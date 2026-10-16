@@ -5,6 +5,7 @@ struct CoverFlowView: View {
     var onExitImmersive: (() -> Void)? = nil
     @Environment(iPlayrButtonController.self) var iPlayrController
     @Environment(MusicLibraryStore.self) private var libraryStore
+    @Environment(AppleMusicManager.self) private var playerManager
     @Environment(\.navigate) private var navigate
     @State private var scrollAnimator = CoverFlowScrollAnimator()
     @State private var carouselScope = FocusScope(id: "coverFlow")
@@ -18,6 +19,7 @@ struct CoverFlowView: View {
     @State private var isSongList = false
     @State private var playerViewId = UUID()
     @State private var dragOffset: CGFloat = 0
+    @State private var songAction: QueueCandidate?
     private let itemStep = CoverFlowMetrics.itemStep
     private let tilt = CoverFlowMetrics.tilt
     private let cfSpacing = CoverFlowMetrics.spacing
@@ -58,6 +60,16 @@ struct CoverFlowView: View {
                         }
 
                         StateView(state: viewState)
+
+                        if let candidate = songAction {
+                            SongActionMenu(title: candidate.title,
+                                           onPick: { action in performSongAction(action, candidate: candidate) },
+                                           onDismiss: dismissSongAction)
+                                .frame(width: 236)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
+                                .transition(.move(edge: .trailing))
+                                .zIndex(3)
+                        }
                     }
                     .frame(maxHeight: .infinity)
                     if onExitImmersive != nil && !isPlayerView {
@@ -274,8 +286,34 @@ struct CoverFlowView: View {
         switch action {
         case .menu:   handleMenuAction()
         case .select: handleSelectAction()
+        case .selectLongPress: handleSelectLongPress()
         default: break
         }
+    }
+
+    /// Hold SELECT on a track in the flipped list: Play Now / Play Next / Add to End of Queue.
+    private func handleSelectLongPress() {
+        guard isSongList, iPlayrController.activeScope === songListScope, let album = selectedAlbum,
+              let tracks = libraryStore.cachedAlbumTracks(id: album.id.rawValue),
+              tracks.indices.contains(songListScope.selection) else { return }
+        let track = tracks[songListScope.selection]
+        withAnimation(.easeOut(duration: 0.22)) {
+            songAction = QueueCandidate(item: .track(track), title: track.title)
+        }
+    }
+
+    private func performSongAction(_ action: SongAction, candidate: QueueCandidate) {
+        dismissSongAction()
+        switch action {
+        case .playNow: handleSelectAction()
+        case .playNext: Task { try? await playerManager.playNext(candidate.item) }
+        case .addToQueue: Task { try? await playerManager.addToQueue(candidate.item) }
+        }
+    }
+
+    private func dismissSongAction() {
+        withAnimation(.easeIn(duration: 0.18)) { songAction = nil }
+        iPlayrController.activate(songListScope)
     }
 
     private func handleMenuAction() {
