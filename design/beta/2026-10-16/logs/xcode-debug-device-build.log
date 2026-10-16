@@ -1,0 +1,289 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project iPlayr/iPlayr.xcodeproj -scheme iPlayr -configuration Debug -destination generic/platform=iOS -derivedDataPath /private/tmp/ipod-review-derived CODE_SIGNING_ALLOWED=NO build
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'iPlayr' in project 'iPlayr' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.0.sdk /tmp/ipod-review-derived/SDKStatCaches.noindex/iphoneos27.0-24A430-6c78b3cbc238196c85e1bf6c792c5915.sdkstatcache
+    cd /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.0.sdk -o /tmp/ipod-review-derived/SDKStatCaches.noindex/iphoneos27.0-24A430-6c78b3cbc238196c85e1bf6c792c5915.sdkstatcache
+
+SwiftDriver iPlayr normal arm64 com.apple.xcode.tools.swift.compiler (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name iPlayr -Onone @/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.SwiftFileList -DDEBUG -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.0.sdk -target arm64-apple-ios17.0 -g -module-cache-path /tmp/ipod-review-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /tmp/ipod-review-derived/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/ipod-review-derived/Build/Products/Debug-iphoneos -F /tmp/ipod-review-derived/Build/Products/Debug-iphoneos -emit-localized-strings -emit-localized-strings-path /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64 -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/ipod-review-derived/SDKStatCaches.noindex/iphoneos27.0-24A430-6c78b3cbc238196c85e1bf6c792c5915.sdkstatcache -output-file-map /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/ipod-review-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/ipod-review-derived/ModuleCache.noindex -sdk-module-cache-path /tmp/ipod-review-derived/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/ipod-review-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-generated-files.hmap -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-own-target-headers.hmap -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-project-headers.hmap -Xcc -I/tmp/ipod-review-derived/Build/Products/Debug-iphoneos/include -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/DerivedSources-normal/arm64 -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/DerivedSources/arm64 -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr-Swift.h -working-directory /Users/thejester/Retro-iPod-Player/iPlayr -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal arm64 Compiling\ FocusScope.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Core/Managers/UI/FocusScope.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Core/Managers/UI/FocusScope.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile FocusScope.swift
+
+SwiftCompile normal arm64 Compiling\ iPlayrScreen.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Components/iPlayrScreen.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Components/iPlayrScreen.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile iPlayrScreen.swift
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ iPlayr (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    
+
+SwiftCompile normal arm64 Compiling\ iPlayrButtonController.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Core/Managers/UI/iPlayrButtonController.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Core/Managers/UI/iPlayrButtonController.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile iPlayrButtonController.swift
+
+SwiftCompile normal arm64 Compiling\ PlayerView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Player/PlayerView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Player/PlayerView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile PlayerView.swift
+
+SwiftDriverJobDiscovery normal arm64 Compiling FocusScope.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 Compiling\ PlaylistsView.swift,\ QueueView.swift,\ AboutView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Playlists/PlaylistsView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Queue/QueueView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Settings/AboutView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Playlists/PlaylistsView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile PlaylistsView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Queue/QueueView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile QueueView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Settings/AboutView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile AboutView.swift
+
+SwiftCompile normal arm64 Compiling\ ThemeView.swift,\ AlbumTracksView.swift,\ PlaylistTracksView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Theme/ThemeView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Tracks/AlbumTracksView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Tracks/PlaylistTracksView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Theme/ThemeView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile ThemeView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Tracks/AlbumTracksView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile AlbumTracksView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Tracks/PlaylistTracksView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile PlaylistTracksView.swift
+
+SwiftCompile normal arm64 Compiling\ iPodButtons.swift,\ LibraryListView.swift,\ SongActionMenu.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Components/iPodButtons.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Components/LibraryListView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Components/SongActionMenu.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Components/iPodButtons.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile iPodButtons.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Components/LibraryListView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile LibraryListView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Components/SongActionMenu.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile SongActionMenu.swift
+
+SwiftCompile normal arm64 Compiling\ ComposersView.swift,\ AlbumCover.swift,\ CoverFlowView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Composers/ComposersView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/CoverFlow/AlbumCover.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/CoverFlow/CoverFlowView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Composers/ComposersView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile ComposersView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/CoverFlow/AlbumCover.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile AlbumCover.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/CoverFlow/CoverFlowView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile CoverFlowView.swift
+
+SwiftCompile normal arm64 Compiling\ HomeListView.swift,\ MainScreen.swift,\ MusicListView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Home/HomeListView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Main/MainScreen.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Music/MusicListView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Home/HomeListView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile HomeListView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Main/MainScreen.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile MainScreen.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Music/MusicListView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile MusicListView.swift
+
+SwiftCompile normal arm64 Compiling\ ArtistAlbumsView.swift,\ ArtistsView.swift,\ ComposerSongsView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Artists/ArtistAlbumsView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Artists/ArtistsView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Composers/ComposerSongsView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Artists/ArtistAlbumsView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile ArtistAlbumsView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Artists/ArtistsView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile ArtistsView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Composers/ComposerSongsView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile ComposerSongsView.swift
+
+SwiftCompile normal arm64 Compiling\ SettingsView.swift,\ SignInView.swift,\ SongsView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Settings/SettingsView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/SignIn/SignInView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Songs/SongsView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Settings/SettingsView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile SettingsView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/SignIn/SignInView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile SignInView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Songs/SongsView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile SongsView.swift
+
+SwiftDriverJobDiscovery normal arm64 Compiling iPlayrButtonController.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 Compiling\ BrightnessView.swift,\ InfoPageView.swift,\ MenuCustomizationView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Settings/BrightnessView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Settings/InfoPageView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Settings/MenuCustomizationView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Settings/BrightnessView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile BrightnessView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Settings/InfoPageView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile InfoPageView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Settings/MenuCustomizationView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile MenuCustomizationView.swift
+
+SwiftDriverJobDiscovery normal arm64 Compiling ArtistAlbumsView.swift, ArtistsView.swift, ComposerSongsView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 Compiling\ Navigation.swift,\ NavigationLayer.swift,\ AlbumsView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Core/Navigation/Navigation.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Core/Navigation/NavigationLayer.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Albums/AlbumsView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Core/Navigation/Navigation.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile Navigation.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Core/Navigation/NavigationLayer.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile NavigationLayer.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Albums/AlbumsView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile AlbumsView.swift
+
+SwiftDriverJobDiscovery normal arm64 Compiling iPlayrScreen.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 Compiling\ SongListView.swift,\ GenresView.swift,\ ExtrasView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/CoverFlow/SongListView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Genres/GenresView.swift /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Home/ExtrasView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/CoverFlow/SongListView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile SongListView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Genres/GenresView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile GenresView.swift
+
+SwiftCompile normal arm64 /Users/thejester/Retro-iPod-Player/iPlayr/iPlayr/Screens/Home/ExtrasView.swift (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-SwiftPerFileCompile ExtrasView.swift
+
+SwiftDriverJobDiscovery normal arm64 Compiling PlaylistsView.swift, QueueView.swift, AboutView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftDriverJobDiscovery normal arm64 Compiling BrightnessView.swift, InfoPageView.swift, MenuCustomizationView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftDriverJobDiscovery normal arm64 Compiling SettingsView.swift, SignInView.swift, SongsView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftDriverJobDiscovery normal arm64 Compiling HomeListView.swift, MainScreen.swift, MusicListView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftDriverJobDiscovery normal arm64 Compiling ThemeView.swift, AlbumTracksView.swift, PlaylistTracksView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftDriverJobDiscovery normal arm64 Compiling Navigation.swift, NavigationLayer.swift, AlbumsView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftDriverJobDiscovery normal arm64 Compiling SongListView.swift, GenresView.swift, ExtrasView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftDriverJobDiscovery normal arm64 Compiling ComposersView.swift, AlbumCover.swift, CoverFlowView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftDriverJobDiscovery normal arm64 Compiling PlayerView.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftDriverJobDiscovery normal arm64 Compiling iPodButtons.swift, LibraryListView.swift, SongActionMenu.swift (in target 'iPlayr' from project 'iPlayr')
+
+SwiftDriver\ Compilation iPlayr normal arm64 com.apple.xcode.tools.swift.compiler (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name iPlayr -Onone @/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.SwiftFileList -DDEBUG -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.0.sdk -target arm64-apple-ios17.0 -g -module-cache-path /tmp/ipod-review-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /tmp/ipod-review-derived/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/ipod-review-derived/Build/Products/Debug-iphoneos -F /tmp/ipod-review-derived/Build/Products/Debug-iphoneos -emit-localized-strings -emit-localized-strings-path /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64 -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/ipod-review-derived/SDKStatCaches.noindex/iphoneos27.0-24A430-6c78b3cbc238196c85e1bf6c792c5915.sdkstatcache -output-file-map /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/ipod-review-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/ipod-review-derived/ModuleCache.noindex -sdk-module-cache-path /tmp/ipod-review-derived/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/ipod-review-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-generated-files.hmap -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-own-target-headers.hmap -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-project-headers.hmap -Xcc -I/tmp/ipod-review-derived/Build/Products/Debug-iphoneos/include -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/DerivedSources-normal/arm64 -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/DerivedSources/arm64 -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr-Swift.h -working-directory /Users/thejester/Retro-iPod-Player/iPlayr -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for iPlayr (in target 'iPlayr' from project 'iPlayr')
+
+SwiftDriver\ Compilation\ Requirements iPlayr normal arm64 com.apple.xcode.tools.swift.compiler (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name iPlayr -Onone @/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.SwiftFileList -DDEBUG -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.0.sdk -target arm64-apple-ios17.0 -g -module-cache-path /tmp/ipod-review-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /tmp/ipod-review-derived/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/ipod-review-derived/Build/Products/Debug-iphoneos -F /tmp/ipod-review-derived/Build/Products/Debug-iphoneos -emit-localized-strings -emit-localized-strings-path /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64 -c -j10 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/ipod-review-derived/SDKStatCaches.noindex/iphoneos27.0-24A430-6c78b3cbc238196c85e1bf6c792c5915.sdkstatcache -output-file-map /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/ipod-review-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/ipod-review-derived/ModuleCache.noindex -sdk-module-cache-path /tmp/ipod-review-derived/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /tmp/ipod-review-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-generated-files.hmap -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-own-target-headers.hmap -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-project-headers.hmap -Xcc -I/tmp/ipod-review-derived/Build/Products/Debug-iphoneos/include -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/DerivedSources-normal/arm64 -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/DerivedSources/arm64 -Xcc -I/tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr-Swift.h -working-directory /Users/thejester/Retro-iPod-Player/iPlayr -experimental-emit-module-separately -disable-cmo
+
+Copy /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.swiftmodule/arm64-apple-ios.swiftdoc /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.swiftdoc (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.swiftdoc /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.swiftmodule/arm64-apple-ios.swiftdoc
+
+Copy /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.swiftmodule/arm64-apple-ios.swiftmodule /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.swiftmodule (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.swiftmodule /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.swiftmodule/arm64-apple-ios.swiftmodule
+
+Copy /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.swiftmodule/arm64-apple-ios.abi.json /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.abi.json (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.abi.json /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.swiftmodule/arm64-apple-ios.abi.json
+
+Ld /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app/iPlayr.debug.dylib normal (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0 -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.0.sdk -O0 -Xlinker -no_warn_duplicate_libraries -L/tmp/ipod-review-derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos -L/tmp/ipod-review-derived/Build/Products/Debug-iphoneos -F/tmp/ipod-review-derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos -F/tmp/ipod-review-derived/Build/Products/Debug-iphoneos -filelist /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.LinkFileList -install_name @rpath/iPlayr.debug.dylib -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -dependency_info -Xlinker /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.swiftmodule -ObjC -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point -o /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app/iPlayr.debug.dylib
+
+Copy /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.swiftsourceinfo (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.swiftsourceinfo /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo
+
+ConstructStubExecutorLinkFileList /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-ExecutorLinkFileList-normal-arm64.txt (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    construct-stub-executor-link-file-list /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app/iPlayr.debug.dylib /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-ExecutorLinkFileList-normal-arm64.txt
+note: Using stub executor library with Swift entry point. (in target 'iPlayr' from project 'iPlayr')
+
+Ld /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app/iPlayr normal (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.0.sdk -O0 -Xlinker -no_warn_duplicate_libraries -L/tmp/ipod-review-derived/Build/Products/Debug-iphoneos -F/tmp/ipod-review-derived/Build/Products/Debug-iphoneos -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker @executable_path/Frameworks -rdynamic -Xlinker -no_deduplicate -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-DebugDylibPath-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-DebugDylibInstallName-normal-arm64.txt -Xlinker -filelist -Xlinker /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr-ExecutorLinkFileList-normal-arm64.txt /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app/iPlayr.debug.dylib -o /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app/iPlayr
+
+ExtractAppIntentsMetadata (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name iPlayr --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS27.0.sdk --xcode-version 27A266a --platform-family iOS --deployment-target 17.0 --bundle-identifier com.kerem.iPlayr --output /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app --target-triple arm64-apple-ios17.0 --binary-file /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app/iPlayr --dependency-file /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr_dependency_info.dat --stringsdata-file /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.SwiftFileList --metadata-file-list /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr.DependencyMetadataFileList --static-metadata-file-list /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/iPlayr.DependencyStaticMetadataFileList --swift-const-vals-list /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/Objects-normal/arm64/iPlayr.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --no-app-shortcuts-localization
+2026-10-16 23:32:07.474 appintentsmetadataprocessor[59567:888270] Starting appintentsmetadataprocessor export
+2026-10-16 23:32:07.477 appintentsmetadataprocessor[59567:888270] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+
+CopySwiftLibs /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app (in target 'iPlayr' from project 'iPlayr')
+    cd /Users/thejester/Retro-iPod-Player/iPlayr
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app/iPlayr.debug.dylib --scan-folder /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app/Frameworks --scan-folder /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app/PlugIns --scan-folder /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app/SystemExtensions --scan-folder /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app/Extensions --platform iphoneos --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /tmp/ipod-review-derived/Build/Products/Debug-iphoneos/iPlayr.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /tmp/ipod-review-derived/Build/Intermediates.noindex/iPlayr.build/Debug-iphoneos/iPlayr.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os --back-deploy-swift-span
+Ignoring --strip-bitcode because --sign was not passed
+
+PruneExplicitPrecompiledModules /tmp/ipod-review-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /tmp/ipod-review-derived/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /tmp/ipod-review-derived/SDKExplicitPrecompiledModules
+
+** BUILD SUCCEEDED **
+

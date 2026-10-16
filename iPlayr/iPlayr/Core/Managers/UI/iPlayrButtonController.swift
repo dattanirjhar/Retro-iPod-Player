@@ -38,6 +38,8 @@ final class iPlayrButtonController {
     }
 
     func activate(_ scope: FocusScope) {
+        guard activeScope !== scope else { return }
+        activeScope?.onDeactivate?()
         activeScope = scope
     }
 

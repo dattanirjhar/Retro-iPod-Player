@@ -1,6 +1,10 @@
 # Beta handoff for prod-dev-team — 16 October 2026
 
-> **16 October update:** the four issues below are implemented; see [HANDOFF_2026-10-16.md](HANDOFF_2026-10-16.md) for the fix details and tonight's verification list.
+> **16 October Mac update:** the four beta fixes and later queue/seek/shortcut features compile
+> successfully. Three follow-up fixes are local and uncommitted; all 20 ThemeCore tests and the
+> unsigned Debug iOS build pass. A new IPA and device acceptance remain pending. See
+> [the detailed log](BETA_TEST_LOG.md#mac-review-and-follow-up-fixes--16-october-2026) and
+> [the updated technical handoff](HANDOFF_2026-10-16.md).
 
 Prepared from the user's 15 October 2026 beta session on an iPhone 17 running iOS 27.0.1.
 This is the current plan and acceptance checklist. It replaces the earlier Mac setup/simulator
@@ -9,8 +13,10 @@ plan and the empty device checklist. Their previous versions are preserved in th
 
 ## Direction from the user
 
-**Document the findings now. Apply the fixes tomorrow.** No app code, layout, preferences, theme
-constants or IPA was changed or rebuilt while preparing this handoff.
+**Original 15 October direction: document the findings, then apply the fixes the following day.**
+No app code, layout, preferences, theme constants or IPA was changed while preparing that original
+handoff. On 16 October, the user authorized fixing the three issues found during the Mac review;
+the changes and verification are recorded in the latest log linked above.
 
 The user reports that the rest of their tested use is working fine. Keep the next pass focused on
 these four issues. Cover Flow is unusable enough that the user intends to deactivate or avoid it
@@ -19,6 +25,11 @@ implemented. The Immersive Mode setting changes presentation and does not disabl
 
 ## Current build and verification
 
+- Latest source: pulled `main` at `1c58974`, plus five locally modified source/package files for
+  MAC-01 through MAC-03. All 20 native Mac ThemeCore tests and unsigned Debug compilation for
+  `generic/platform=iOS` pass. Only the existing App Intents metadata warning was emitted by Xcode.
+- The candidate details below describe the **previous 15 October IPA**. No new IPA has been
+  generated or installed during the 16 October review/fix session.
 - App version: 1.0 (1), built from baseline `679be9b` plus uncommitted Phase 2 fixes.
 - Tools: Xcode 27.0 (27A266a), iOS 27.0 SDK, Apple silicon Mac on macOS 27.0.1.
 - Device: iPhone 17, iOS 27.0.1; user manually signs/installs through SideStore with a free Apple ID.
@@ -126,10 +137,10 @@ No exact percentage or diameter is approved. Preserve the circular shape, center
 labels, ring slop and style-independent hit map. Check touch behavior after resizing; a larger paint
 layer alone would not satisfy the request if its input geometry no longer matches.
 
-## Tomorrow's implementation and acceptance checklist
+## Implementation and acceptance checklist
 
-All items below are **pending**. The team should implement during the next development session;
-this document is not evidence that the changes have been made.
+Implementation and compilation are recorded separately from device acceptance. Checked source
+changes and automated checks below do not establish that visual or playback behavior passed on a phone.
 
 - [x] Fix Cover Flow framing/centering (`0f9312c`, 16 Oct): the backdrop's rigid 700 × 700 artwork request inflated the layout; now sized and clipped to the view. **Still to do on the Mac:** reproduce the before/after in all four combinations: Immersive On/Off × portrait/landscape.
 - [ ] Verify album browsing, Tracks/Covers, playback return, exit, and orientation changes in each combination.
@@ -137,7 +148,13 @@ this document is not evidence that the changes have been made.
 - [x] Move the landscape wheel toward the right end (`e7814dd`, 16 Oct): a trailing square 20 pt from the edge. **Still to do:** confirm both rotations.
 - [x] Enlarge the wheel (`e7814dd`, 16 Oct): portrait 70% / 76% compact, landscape fills the trailing square. **Still to do:** review Classic and Minimal together; confirm the hit map still matches the paint (geometry is unchanged, only the diameter grew).
 - [ ] Confirm scroll, SELECT, MENU, hold MENU, transport, seek, volume, haptics and clicker remain usable.
-- [ ] Run `swift test --package-path ThemeCore` and physical-device compilation/analysis; record exact results.
+- [x] Run native Mac ThemeCore tests: 20 tests, zero failures after declaring macOS 13 in the package.
+- [x] Compile Debug for `generic/platform=iOS` with signing disabled: passed with the existing
+      App Intents metadata warning only. See the saved logs linked from `BETA_TEST_LOG.md`.
+- [ ] Run a new Analyze action for the updated source; the previous pass was on the 15 October candidate.
+- [x] Apply MAC-01 through MAC-03 locally: Mac package minimum, embedded-player shortcut guard,
+      and immediate seek commit on MENU/focus handoff.
+- [ ] Verify the embedded-player shortcut and immediate seek commit on MENU/hold MENU on the phone.
 - [ ] Build a new IPA using `bash scripts/build_ipa.sh`; give it a distinct build number or filename so
       the user can identify the next candidate. Preserve the metadata-free SideStore packaging check.
 - [ ] Hand the new IPA to the user for manual SideStore installation and before/after screenshots.

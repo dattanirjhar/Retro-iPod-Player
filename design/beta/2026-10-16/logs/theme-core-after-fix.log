@@ -1,0 +1,89 @@
+warning: /Users/thejester/Library/org.swift.swiftpm/configuration is not accessible or not writable, disabling user-level cache features.
+warning: /Users/thejester/Library/org.swift.swiftpm/security is not accessible or not writable, disabling user-level cache features.
+warning: /Users/thejester/Library/Caches/org.swift.swiftpm is not accessible or not writable, disabling user-level cache features.
+warning: 'themecore': failed storing manifest for 'themecore' in cache: attempt to write a readonly database
+Building for debugging...
+[Planning deferred tasks]
+[3 / 26] ThemeCore
+[10 / 33] ThemeCore
+[18 / 33] ThemeCore
+[23 / 34] ThemeCoreTests-product
+[39 / 70]
+[44 / 70]
+[49 / 70]
+[51 / 70]
+[52 / 70]
+[55 / 70]
+[56 / 70]
+[59 / 70] ThemeCoreTests-product
+[64 / 70] ThemeCoreTests-product
+[66 / 70] ThemeCoreTests-product
+Build complete! (6.30 secs)
+Test Suite 'All tests' started at 2026-10-16 23:32:07.727.
+Test Suite 'ThemeCoreTests.xctest' started at 2026-10-16 23:32:07.729.
+Test Suite 'ColorMathTests' started at 2026-10-16 23:32:07.729.
+Test Case '-[ThemeCoreTests.ColorMathTests testHexRoundTrip]' started.
+Test Case '-[ThemeCoreTests.ColorMathTests testHexRoundTrip]' passed (0.002 seconds).
+Test Case '-[ThemeCoreTests.ColorMathTests testLightnessStep]' started.
+Test Case '-[ThemeCoreTests.ColorMathTests testLightnessStep]' passed (0.000 seconds).
+Test Suite 'ColorMathTests' passed at 2026-10-16 23:32:07.731.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'ContrastTests' started at 2026-10-16 23:32:07.731.
+Test Case '-[ThemeCoreTests.ContrastTests testAllFortyCombinations]' started.
+Test Case '-[ThemeCoreTests.ContrastTests testAllFortyCombinations]' passed (0.000 seconds).
+Test Suite 'ContrastTests' passed at 2026-10-16 23:32:07.731.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+Test Suite 'SeekScrubberTests' started at 2026-10-16 23:32:07.731.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testCancelDropsPending]' started.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testCancelDropsPending]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SeekScrubberTests testClampsToTrack]' started.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testClampsToTrack]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SeekScrubberTests testCommitReturnsTargetOnceAndClears]' started.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testCommitReturnsTargetOnceAndClears]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SeekScrubberTests testDisplayedPositionPrefersPending]' started.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testDisplayedPositionPrefersPending]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SeekScrubberTests testFirstClickStartsFromLivePositionThenAccumulates]' started.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testFirstClickStartsFromLivePositionThenAccumulates]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SeekScrubberTests testSettleDelay]' started.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testSettleDelay]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SeekScrubberTests testStepIsOneSixtiethWithOneSecondFloor]' started.
+Test Case '-[ThemeCoreTests.SeekScrubberTests testStepIsOneSixtiethWithOneSecondFloor]' passed (0.000 seconds).
+Test Suite 'SeekScrubberTests' passed at 2026-10-16 23:32:07.732.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'SelectionStateTests' started at 2026-10-16 23:32:07.732.
+Test Case '-[ThemeCoreTests.SelectionStateTests testMigration]' started.
+Test Case '-[ThemeCoreTests.SelectionStateTests testMigration]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SelectionStateTests testModeChangeLeavesThemeUnchanged]' started.
+Test Case '-[ThemeCoreTests.SelectionStateTests testModeChangeLeavesThemeUnchanged]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SelectionStateTests testNoThemeForcesAMode]' started.
+Test Case '-[ThemeCoreTests.SelectionStateTests testNoThemeForcesAMode]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SelectionStateTests testPickerPreviewConfirmCancel]' started.
+Test Case '-[ThemeCoreTests.SelectionStateTests testPickerPreviewConfirmCancel]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.SelectionStateTests testThemeChangeLeavesModeUnchanged]' started.
+Test Case '-[ThemeCoreTests.SelectionStateTests testThemeChangeLeavesModeUnchanged]' passed (0.000 seconds).
+Test Suite 'SelectionStateTests' passed at 2026-10-16 23:32:07.733.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+Test Suite 'ThemeTableTests' started at 2026-10-16 23:32:07.733.
+Test Case '-[ThemeCoreTests.ThemeTableTests testEveryThemeConstant]' started.
+Test Case '-[ThemeCoreTests.ThemeTableTests testEveryThemeConstant]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.ThemeTableTests testModeTokenConstants]' started.
+Test Case '-[ThemeCoreTests.ThemeTableTests testModeTokenConstants]' passed (0.000 seconds).
+Test Case '-[ThemeCoreTests.ThemeTableTests testTwentyThemesInGalleryOrder]' started.
+Test Case '-[ThemeCoreTests.ThemeTableTests testTwentyThemesInGalleryOrder]' passed (0.000 seconds).
+Test Suite 'ThemeTableTests' passed at 2026-10-16 23:32:07.734.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'WheelGeometryTests' started at 2026-10-16 23:32:07.734.
+Test Case '-[ThemeCoreTests.WheelGeometryTests testHitMapIsStyleIndependent]' started.
+Test Case '-[ThemeCoreTests.WheelGeometryTests testHitMapIsStyleIndependent]' passed (0.001 seconds).
+Test Case '-[ThemeCoreTests.WheelGeometryTests testRegionsAndTargets]' started.
+Test Case '-[ThemeCoreTests.WheelGeometryTests testRegionsAndTargets]' passed (0.000 seconds).
+Test Suite 'WheelGeometryTests' passed at 2026-10-16 23:32:07.735.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'ThemeCoreTests.xctest' passed at 2026-10-16 23:32:07.735.
+	 Executed 20 tests, with 0 failures (0 unexpected) in 0.005 (0.006) seconds
+Test Suite 'All tests' passed at 2026-10-16 23:32:07.735.
+	 Executed 20 tests, with 0 failures (0 unexpected) in 0.005 (0.007) seconds
+◇ Test run started.
+↳ Testing Library Version: 2084
+↳ Target Platform: arm64e-apple-macos14.0
+✔ Test run with 0 tests in 0 suites passed after 0.001 seconds.

@@ -1,6 +1,9 @@
 # Theme + Mode migration status
 
 **Current product handoff:** [16 October prod-dev-team fix plan](PHASE2_MAC_HANDOFF.md).
+**Latest Mac validation, 16 October:** all 20 ThemeCore tests and unsigned Debug iOS compilation
+pass on `1c58974` plus the three locally applied review fixes. A new IPA and device checks remain
+pending. See [the current verification log](BETA_TEST_LOG.md#mac-review-and-follow-up-fixes--16-october-2026).
 The 15 October device beta reported four issues: iPod heading, broken Cover Flow in both immersive
 settings, landscape wheel alignment, and wheel size. See [observations](BETA_TEST_LOG.md) and
 [saved evidence](design/beta/2026-10-15/README.md). This file retains the technical history below;
@@ -83,9 +86,37 @@ screenshots manually. No simulator was launched and no app was installed on a ph
   background-playback and full-theme checks were not separately reported. The current handoff
   defines the focused follow-up; the former 40-theme screenshot checklist is not a new gate.
 
-**2026-10-16 fix pass (Linux):** BETA-01 `8af5801`, BETA-02 `0f9312c`, BETA-03/04 `e7814dd`, icon warning `b36cce4`. Spec divergence recorded: the wheel is now 70% of body width (76% compact) in portrait and fills a trailing square in landscape, superseding the 62% / 68% in Spec §3 at the user's request after the device beta. Hit geometry (36% centre, four sectors, 8 pt slop) is unchanged. ThemeCore tests re-run on Linux after the change: 13 passed. No SwiftUI compiled since; the next IPA build on the Mac verifies these.
+**2026-10-16 fix pass (Linux):** BETA-01 `8af5801`, BETA-02 `0f9312c`, BETA-03/04 `e7814dd`, icon warning `b36cce4`. Spec divergence recorded: the wheel is now 70% of body width (76% compact) in portrait and fills a trailing square in landscape, superseding the 62% / 68% in Spec §3 at the user's request after the device beta. Hit geometry (36% centre, four sectors, 8 pt slop) is unchanged. ThemeCore tests re-run on Linux after the change: 13 passed. SwiftUI had not yet been compiled at this handoff; see the later Mac results below.
 
-This build fixes compilation and packaging only. The reviewed queue-window limit, album-title
+The 15 October build fixed compilation and packaging only. The reviewed queue-window limit, album-title
 grouping, light-atmosphere progress contrast, and immersive track-selection gaps remain open.
 No application source, build configuration or IPA was modified during the later documentation-only
-handoff pass. Existing uncommitted Phase 2 changes remain in the working tree for the team to review.
+15 October handoff pass; its Phase 2 source changes were still uncommitted at that time.
+
+## Mac review and follow-up fixes — 2026-10-16
+
+Reviewed the eight remote commits `58ae10f..1c58974`, including the four beta UI fixes, unused-icon
+cleanup, queue and song actions, settled seeking, the Now Playing shortcut, and documentation.
+Search remains a proposal in `docs/ux/2026-10-16-search-ideation-memo.md`.
+
+Three follow-up fixes are local and uncommitted on top of `1c58974`:
+
+- **MAC-01:** `ThemeCore/Package.swift` declares macOS 13, resolving the reproduced availability
+  error from `SeekScrubber.settleDelay: Duration` in the native Mac test build.
+- **MAC-02:** `FocusScope.isPlayerScreen` identifies the player even when embedded in Cover Flow.
+  `PlayerView` marks its scope and `iPlayrScreen` checks it before opening the shortcut.
+- **MAC-03:** `PlayerView` flushes pending seeking before MENU navigation. Its scope's new
+  `onDeactivate` callback also flushes before another scope takes the wheel, including hold MENU.
+  `iPlayrButtonController.activate` invokes this callback only when the scope changes.
+
+Executed on the Mac: 20 XCTest tests passed (including 7 seek tests and 540 contrast checks),
+unsigned Debug compilation for `generic/platform=iOS` passed, and source `git diff --check` passed.
+The MusicKit queue insertion and current-entry APIs compile without spelling changes. The unused
+app-icon warning was absent; the App Intents metadata warning remains. SwiftPM emitted cache access
+warnings under the execution sandbox but completed successfully.
+
+No new iOS test target or UI tests were added. No new Analyze run, Release IPA, phone installation,
+or device acceptance was performed. The original 15 October candidate remains the installed/artifact
+reference; the build number is unchanged. The two interaction fixes, all four beta UI outcomes, and
+queue behavior await manual device verification. Exact commands and durable build/test evidence are
+linked from [BETA_TEST_LOG.md](BETA_TEST_LOG.md#mac-review-and-follow-up-fixes--16-october-2026).

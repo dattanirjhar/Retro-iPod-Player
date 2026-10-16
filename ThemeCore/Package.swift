@@ -7,6 +7,7 @@ import PackageDescription
 
 let package = Package(
     name: "ThemeCore",
+    platforms: [.macOS(.v13)],
     targets: [
         .target(name: "ThemeCore", path: "Sources/ThemeCore"),
         .testTarget(name: "ThemeCoreTests", dependencies: ["ThemeCore"], path: "Tests/ThemeCoreTests"),

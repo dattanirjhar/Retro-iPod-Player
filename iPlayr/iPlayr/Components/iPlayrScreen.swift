@@ -125,6 +125,8 @@ struct iPlayrScreen: View {
     /// mounted, so MENU returns to the exact row the user left.
     private func openNowPlayingShortcut() {
         guard playerManager.currentTrack != nil, !immersiveFlow.isPresented else { return }
+        // Cover Flow embeds its player without changing the outer route.
+        guard iPlayrController.activeScope?.isPlayerScreen != true else { return }
         if let top = fullScreen.topRoute, top.isPlayerScreen { return }
         handleNavigation(.push(.nowPlaying))
     }

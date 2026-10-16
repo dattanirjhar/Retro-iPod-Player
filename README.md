@@ -101,9 +101,10 @@ with `swift test --package-path ThemeCore`; record phone observations in `BETA_T
 ## Project documents
 
 - `THEME_MIGRATION_STATUS.md`: per-item status of the Theme + Mode work.
-- `HANDOFF_2026-10-16.md`: latest handoff from the Linux side, with the 16 October fixes and what to verify on device.
-- `PHASE2_MAC_HANDOFF.md`: current prod-dev-team handoff for 16 October, covering the four beta fixes and acceptance checks.
-- `BETA_TEST_LOG.md`: actual device observations from 15 October.
+- `HANDOFF_2026-10-16.md`: remote updates, local Mac follow-up fixes, and remaining device checks.
+- `PHASE2_MAC_HANDOFF.md`: current prod-dev-team handoff, with implementation, build/test status, and acceptance checks.
+- `BETA_TEST_LOG.md`: 15 October device observations and the 16 October Mac review, fixes, commands, and verification results.
+- `design/beta/2026-10-16/logs/`: saved Mac test failure, passing 20-test run, and successful Debug iOS build.
 - `design/beta/2026-10-15/README.md`: saved screenshots, console/build logs, checksums and superseded plans.
 
 ## Acknowledgments & Credit

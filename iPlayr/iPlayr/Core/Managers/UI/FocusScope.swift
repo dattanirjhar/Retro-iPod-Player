@@ -5,16 +5,20 @@ import Observation
 @Observable
 final class FocusScope {
     let id: String
+    let isPlayerScreen: Bool
     private(set) var selection: Int = 0
     var itemCount: Int = 0 {
         didSet { clampSelection() }
     }
     @ObservationIgnored var onAction: ((ButtonAction) -> Void)?
     @ObservationIgnored var onScroll: ((Int) -> Bool)?
+    /// Runs before another screen takes the wheel, even if this view stays mounted.
+    @ObservationIgnored var onDeactivate: (() -> Void)?
     @ObservationIgnored let handledTransportActions: Set<ButtonAction>
 
-    init(id: String, handledTransportActions: Set<ButtonAction> = []) {
+    init(id: String, isPlayerScreen: Bool = false, handledTransportActions: Set<ButtonAction> = []) {
         self.id = id
+        self.isPlayerScreen = isPlayerScreen
         self.handledTransportActions = handledTransportActions
     }
 

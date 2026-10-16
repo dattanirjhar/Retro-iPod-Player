@@ -16,7 +16,7 @@ struct PlayerView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
     @Environment(\.colorSchemeContrast) private var contrast
-    @State private var scope = FocusScope(id: "player", handledTransportActions: [.playPause, .forwardEndAlt, .backwardEndAlt])
+    @State private var scope = FocusScope(id: "player", isPlayerScreen: true, handledTransportActions: [.playPause, .forwardEndAlt, .backwardEndAlt])
     @State private var currentDegree: Double = 80
     @State private var currentOpacity: Double = 0
     @State private var isScaleAnimation: Bool = true
@@ -459,10 +459,12 @@ struct PlayerView: View {
     }
 
     private func setupButtonListener() {
+        scope.onDeactivate = { flushPendingSeek() }
         scope.onScroll = { handleScroll($0) }
         scope.onAction = { action in
             switch action {
             case .menu:
+                flushPendingSeek()
                 if isFromCoverFlow {
                     onDismissFromCoverFlow?()
                 } else {
