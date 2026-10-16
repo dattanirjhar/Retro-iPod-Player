@@ -17,10 +17,10 @@ Flow for now. No app preference, feature flag or implementation was changed in t
 
 | ID | Priority | Observation / requested outcome | Evidence | Status |
 | --- | --- | --- | --- | --- |
-| BETA-01 | P2 | Home heading says iPlayr; it must say iPod. | Screenshots 03, 04, 05 | Pending implementation tomorrow |
-| BETA-02 | P1 | Cover Flow is misaligned and clipped; user reports failure with Immersive Mode On and Off. Selected cover/text/controls clip in portrait; landscape covers run below the visible area. | Screenshots 01, 02; user's explicit report for both modes | Pending reproduction and layout fix tomorrow |
-| BETA-03 | P2 | Landscape wheel sits too far inward; move it toward the right/end of the phone. | Screenshot 03 | Pending implementation and user review |
-| BETA-04 | P2 | Wheel feels too small; enlarge it slightly and check both orientations/styles. | Screenshots 03, 04, 05; user's tactile feedback | Pending implementation and user review |
+| BETA-01 | P2 | Home heading says iPlayr; it must say iPod. | Screenshots 03, 04, 05 | Fixed 2026-10-16 in `8af5801` (`HomeListView` title). Awaiting device check |
+| BETA-02 | P1 | Cover Flow is misaligned and clipped; user reports failure with Immersive Mode On and Off. Selected cover/text/controls clip in portrait; landscape covers run below the visible area. | Screenshots 01, 02; user's explicit report for both modes | Fixed 2026-10-16 in `0f9312c`. Cause: the backdrop requested a rigid 700 × 700 `ArtworkImage`, inflating the layout by (700 − width)/2 ≈ 155 pt right in portrait and (700 − height)/2 down in landscape, in both Immersive settings. Backdrop now sized and clipped to the view; whole screen pinned to its measured size. Awaiting device check in all four combinations |
+| BETA-03 | P2 | Landscape wheel sits too far inward; move it toward the right/end of the phone. | Screenshot 03 | Fixed 2026-10-16 in `e7814dd`: landscape reserves a square at the trailing edge (20 pt from the edge) and the wheel fills it. Awaiting user review in both landscape rotations |
+| BETA-04 | P2 | Wheel feels too small; enlarge it slightly and check both orientations/styles. | Screenshots 03, 04, 05; user's tactile feedback | Fixed 2026-10-16 in `e7814dd`: portrait 70% of body width (76% compact), was 62% / 68%; landscape sized from the height (about 300 pt on a 390 pt-tall phone, was about 178 pt). Hit map unchanged. Awaiting user review |
 | INSTALL-01 | Historical blocker | Original IPA rejected twice as invalid format before signing. Removed ambiguous macOS metadata sidecars in the replacement package. | Preserved SideStore console at 20:28:52 and 20:29:06 | Packaging corrected earlier; later screenshots establish app launch, without a success-install log |
 
 See the [evidence index](design/beta/2026-10-15/README.md) for image links and saved logs. Exact
@@ -34,6 +34,10 @@ Immersive Mode state is not labeled per screenshot; use the user report to cover
   no-AppleDouble checks. It remains unsigned until SideStore signs it.
 - App-module iOS tests were not run; no Xcode test target is configured.
 - No tests, builds or app-code changes were performed in the documentation-only beta handoff pass.
+
+## Fix pass, 16 October 2026 (Linux, not yet rebuilt)
+
+All four items are implemented and committed (`8af5801`, `0f9312c`, `e7814dd`); ten orphaned app-icon PNGs were also removed (`b36cce4`) to clear the unassigned-children build warning. Nothing has been compiled or installed since: the Mac team must rebuild with `bash scripts/build_ipa.sh`, bump the build number, and hand over a new IPA. Verification status for every item above is therefore *awaiting device check*.
 
 ## Next result to record
 

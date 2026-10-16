@@ -83,6 +83,8 @@ screenshots manually. No simulator was launched and no app was installed on a ph
   background-playback and full-theme checks were not separately reported. The current handoff
   defines the focused follow-up; the former 40-theme screenshot checklist is not a new gate.
 
+**2026-10-16 fix pass (Linux):** BETA-01 `8af5801`, BETA-02 `0f9312c`, BETA-03/04 `e7814dd`, icon warning `b36cce4`. Spec divergence recorded: the wheel is now 70% of body width (76% compact) in portrait and fills a trailing square in landscape, superseding the 62% / 68% in Spec §3 at the user's request after the device beta. Hit geometry (36% centre, four sectors, 8 pt slop) is unchanged. ThemeCore tests re-run on Linux after the change: 13 passed. No SwiftUI compiled since; the next IPA build on the Mac verifies these.
+
 This build fixes compilation and packaging only. The reviewed queue-window limit, album-title
 grouping, light-atmosphere progress contrast, and immersive track-selection gaps remain open.
 No application source, build configuration or IPA was modified during the later documentation-only

@@ -129,12 +129,11 @@ layer alone would not satisfy the request if its input geometry no longer matche
 All items below are **pending**. The team should implement during the next development session;
 this document is not evidence that the changes have been made.
 
-- [ ] Reproduce BETA-02 in all four combinations: Immersive On/Off × portrait/landscape.
-- [ ] Fix Cover Flow framing/centering, including safe areas, titles, controls and expanded tracks.
+- [x] Fix Cover Flow framing/centering (`0f9312c`, 16 Oct): the backdrop's rigid 700 × 700 artwork request inflated the layout; now sized and clipped to the view. **Still to do on the Mac:** reproduce the before/after in all four combinations: Immersive On/Off × portrait/landscape.
 - [ ] Verify album browsing, Tracks/Covers, playback return, exit, and orientation changes in each combination.
-- [ ] Change the home heading to iPod; check it in portrait and landscape across representative themes.
-- [ ] Move the landscape wheel toward the right end, keeping safe margins in both rotations.
-- [ ] Slightly enlarge the wheel in both orientations; review Classic and Minimal styles together.
+- [x] Change the home heading to iPod (`8af5801`, 16 Oct). **Still to do:** check it in portrait and landscape across representative themes.
+- [x] Move the landscape wheel toward the right end (`e7814dd`, 16 Oct): a trailing square 20 pt from the edge. **Still to do:** confirm both rotations.
+- [x] Enlarge the wheel (`e7814dd`, 16 Oct): portrait 70% / 76% compact, landscape fills the trailing square. **Still to do:** review Classic and Minimal together; confirm the hit map still matches the paint (geometry is unchanged, only the diameter grew).
 - [ ] Confirm scroll, SELECT, MENU, hold MENU, transport, seek, volume, haptics and clicker remain usable.
 - [ ] Run `swift test --package-path ThemeCore` and physical-device compilation/analysis; record exact results.
 - [ ] Build a new IPA using `bash scripts/build_ipa.sh`; give it a distinct build number or filename so
