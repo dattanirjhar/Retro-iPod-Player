@@ -36,7 +36,7 @@ struct CoverFlowView: View {
         GeometryReader { geometry in
             let coverSize = min(geometry.size.height * 0.56, geometry.size.width * 0.7, 310)
             ZStack {
-                coverFlowBackdrop
+                coverFlowBackdrop(size: geometry.size)
                 VStack(spacing: 0) {
                     StatusBar(title: isPlayerView ? String(localized: "Now Playing") : String(localized: "Cover Flow"))
                     ZStack {
@@ -77,7 +77,11 @@ struct CoverFlowView: View {
                     .padding(.trailing, 18)
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            // Pin the whole view to the measured size so no child (the artwork
+            // backdrop in particular) can inflate the layout and shift the
+            // carousel, titles and controls off-centre.
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .clipped()
         }
         .background(Color.black.ignoresSafeArea())
         .taskAfterNavigation { await loadAlbums() }
@@ -123,19 +127,28 @@ struct CoverFlowView: View {
         }
     }
 
-    private var coverFlowBackdrop: some View {
-        ZStack {
+    /// Blurred artwork behind the carousel. `ArtworkImage` is rigid at its
+    /// requested size, so it is requested at the view's larger side and then
+    /// framed and clipped to the view: a fixed 700 × 700 request used to make
+    /// this ZStack 700pt wide, pushing everything else right (portrait) or
+    /// down (landscape) by half the overflow. The outer black background
+    /// already covers the safe areas, so this layer stays inside them.
+    private func coverFlowBackdrop(size: CGSize) -> some View {
+        let side = max(size.width, size.height)
+        return ZStack {
             Color.black
             if let artwork = selectedAlbum?.artwork {
-                ArtworkImage(artwork, width: 700, height: 700)
-                    .scaledToFill()
+                ArtworkImage(artwork, width: side, height: side)
+                    .frame(width: size.width, height: size.height)
+                    .clipped()
                     .blur(radius: 34)
                     .opacity(0.28)
                     .overlay(Color.black.opacity(0.62))
             }
             LinearGradient(colors: [.black.opacity(0.18), .black.opacity(0.75)], startPoint: .top, endPoint: .bottom)
         }
-        .ignoresSafeArea()
+        .frame(width: size.width, height: size.height)
+        .clipped()
     }
 
     private var immersiveControls: some View {
