@@ -17,7 +17,11 @@ split-screen artwork pane, and the hardware is drawn live from twenty fixed them
 - **Cover Flow.** Flick through your albums in 3D and flip a cover to see its tracks, inside the iPod
   screen or as a full-phone immersive view.
 - **Now Playing.** Artwork, track details, queue position, progress with elapsed and remaining time,
-  an explicit Volume / Seek wheel mode, transport buttons, and an optional artwork-tinted atmosphere.
+  an explicit Volume / Seek wheel mode (seek commits once the wheel settles, audio never pauses),
+  transport buttons, and an optional artwork-tinted atmosphere. Hold Play/Pause on any screen to
+  jump here; MENU takes you back to the row you left.
+- **Queue.** Hold SELECT on Now Playing to see the queue and jump to any entry. Hold SELECT on any
+  song row for Play Now, Play Next or Add to End of Queue.
 - **Your Apple Music library.** Albums, artists, playlists, songs, genres and composers, with
   alphabetical or recently-added sorting, shuffle songs and shuffle albums.
 - **Configurable menus and settings.** Choose library shortcuts, adjust brightness, and toggle
