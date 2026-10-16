@@ -37,7 +37,7 @@ struct HomeListView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            StatusBar(title: String(localized: "iPlayr"))
+            StatusBar(title: String(localized: "iPod"))
             // Scrollable like every other menu: with several main-menu shortcuts
             // enabled plus the shuffle, Sign In and Now Playing rows, a plain
             // VStack overflowed the 300pt screen and hid the bottom entries.
