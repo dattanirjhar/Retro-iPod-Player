@@ -4,17 +4,41 @@ Track product and development changes here, newest first. Add work under **Unrel
 lands; move it into a dated `version (build)` section when packaging an IPA. Record validation
 separately from manual device acceptance. Detailed beta evidence remains in `BETA_TEST_LOG.md`.
 
-Release versions advance with each packaged update: **1.2 (build 2), 1.3 (build 3), 1.4 (build 4), 1.5 (build 5)**;
-next is **1.6 (build 6)**. Releases 1.2 and 1.3 are retrospective labels: those original IPAs
-embedded marketing version 1.0. Their original metadata, filenames, logs and checksums are preserved.
+Release versions follow **1.2 (build 2), 1.3 (build 3), 1.4 (build 4), 1.5 (build 5)**.
+The requested same-version replacement is **1.5 (build 6)**; next is **1.6 (build 7)**.
+Releases 1.2 and 1.3 are retrospective labels: those original IPAs embedded marketing version 1.0.
+Their original metadata, filenames, logs and checksums are preserved.
 
 ## Unreleased
 
 No unreleased changes.
 
-## 1.5 (5) — 2026-10-17
+## 1.5 (6) — 2026-10-17
 
 [Manual beta checklist and verification](design/beta/2026-10-17/README.md).
+
+### Changed
+
+- Increased the wide double Menu bars from 1.75 pt to **Bold 3.25 pt** following feedback that
+  they looked too light beside the semibold transport symbols. Preserved the 18 pt width,
+  6 pt centre spacing, 24 pt canvas and Frosted soft shadow. The gap is now 2.75 pt.
+- Updated the contact sheets and captured the Bold geometry separately from the earlier 1.5 (5) settings.
+  Retained marketing version 1.5 as requested; increased the build number to 6 for the replacement IPA.
+
+### Verified
+
+- All 29 ThemeCore tests and unsigned Debug iPhone compilation passed. Fresh Release analysis,
+  unsigned Release device compilation and IPA verification also passed. The optical weight balance
+  against the transport symbols still needs device review.
+
+### Packaging
+
+- Rebuilt **v1.5 (build 6)** as requested, replacing the earlier 1.5 (5) IPA only after verification.
+  Only the latest IPA is retained. The next default release is 1.6 (build 7).
+
+## 1.5 (5) — 2026-10-17
+
+Source commit: `86cf1e1`. [Historical beta checklist and verification](design/beta/2026-10-17/build-5.md).
 
 ### Changed
 

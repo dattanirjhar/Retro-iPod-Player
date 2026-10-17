@@ -166,9 +166,9 @@ def draw_cell(page, x0, y0, t, mode):
         pd.ellipse([cx - cr + 4, cy - cr + 4, cx + cr - 4, cy + cr - 4], outline=(255, 255, 255, 204), width=1)
     # labels at 68% radius
     lr = int(r * 0.68); gl = glyph + (255,)
-    # Wide double Menu symbol; native implementation uses 1.75 pt rounded bars.
+    # Bold wide double Menu symbol; native implementation uses 3.25 pt rounded bars.
     for dy in (-3, 3):
-        pd.rounded_rectangle([cx - 9, cy - lr + dy - 1, cx + 9, cy - lr + dy + 1], radius=1, fill=gl)
+        pd.rounded_rectangle([cx - 9, cy - lr + dy - 1.625, cx + 9, cy - lr + dy + 1.625], radius=1.625, fill=gl)
     def tri(px, py, dirn, size=6):
         if dirn > 0: pd.polygon([(px - size, py - size), (px + size, py), (px - size, py + size)], fill=gl)
         else: pd.polygon([(px + size, py - size), (px - size, py), (px + size, py + size)], fill=gl)

@@ -1,9 +1,11 @@
 # Release versioning
 
-Use the user's release convention: release 1.2 is build 2, release 1.3 is build 3, and release
-1.4 is build 4, and 1.5 is build 5. For each subsequent packaged update, increment the marketing minor
-version and build number together (next: 1.6/build 6). Read the current Xcode values before
-incrementing; source-only edits do not require a version bump.
+Use the user's marketing-version convention: 1.2, 1.3, 1.4, 1.5, then 1.6. Increment the marketing
+minor version and build number for each new packaged release unless the user requests a specific
+version. Always increment the build number for a replacement IPA, including same-version rebuilds.
+The user requested retaining 1.5 for the Bold Menu update, so it is 1.5/build 6; the next default
+release is 1.6/build 7. Read the current Xcode values before incrementing; source-only edits do not
+require a version bump.
 
 Update the changelog, current beta notes and IPA filename to match each packaged release.
 Earlier releases 1.2 and 1.3 originally embedded marketing version 1.0; preserve original logs,

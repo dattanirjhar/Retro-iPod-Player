@@ -115,12 +115,14 @@ successful installation does not establish MusicKit service access or runtime co
 No simulator or automated phone installation is used. Run the Foundation-only tests on the Mac
 with `swift test --package-path ThemeCore`; record phone observations in `BETA_TEST_LOG.md`.
 
-Latest manual beta: **1.5 (5)**, `DerivedData/Artifacts/iPod-Playr-SideStore-1.5.ipa`.
+Latest manual beta: **1.5 (6)**, `DerivedData/Artifacts/iPod-Playr-SideStore-1.5.ipa`.
 Only this IPA is retained. See the [beta checklist and verification](design/beta/2026-10-17/README.md).
+This replacement includes Bold 3.25 pt Menu bars; the original 1.5 (5) candidate used 1.75 pt bars.
 
 Release versions follow **1.2 (build 2) → 1.3 (build 3) → 1.4 (build 4) → 1.5 (build 5)**.
-Each packaged update increments the marketing minor version and build number together;
-next is **1.6 (build 6)**.
+The user requested retaining 1.5 for the Bold update, packaged as build 6. New releases increment
+the minor version and build number; same-version replacements increase the build number.
+Next is **1.6 (build 7)**.
 Earlier releases 1.2/1.3 originally embedded marketing version 1.0; historical filenames, metadata
 and verification logs retain those original values.
 

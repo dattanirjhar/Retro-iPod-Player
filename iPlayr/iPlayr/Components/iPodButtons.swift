@@ -385,13 +385,13 @@ private struct WheelPaintLayer: View {
 
 // MARK: - Labels (paint only)
 
-/// The selected wide double: 18 pt bars, 1.75 pt thick, 6 pt centre-to-centre.
+/// Bold wide double: 18 pt bars, 3.25 pt thick, 6 pt centre-to-centre.
 /// An optical 24 pt canvas keeps the label centred on the existing Menu sector.
 private struct WheelMenuGlyph: View {
     var body: some View {
-        VStack(spacing: 4.25) {
-            Capsule().frame(width: 18, height: 1.75)
-            Capsule().frame(width: 18, height: 1.75)
+        VStack(spacing: 2.75) {
+            Capsule().frame(width: 18, height: 3.25)
+            Capsule().frame(width: 18, height: 3.25)
         }
         .frame(width: 24, height: 24)
     }

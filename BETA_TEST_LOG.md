@@ -1,10 +1,11 @@
 # Beta observations — 15 October 2026
 
-Release labels now follow **1.2/build 2 → 1.3/build 3 → 1.4/build 4 → 1.5/build 5**, then 1.6/build 6.
+Release labels now follow **1.2/build 2 → 1.3/build 3 → 1.4/build 4 → 1.5/build 5**. The requested
+same-version Bold replacement is **1.5/build 6**; the next default release is **1.6/build 7**.
 The original build-2/build-3 bundles embedded version 1.0; historical bundle metadata, paths and
 raw verification logs are preserved. Retention statements in dated entries apply at those dates.
 
-**Latest candidate, 17 October: 1.5 (5).** Replaces MENU text with the approved wide double
+**Latest candidate, 17 October: 1.5 (6).** Uses the approved Bold 3.25 pt wide double Menu
 symbol and gives Frosted bare glyphs with a soft shadow, retaining opaque accessibility fallbacks.
 All 29 ThemeCore tests, Release analysis/build and IPA checks pass. Only the 1.5 IPA is retained;
 manual device acceptance remains pending. See the [current checklist](design/beta/2026-10-17/README.md).
@@ -490,3 +491,52 @@ The temporary 1.0 (4) archive was removed after the 1.4 (4) replacement passed v
 Fixed glyph contrast assertions cover the opaque Frosted accessibility fallback. Bare symbols over
 native glass and changing artwork still need the manual visual/interaction checks in the current
 checklist. No device installation, optical acceptance or MusicKit runtime result is inferred.
+
+
+### Unreleased source adjustment — Bold Menu weight, 17 October 2026
+
+- User reports that the 1.75 pt Menu bars look much lighter than the straight stems in Pause and
+  Skip, and requested trying the Bold direction. The supplied screenshot path was unavailable;
+  this change follows their description and the 3.25 pt Bold comparison.
+- Increased the native rounded bars to **3.25 pt**, preserving 18 pt width, 6 pt centre spacing and
+  the centred 24 pt canvas. The inter-bar gap is now 2.75 pt. Frosted's selected soft shadow,
+  transport symbols, Menu hit region and tap/hold behavior are unchanged.
+- Regenerated contact sheets and captured [Bold settings](design/beta/2026-10-17/wide-double-bold-settings.json).
+  The earlier selected-settings file preserves the exact 1.5 packaged geometry.
+- All 29 ThemeCore tests and unsigned Debug iPhone compilation passed. Evidence:
+  [tests](design/beta/2026-10-17/logs/bold-menu-theme-tests.log),
+  [Debug build](design/beta/2026-10-17/logs/bold-menu-debug-build.log).
+  Existing AppIntents metadata-extraction notice only; device optical acceptance remains pending.
+- Source update only: the retained **1.5 (5)** IPA still has 1.75 pt bars. No new IPA, version bump,
+  commit or push was performed in this adjustment. Next packaged release remains 1.6/build 6.
+
+
+### v1.5 replacement — build 6, 17 October 2026
+
+- Packaged the approved **Bold 3.25 pt** Menu bars, retaining 18 pt width, 6 pt centre spacing,
+  2.75 pt gap, 24 pt canvas and Frosted's selected soft shadow. The hit layer, Menu tap/hold,
+  transport glyphs, artwork lighting, accessibility fallbacks and 21-theme gallery are unchanged.
+- Kept marketing version **1.5** at the user's explicit request and raised both Debug/Release
+  build numbers to **6** for this replacement IPA. Updated the version policy: next default release
+  is 1.6/build 7. Original 1.5 (5) settings, logs, hashes and notes remain historical evidence.
+- Promoted the Bold Unreleased entry into the 1.5 (6) changelog. The current checklist now describes
+  build 6; the former checklist is archived as [build-5.md](design/beta/2026-10-17/build-5.md).
+  [Bold settings](design/beta/2026-10-17/wide-double-bold-settings.json) now record the packaged values.
+- All 29 ThemeCore tests pass. Fresh Release analysis and unsigned Release iPhone compilation pass.
+  Analysis emitted only the existing AppIntents metadata-extraction notice; Release build had no warnings.
+- Verified `DerivedData/Artifacts/iPod-Playr-SideStore-1.5.ipa`: version **1.5 (6)**, **5,788,050 bytes**,
+  SHA-256 `35098b026e714525282199d533532e2072fa8f767d9f2103e21f2d6137ffeaa6`.
+  ZIP integrity, single app directory, arm64/iOS metadata, executable permissions, privacy/audio,
+  unsigned bundle, absence of macOS sidecars and executable identity against the Release product pass.
+- Confirmed the old build-5 checksum before replacing that IPA atomically with build 6. Only this
+  latest IPA is retained. The verification report preserves the replaced candidate's metadata/hash.
+- Fetched origin successfully; main matched origin/main at `86cf1e1` before preparing this release.
+  The requested commit/push includes code, contact sheets, settings, release notes and evidence;
+  the IPA stays excluded from Git.
+- Evidence: [tests](design/beta/2026-10-17/logs/beta-6-theme-core-tests.log),
+  [Release analysis](design/beta/2026-10-17/logs/beta-6-release-analyze.log),
+  [Release build](design/beta/2026-10-17/logs/beta-6-release-build.log), and
+  [IPA verification](design/beta/2026-10-17/logs/ipa-build-6-verification.json).
+
+Phone installation, optical weight/contrast acceptance and MusicKit runtime checks remain manual.
+Earlier dated source-only and retention statements describe the state at those times.
