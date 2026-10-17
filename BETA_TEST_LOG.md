@@ -1,13 +1,13 @@
 # Beta observations — 15 October 2026
 
-Release labels now follow **1.2/build 2 → 1.3/build 3 → 1.4/build 4 → 1.5/build 5**. The requested
-same-version Bold replacement is **1.5/build 6**; the next default release is **1.6/build 7**.
+Release labels now follow **1.2/build 2 → 1.3/build 3 → 1.4/build 4 → 1.5/build 5**. The Bold
+update was corrected from 1.5/build 6 to **1.6/build 7**; the next default release is **1.7/build 8**.
 The original build-2/build-3 bundles embedded version 1.0; historical bundle metadata, paths and
 raw verification logs are preserved. Retention statements in dated entries apply at those dates.
 
-**Latest candidate, 17 October: 1.5 (6).** Uses the approved Bold 3.25 pt wide double Menu
+**Latest candidate, 17 October: 1.6 (7).** Uses the approved Bold 3.25 pt wide double Menu
 symbol and gives Frosted bare glyphs with a soft shadow, retaining opaque accessibility fallbacks.
-All 29 ThemeCore tests, Release analysis/build and IPA checks pass. Only the 1.5 IPA is retained;
+All 29 ThemeCore tests, Release analysis/build and IPA checks pass. Only the 1.6 IPA is retained;
 manual device acceptance remains pending. See the [current checklist](design/beta/2026-10-17/README.md).
 
 **Build-3 history, 17 October:** immersive Cover Flow track selection/return navigation, denser album
@@ -540,3 +540,21 @@ checklist. No device installation, optical acceptance or MusicKit runtime result
 
 Phone installation, optical weight/contrast acceptance and MusicKit runtime checks remain manual.
 Earlier dated source-only and retention statements describe the state at those times.
+
+
+### Release version correction — 1.6 (7), 17 October 2026
+
+- User corrected the Bold Menu release to **1.6**. Set Debug/Release marketing version to 1.6
+  and incremented the bundle build to 7 under the repository replacement-build rule.
+- Rebuilt the unsigned Release iPhone app and verified the IPA: **5,788,047 bytes**,
+  SHA-256 `54934e30d0ce3f1b4b7b04d5066547d6566b819f57564ee4a9120506130b2659`.
+- Embedded version is **1.6 (7)**. ZIP integrity, one app directory, arm64/iOS platform,
+  executable permissions, privacy/background-audio metadata, unsigned bundle and executable identity passed.
+- Executable checksum matches the previous tested build; no app source changed. The 29 ThemeCore tests
+  and Release static analysis from build 6 remain applicable. Device acceptance remains pending.
+- Kept only `DerivedData/Artifacts/iPod-Playr-SideStore-1.6.ipa` after verification; removed the
+  previous 1.5 IPA after confirming its recorded checksum. Preserved original build-6 records in
+  [historical notes](design/beta/2026-10-17/build-6.md) and the original verification report.
+- Updated current release pointers, settings capture and changelog. Next default release: **1.7 (8)**.
+- Evidence: [Release build](design/beta/2026-10-17/logs/beta-7-release-build.log),
+  [IPA verification](design/beta/2026-10-17/logs/ipa-build-7-verification.json).

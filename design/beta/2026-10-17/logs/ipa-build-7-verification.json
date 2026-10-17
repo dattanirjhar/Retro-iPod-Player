@@ -1,0 +1,33 @@
+{
+  "artifact": "DerivedData/Artifacts/iPod-Playr-SideStore-1.6.ipa",
+  "version": "1.6",
+  "build": "7",
+  "bundle_identifier": "com.kerem.iPlayr",
+  "minimum_ios": "17.0",
+  "size_bytes": 5788047,
+  "sha256": "54934e30d0ce3f1b4b7b04d5066547d6566b819f57564ee4a9120506130b2659",
+  "architecture": "arm64",
+  "executable_sha256": "74b3efa53b068e1dc69bd10d48d0444141989c6a6cff9c11e61ecd5ee5e05066",
+  "source_base_commit": "33891e97e68b1d944305283c5d8551619e6ab0c2",
+  "source_note": "User corrected the Bold Menu release from 1.5 (6) to 1.6 (7). Only release metadata and documentation changed; app source is identical to 33891e9.",
+  "checks_passed": [
+    "ZIP integrity",
+    "single app directory in Payload",
+    "no AppleDouble or __MACOSX metadata",
+    "arm64 Mach-O executable",
+    "iOS device platform",
+    "executable permissions",
+    "version 1.6 (7)",
+    "music privacy description",
+    "background audio mode",
+    "unsigned app with no embedded provisioning profile",
+    "archive executable matches Release product"
+  ],
+  "installation": "Not performed; import into SideStore for manual signing and device acceptance",
+  "replaced_previous_candidate": {
+    "artifact": "DerivedData/Artifacts/iPod-Playr-SideStore-1.5.ipa",
+    "version": "1.5",
+    "build": "6",
+    "sha256": "35098b026e714525282199d533532e2072fa8f767d9f2103e21f2d6137ffeaa6"
+  }
+}

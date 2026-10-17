@@ -5,7 +5,8 @@ lands; move it into a dated `version (build)` section when packaging an IPA. Rec
 separately from manual device acceptance. Detailed beta evidence remains in `BETA_TEST_LOG.md`.
 
 Release versions follow **1.2 (build 2), 1.3 (build 3), 1.4 (build 4), 1.5 (build 5)**.
-The requested same-version replacement is **1.5 (build 6)**; next is **1.6 (build 7)**.
+The Bold update was first packaged as 1.5 (build 6), then corrected to **1.6 (build 7)**.
+Next is **1.7 (build 8)**.
 Releases 1.2 and 1.3 are retrospective labels: those original IPAs embedded marketing version 1.0.
 Their original metadata, filenames, logs and checksums are preserved.
 
@@ -13,9 +14,19 @@ Their original metadata, filenames, logs and checksums are preserved.
 
 No unreleased changes.
 
-## 1.5 (6) — 2026-10-17
+## 1.6 (7) — 2026-10-17
 
 [Manual beta checklist and verification](design/beta/2026-10-17/README.md).
+
+- Corrected the Bold Menu release to **1.6** at the user's request. Debug and Release now embed
+  marketing version 1.6 and build 7; About reads these values from the bundle.
+- Retains the Bold 3.25 pt wide double Menu bars, Frosted soft shadow and accepted theme settings.
+- Rebuilt and verified the unsigned arm64 IPA for SideStore. Only the latest IPA is retained;
+  original build-6 notes, metadata and checksums remain archived. Device acceptance is pending.
+
+## 1.5 (6) — 2026-10-17
+
+[Historical beta checklist and verification](design/beta/2026-10-17/build-6.md).
 
 ### Changed
 

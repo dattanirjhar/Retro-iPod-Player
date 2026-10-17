@@ -1,0 +1,48 @@
+{
+  "capturedOn": "2026-10-17",
+  "source": "User requested trying Bold after reporting that Menu lines looked much lighter than the transport stems",
+  "menuSymbol": {
+    "name": "Wide double Bold",
+    "scope": "all themes",
+    "barWidthPoints": 18,
+    "barThicknessPoints": 3.25,
+    "barCenterSpacingPoints": 6,
+    "canvasPoints": 24,
+    "tap": "Previous menu",
+    "hold": "Main menu",
+    "hitGeometryChanged": false,
+    "barGapPoints": 2.75
+  },
+  "frostedSymbols": {
+    "defaultBacking": "none",
+    "scope": "all four wheel labels",
+    "primaryShadow": {
+      "color": "black",
+      "opacity": 0.7,
+      "radiusPoints": 1.4,
+      "xPoints": 0,
+      "yPoints": 1.4
+    },
+    "edgeShadow": {
+      "color": "black",
+      "opacity": 0.28,
+      "radiusPoints": 0.4,
+      "xPoints": 0,
+      "yPoints": 0
+    },
+    "opaqueBackingWhen": [
+      "Reduce Transparency",
+      "Increase Contrast"
+    ]
+  },
+  "unchangedLighting": {
+    "frostedArtworkIntensity": 0.8,
+    "frostedArtworkLuminance": 1.15,
+    "albumGlowPreferredIntensity": 0.8
+  },
+  "notes": "Screenshot attachment was unavailable at the supplied path; this change follows the user description and the Bold prototype. The earlier 1.5 (5) selected-settings file remains a historical record of its 1.75 pt bars. Device visual acceptance remains pending.",
+  "baseRelease": "1.5 (6)",
+  "status": "Repackaged as 1.6 after user version correction",
+  "release": "1.6",
+  "build": "7"
+}

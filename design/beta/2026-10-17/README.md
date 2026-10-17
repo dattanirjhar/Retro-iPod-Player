@@ -1,19 +1,19 @@
-# Manual beta candidate — version 1.5 (6)
+# Manual beta candidate — version 1.6 (7)
 
 Built on 17 October 2026 for physical iPhones, iOS 17+. Import into SideStore for signing and
 manual installation. Device installation and visual acceptance have not been performed.
 
-- IPA: `DerivedData/Artifacts/iPod-Playr-SideStore-1.5.ipa` (excluded from Git).
-- Size: 5,788,050 bytes.
-- SHA-256: `35098b026e714525282199d533532e2072fa8f767d9f2103e21f2d6137ffeaa6`.
-- Only this IPA is retained. Build 5 was replaced atomically after build 6 passed verification.
-  The original build-5 checksum is preserved in the verification report.
-- [Packaging verification](logs/ipa-build-6-verification.json).
-- [Historical 1.5 (5) notes](build-5.md), [1.4 notes](build-4.md) and [1.3 notes](build-3.md).
+- IPA: `DerivedData/Artifacts/iPod-Playr-SideStore-1.6.ipa` (excluded from Git).
+- Size: 5,788,047 bytes.
+- SHA-256: `54934e30d0ce3f1b4b7b04d5066547d6566b819f57564ee4a9120506130b2659`.
+- Only this IPA is retained. The previous 1.5 IPA was removed after 1.6 passed verification.
+  The original build-6 checksum is preserved in the verification report.
+- [Packaging verification](logs/ipa-build-7-verification.json).
+- [Historical 1.5 (6) notes](build-6.md), [1.5 (5) notes](build-5.md), [1.4 notes](build-4.md) and [1.3 notes](build-3.md).
 
 ## Included changes
 
-This replacement keeps marketing version **1.5** as requested and increments the bundle build to **6**.
+This replacement corrects the marketing version to **1.6** at the user’s request and increments the bundle build to **7**.
 The original 1.5 (5) IPA used 1.75 pt Menu bars.
 
 - Replaced MENU text with the approved **Bold wide double** symbol across all 21 themes. Two rounded
@@ -21,7 +21,7 @@ The original 1.5 (5) IPA used 1.75 pt Menu bars.
 - Frosted's four wheel labels now use **bare symbols with the selected soft shadow**: 70% black,
   radius 1.4 pt, offset 1.4 pt down, plus a 28% black edge shadow at radius 0.4 pt.
 - Reduce Transparency or Increase Contrast restores opaque wheel/label surfaces. Other materials
-  keep their existing flat or engraved glyph treatments. [Accepted settings](wide-double-bold-settings.json).
+  keep their existing flat or engraved glyph treatments. [Accepted settings](wide-double-bold-v1.6-settings.json).
 - Tap Menu still goes back; hold Menu still returns to the main menu. The hit layer, wheel sectors,
   scroll/press handling and accessible Menu/Main menu actions are unchanged.
 - Frosted stays at 80% artwork intensity / 115% luminance with a dark chassis and neutral LCD.
@@ -34,9 +34,11 @@ The original 1.5 (5) IPA used 1.75 pt Menu bars.
 - [29 ThemeCore tests](logs/beta-6-theme-core-tests.log): passed, including migration, wheel geometry,
   Cover Flow behavior, dynamic Album Glow checks and 567 fixed contrast checks across 42 combinations.
 - [Release static analysis](logs/beta-6-release-analyze.log): passed.
-- [Unsigned Release iPhone build](logs/beta-6-release-build.log): passed.
+- [Unsigned Release iPhone build](logs/beta-7-release-build.log): passed.
+- ThemeCore tests and static analysis above were completed for the identical app source in build 6;
+  build 7 changes only version metadata and release documentation.
 - ZIP integrity, exactly one app directory, arm64/iOS executable, executable permissions, version
-  1.5 (6), privacy/background-audio metadata, unsigned/provision-free bundle, no macOS sidecars and
+  1.6 (7), privacy/background-audio metadata, unsigned/provision-free bundle, no macOS sidecars and
   executable identity against the Release product: passed.
 - Analysis emitted the existing AppIntents metadata-extraction notice; the app has no AppIntents dependency.
 - Fixed Frosted glyph contrast checks cover the opaque accessibility fallback. Native glass/artwork
@@ -45,7 +47,7 @@ The original 1.5 (5) IPA used 1.75 pt Menu bars.
 
 ## Manual acceptance
 
-- [ ] Install through SideStore; About displays **1.5 (6)** and **21 themes**.
+- [ ] Install through SideStore; About displays **1.6 (7)** and **21 themes**.
 - [ ] Review the Bold wide double symbol across Classic, Mini, Nano, Ceramic, Porcelain, Album Glow and
   Frosted, in portrait/landscape and both screen modes. Check centring and weight against transport symbols.
 - [ ] In Frosted, confirm all four glyphs sit directly on the glass with a soft shadow and no solid pills.
