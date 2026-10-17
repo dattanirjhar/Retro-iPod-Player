@@ -1,0 +1,31 @@
+{
+  "artifact": "DerivedData/Artifacts/iPod-Playr-SideStore-1.4-4.ipa",
+  "version": "1.4",
+  "build": "4",
+  "bundle_identifier": "com.kerem.iPlayr",
+  "minimum_ios": "17.0",
+  "size_bytes": 5785586,
+  "sha256": "327cb04ba4036d1f1ca4ae844b38eb895f5be7f26c4b4ef08816e25629d11e31",
+  "architecture": "arm64",
+  "executable_sha256": "ee4607fb1caf5a6aa9c54170fefd4abf42ee7bd429d05aa0084894cd9ef725c1",
+  "source_base_commit": "ede1582a88c481c632fe45a9b4a2d941977b460b",
+  "source_note": "Includes the reviewed Settings/About, 21-theme material refresh, accepted Frosted 80%/115% lighting, migration and release-4 changes in this release commit.",
+  "checks_passed": [
+    "ZIP integrity",
+    "single app directory in Payload",
+    "no AppleDouble or __MACOSX metadata",
+    "arm64 Mach-O executable",
+    "iOS device platform",
+    "executable permissions",
+    "version 1.4 (4)",
+    "music privacy description",
+    "background audio mode",
+    "unsigned app with no embedded provisioning profile",
+    "archive executable matches Release product"
+  ],
+  "installation": "Not performed; import into SideStore for manual signing and device acceptance",
+  "removed_previous_ipas": [
+    "DerivedData/Artifacts/iPod-Playr-SideStore-1.0-3.ipa",
+    "DerivedData/Artifacts/iPod-Playr-SideStore-1.0-4.ipa"
+  ]
+}

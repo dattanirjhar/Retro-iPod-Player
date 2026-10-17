@@ -3,7 +3,7 @@
 A faithful iPod classic recreation for iOS, built entirely in SwiftUI on top of Apple Music.
 
 Not an iPod-*inspired* player: the click wheel drives every interaction, the menu keeps its
-split-screen artwork pane, and the hardware is drawn live from 22 theme presets.
+split-screen artwork pane, and the hardware is drawn live from 21 theme presets.
 
 [![Platform](https://img.shields.io/badge/platform-iOS%2017%2B-lightgrey)](https://developer.apple.com/ios/)
 [![Swift](https://img.shields.io/badge/Swift-6.0-orange)](https://swift.org)
@@ -27,6 +27,8 @@ split-screen artwork pane, and the hardware is drawn live from 22 theme presets.
   alphabetical or recently-added sorting, shuffle songs and shuffle albums.
 - **Configurable menus and settings.** Choose library shortcuts, adjust brightness, and toggle
   haptics and the clicker.
+- **About.** App/build information, library totals, device details and inspiration, navigable with
+  the wheel, SELECT or the Next control.
 
 ## Appearance
 
@@ -37,24 +39,27 @@ split-screen artwork pane, and the hardware is drawn live from 22 theme presets.
 
 Two independent choices under Settings › App Settings:
 
-- **Theme** picks one of 22 presets that set the body, click wheel, wheel style, finish, label
+- **Theme** picks one of 21 presets that set the body, click wheel, wheel style, finish, label
   colour, accent (selected row and progress) and atmosphere level: six Classic, four Mini, six Nano
-  and six Modern. Scrolling the picker previews a theme live; the centre button confirms; MENU
+  and five Modern. Scrolling the picker previews a theme live; the centre button confirms; MENU
   cancels.
 - **Mode** is Dark or Light and changes only the screen surfaces, text, divider and progress track.
   It never touches the hardware.
 
 Every constant lives in `iPlayr/iPlayr/Core/Theme/ThemeCore/` and is checked by tests for WCAG
-contrast across all 44 theme × mode combinations. `design/contact-dark.png` and
-`design/contact-light.png` show all 22 themes in each mode as Pillow approximations.
-Porcelain offers Ceramic and Engraved variants. Liquid Glass offers Frosted and Clear with
-artwork color behind the controls, native glass on iOS 26+, a system-material fallback on earlier
-versions, and opaque controls under Reduce Transparency or Increase Contrast. Existing Porcelain
-and Liquid Glass selections retain their saved IDs and now select Ceramic and Frosted respectively.
+contrast across all 42 theme × mode combinations. `design/contact-dark.png` and
+`design/contact-light.png` show all 21 themes in each mode as Pillow approximations.
+Ceramic has a cool white satin body, a smooth flush wheel and soft chamfer highlights. Porcelain
+has a warm glazed body, recessed annular channels, fine metallic inlays and engraved label details.
+Frosted keeps a dark neutral body and artwork color behind its controls, with native glass on iOS
+26+, a system-material fallback on earlier versions, and opaque controls under Reduce Transparency
+or Increase Contrast. Clear has been retired; saved Clear selections migrate to Frosted without
+changing Dark/Light mode. Stored Ceramic, Porcelain and Frosted IDs remain compatible.
 Modern Album Glow uses broad artwork-derived light inside Now Playing at 80% preferred intensity,
-retaining its violet hardware. Liquid Glass keeps a neutral screen and shows blurred artwork through
-the wheel at 75% opacity for Frosted and 50% for Clear. Missing artwork leaves glass neutral and
-gives Album Glow a violet fallback; contrast protection and accessibility preferences take priority.
+retaining its violet hardware. Frosted keeps a neutral screen and shows blurred artwork through
+the wheel at 80% opacity with a 115% artwork luminance multiplier. Missing artwork leaves
+Frosted neutral and gives Album Glow a violet fallback; contrast protection and accessibility
+preferences take priority.
 
 ## Requirements
 
@@ -107,24 +112,33 @@ successful installation does not establish MusicKit service access or runtime co
 No simulator or automated phone installation is used. Run the Foundation-only tests on the Mac
 with `swift test --package-path ThemeCore`; record phone observations in `BETA_TEST_LOG.md`.
 
-Latest manual beta: **1.0 (3)**, `DerivedData/Artifacts/iPod-Playr-SideStore-1.0-3.ipa`.
+Latest manual beta: **1.4 (4)**, `DerivedData/Artifacts/iPod-Playr-SideStore-1.4-4.ipa`.
 Only this IPA is retained. See the [beta checklist and verification](design/beta/2026-10-17/README.md).
+
+Release versions follow **1.2 (build 2) → 1.3 (build 3) → 1.4 (build 4)**. Each subsequent packaged
+update increments the marketing minor version and build number together; next is **1.5 (build 5)**.
+Earlier releases 1.2/1.3 originally embedded marketing version 1.0; historical filenames, metadata
+and verification logs retain those original values.
 
 ## Project documents
 
+- `CHANGELOG.md`: release history and an Unreleased section for ongoing development.
 - `THEME_MIGRATION_STATUS.md`: per-item status of the Theme + Mode work.
 - `HANDOFF_2026-10-16.md`: remote updates, local Mac follow-up fixes, and remaining device checks.
 - `PHASE2_MAC_HANDOFF.md`: current prod-dev-team handoff, with implementation, build/test status, and acceptance checks.
-- `BETA_TEST_LOG.md`: original device observations, remote-update review, follow-up fixes, selected designs and build-3 verification.
-- `design/beta/2026-10-16/logs/`: saved Mac test failure, passing 20-test run, Debug/Release iOS builds, and version 1.0 (2) IPA verification.
-- `design/beta/2026-10-17/`: captured settings, manual beta checklist, 28-test results, Release analysis/build logs and build-3 IPA verification.
+- `BETA_TEST_LOG.md`: original device observations, remote-update review, follow-up fixes, selected designs and release verification.
+- `design/beta/2026-10-16/logs/`: saved Mac test failure, passing 20-test run, Debug/Release iOS builds, and version 1.2 (2) IPA verification.
+- `design/beta/2026-10-17/`: captured settings, current/historical beta checklists, 29-test results, Release analysis/build logs and IPA verification.
 - `design/beta/2026-10-15/README.md`: saved screenshots, console/build logs, checksums and superseded plans.
 
-## Acknowledgments & Credit
+## Inspiration
 
-A heavily modified version of keremersu35/iPodPlayer project. The original repo has no license; published here with happy attribution :)
-This is my second and slightly different version.
+Inspired by iPodPlayer. iPod-Playr has been extensively reworked with its own theme system,
+Cover Flow behavior, navigation refinements and playback controls, while retaining the underlying
+SwiftUI and MusicKit foundation.
 
 ## Contributing
 
 Issues and pull requests are welcome. Please keep changes focused and match the surrounding style.
+Record user-visible changes under Unreleased in `CHANGELOG.md`; date and version that section when
+packaging the next IPA, keeping device acceptance separate from build/test verification.

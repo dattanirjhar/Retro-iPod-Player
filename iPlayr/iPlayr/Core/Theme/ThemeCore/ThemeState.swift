@@ -23,15 +23,23 @@ enum ThemeMigration {
     }
 
     static func migrateTheme(_ stored: StoredValues) -> String {
-        if let id = stored.themeId, ThemeTable.find(id) != nil { return id }
+        if let id = stored.themeId, let theme = ThemeTable.find(replacement(for: id)) { return theme.id }
         if let preset = stored.presetId {
-            if ThemeTable.find(preset) != nil { return preset }
+            if let theme = ThemeTable.find(replacement(for: preset)) { return theme.id }
+            // The old custom Porcelain body predates stable theme IDs.
+            if preset == "custom", let body = stored.bodyHex, RGB(hex: body) == .hex("E7E5E0") {
+                return "porcelain"
+            }
             if preset == "custom", let body = stored.bodyHex, let rgb = RGB(hex: body),
                let match = ThemeTable.all.first(where: { $0.body == rgb }) {
                 return match.id
             }
         }
         return ThemeTable.defaultId
+    }
+
+    private static func replacement(for id: String) -> String {
+        id == "liquidGlassClear" ? "liquidGlass" : id
     }
 
     static func migrateMode(_ stored: StoredValues) -> ScreenMode {

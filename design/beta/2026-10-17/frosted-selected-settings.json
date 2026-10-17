@@ -1,0 +1,19 @@
+{
+  "capturedOn": "2026-10-17",
+  "source": "User-approved Frosted brightness comparison; selected Current variant with edited values",
+  "theme": {
+    "name": "Frosted",
+    "storedId": "liquidGlass",
+    "material": "glassFrosted",
+    "artworkIntensity": 0.80,
+    "artworkLuminance": 1.15,
+    "region": "beneathWheel",
+    "chassis": "dark",
+    "screen": "neutral"
+  },
+  "previewContext": {
+    "artworkTitle": "Music For a Sushi Restaurant",
+    "artist": "Harry Styles"
+  },
+  "notes": "Applies in both screen modes. Only artwork receives the multiplicative light adjustment. Missing artwork stays neutral. Reduce Transparency and Increase Contrast retain opaque controls. The original selected-theme-settings.json describes the older packaged beta-3 state. Native glass still requires device acceptance."
+}

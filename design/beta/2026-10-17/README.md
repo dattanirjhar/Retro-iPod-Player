@@ -1,59 +1,67 @@
-# Manual beta candidate — version 1.0 (3)
+# Manual beta candidate — version 1.4 (4)
 
 Built on 17 October 2026 for physical iPhones, iOS 17+. Import into SideStore for manual signing
-and installation. No automated device installation or device acceptance test was performed.
+and installation. Phone installation and device acceptance have not been performed.
 
-- IPA: `DerivedData/Artifacts/iPod-Playr-SideStore-1.0-3.ipa` (excluded from Git).
-- Size: 5,771,238 bytes.
-- SHA-256: `f8979db390420b56dfdfb836f885baa08f2817304c2846bd5223f60475f55fa9`.
-- This is the only retained IPA; the previous 1.0 (2) candidate was removed after verification.
-- [Packaging verification](logs/ipa-build-3-verification.json).
+- IPA: `DerivedData/Artifacts/iPod-Playr-SideStore-1.4-4.ipa` (excluded from Git).
+- Size: 5,785,586 bytes.
+- SHA-256: `327cb04ba4036d1f1ca4ae844b38eb895f5be7f26c4b4ef08816e25629d11e31`.
+- This is the only retained IPA; build 3 was removed after the new candidate passed verification.
+- [Packaging verification](logs/ipa-build-4-verification.json).
+- [Historical build-3 notes](build-3.md).
 
 ## Included changes
 
-- Cover Flow uses 0.70 nearest-album spacing and a 0.36 stack step, with separate labels.
-- Immersive track rows select individual tracks and open standard Now Playing. MENU restores the
-  same immersive album/list; hold MENU exits the session to the main menu.
-- Rotation preserves the navigation/player subtree. System status indicators follow chassis contrast.
-- There are 22 themes: Porcelain Ceramic/Engraved and Liquid Glass Frosted/Clear are included.
-  Theme picker variants appear on a separate line, with wrapping for narrow screens.
-- Album Glow uses Ambient Screen at 80% preferred intensity with fixed violet hardware. Frosted
-  shows artwork beneath the wheel at 75%; Clear uses 50%. Glass keeps a neutral LCD. Contrast
-  protection, reduced motion and opaque accessibility fallbacks remain active.
-- Both Cover Flow presentations show tracks in the available content area. The fixed-size embedded
-  flip card and its vertical offset were removed to prevent clipping/overlap.
-- Existing theme IDs are preserved. [Captured settings](selected-theme-settings.json) records the
-  selected values and comparison context.
+- 21 themes: 6 Classic, 4 Mini, 6 Nano, 5 Modern. **Ceramic** has cool white satin, a smooth
+  flush wheel and soft highlights. **Porcelain** has warm glaze, engraved channels, fine metallic
+  inlays and a double chassis rim. **Frosted** replaces the Liquid Glass name; Clear is removed.
+- Saved Clear selections migrate to Frosted without changing Dark/Light mode. Existing Ceramic,
+  Porcelain and Frosted IDs, plus the legacy custom Porcelain body, remain compatible.
+- Frosted artwork is clipped beneath its wheel at **80% intensity / 115% luminance**, retaining
+  the dark chassis, neutral LCD and opaque label backings. [Accepted settings](frosted-selected-settings.json).
+  Missing artwork stays neutral; transparency/contrast/motion accessibility safeguards remain active.
+- Album Glow keeps its violet hardware and Ambient Screen at 80% preferred intensity, with
+  contrast protection. Theme and screen mode remain independent.
+- Removed What's New, Tutorial and Gestures from Settings. Tutorial remains in Extras.
+- About now shows bundle version/build, theme count, library totals, device details and inspiration
+  across five pages, using the wheel, SELECT or the accessible Next control.
+- About/README use “Inspired by iPodPlayer” wording. [Changelog](../../../CHANGELOG.md) records
+  product and development history, with an Unreleased section for future work.
+- Includes the earlier Cover Flow 0.70 nearest / 0.36 stack spacing, individual immersive track
+  selection, normal Now Playing playback and MENU return to the same immersive album/list.
+  Rotation preserves navigation/player state; track lists use the available content area.
 
 ## Verification
 
-- [28 ThemeCore tests](logs/beta-3-theme-core-tests.log): passed, including 594 fixed contrast checks
-  plus dynamic artwork/text/progress checks in both screen modes and three screen shapes.
-- [Release static analysis](logs/beta-3-release-analyze.log): passed.
-- [Unsigned Release iPhone build](logs/beta-3-release-build.log): passed.
-- ZIP integrity, one app candidate, arm64 executable, executable permission, platform/privacy/audio
-  metadata, absence of signing/provisioning and macOS sidecars, and executable identity: passed.
-- Existing AppIntents metadata-extraction warning only; there is no AppIntents dependency.
-- No app-module test target is configured. These checks do not establish SwiftUI layout or MusicKit
-  runtime correctness on the phone.
+- [29 ThemeCore tests](logs/beta-4-theme-core-tests.log): passed, including 567 fixed contrast checks
+  across 42 theme/mode combinations, dynamic artwork checks, migration, and Cover Flow behavior.
+- [Release static analysis](logs/beta-4-release-analyze.log): passed.
+- [Unsigned Release iPhone build](logs/beta-4-release-build.log): passed.
+- ZIP integrity, single app directory, arm64/iOS executable, permissions, version 1.4 (4),
+  privacy/audio metadata, unsigned/provision-free bundle, no macOS sidecars, executable identity: passed.
+- [Native SwiftUI render sample](logs/frosted-luminance-render.log) confirms the luminance multiplier
+  brightens pixels. This does not establish native glass appearance on the phone.
+- The final 1.4 Release analysis and build completed without warnings.
+- No app-module UI test target is configured. These checks do not establish device layout or
+  MusicKit runtime acceptance.
 
 ## Manual acceptance
 
-- [ ] Install this IPA through SideStore and confirm version 1.0 (3); open the library and play music.
-- [ ] Immersive Cover Flow: open Tracks, choose a middle/final track and confirm that exact track
-  starts in normal Now Playing. MENU restores the same album, selected row and list position.
-- [ ] Repeat after rotating during playback. Queue → MENU returns to Now Playing, then MENU returns
-  to immersive Cover Flow. Hold MENU returns to Home without leaving a hidden session.
-- [ ] With immersion off, open a long album list, scroll to the last track and verify that the header
-  and rows fit in portrait and landscape. MENU returns to covers. Check labels and spacing in both modes.
-- [ ] Check all 22 theme entries, especially complete Ceramic/Engraved and Frosted/Clear labels;
-  preview, confirm, MENU cancellation and saved choices after relaunch.
-- [ ] Compare Album Glow 80%, Frosted 75% and Clear 50% with warm/cool, grayscale and missing artwork,
-  in Dark and Light mode. The glass LCD stays neutral; the violet Album Glow chassis stays fixed.
+- [ ] Install through SideStore; confirm About displays version **1.4 (4)** and **21 themes**.
+- [ ] Settings excludes the three retired entries. Visit all five About pages with the wheel,
+  SELECT and Next. Confirm the inspiration text and Tutorial's separate Extras entry.
+- [ ] Review Ceramic's flush highlights and Porcelain's engraving/inlays in both orientations.
+  Check all 21 entries, preview/confirm/MENU cancellation and persisted choices after relaunch.
+- [ ] Upgrade from a Clear selection: confirm Frosted is selected and screen mode is preserved.
+- [ ] Compare Frosted 80%/115% with warm, cool, grayscale and missing artwork in Dark/Light mode.
+  Confirm a neutral LCD and dark chassis. Compare Album Glow's broad Ambient Screen lighting.
 - [ ] Try Reduce Transparency, Increase Contrast, Reduce Motion and VoiceOver. Check system status
-  indicators on light bodies and when entering/leaving immersive Cover Flow.
-- [ ] Exercise Queue/song actions, the Now Playing shortcut, wheel Volume/Seek, immediate seek commit
-  on MENU/hold MENU, tap-to-skip, haptics and click sounds. Confirm Home is titled iPod.
+  contrast on light bodies and when entering/leaving immersive Cover Flow.
+- [ ] Immersive Cover Flow: choose a middle/final album track; that exact track starts in normal
+  Now Playing. MENU restores the same album, selected track and list position. Repeat after rotation.
+- [ ] Queue → MENU returns to Now Playing; another MENU restores immersive Cover Flow. Hold MENU
+  exits to Home. With immersion off, scroll a long track list to its end in both orientations.
+- [ ] Check dense Cover Flow spacing, wheel Volume/Seek, seek commit on MENU/hold MENU, queue/song
+  actions, Now Playing shortcut, tap-to-skip, haptics/clicker and Home's iPod title.
 
-Record results and before/after images in `BETA_TEST_LOG.md`. The 27 original iPhone screenshots
-and the additional Cover Flow track-list image in `screenshots of updates/` are pre-build-3 references.
+Record device results in `BETA_TEST_LOG.md`. The original screenshot set remains the before reference.

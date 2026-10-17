@@ -12,12 +12,12 @@ final class ThemeSystemTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(ratio, floor, "\(label): \(a.hex) on \(b.hex) = \(String(format: "%.2f", ratio)):1, need \(floor):1")
     }
 
-    func testTwentyTwoThemes() {
-        XCTAssertEqual(ThemeTable.all.count, 22)
+    func testTwentyOneThemes() {
+        XCTAssertEqual(ThemeTable.all.count, 21)
         XCTAssertEqual(ThemeTable.defaultId, "silverClassic")
     }
 
-    func testAllFortyFourCombinations() {
+    func testAllFortyTwoCombinations() {
         for theme in ThemeTable.all {
             let surface = theme.glyphSurface
             assertRatio(theme.glyph, surface, atLeast: 4.5, "\(theme.name) glyph")

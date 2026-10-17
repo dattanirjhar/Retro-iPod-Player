@@ -33,7 +33,7 @@ final class WheelInputModel {
 
 struct WheelLook {
     let material: WheelMaterial
-    let isPorcelain: Bool
+    let isCeramic: Bool
     let style: RingStyle
     let body: RGB
     let wheel: RGB
@@ -43,7 +43,7 @@ struct WheelLook {
 
     init(theme: ThemeSpec) {
         material = theme.material
-        isPorcelain = theme.material == .ceramic
+        isCeramic = theme.material == .ceramic
         style = theme.wheelStyle
         body = theme.body
         wheel = theme.wheel
@@ -56,8 +56,8 @@ struct WheelLook {
     var hairline: Color { body.isLight ? Color.black.opacity(0.14) : Color.white.opacity(0.18) }
     var ringEdge: Color { wheel.adjustingLightness(by: -0.10).color }
 
-    /// Porcelain keeps a ceramic centre; other themes use the body colour.
-    var centerFill: Color { (isPorcelain ? wheel : body).color }
+    /// Ceramic has a flush white centre; Porcelain keeps its warm glazed body.
+    var centerFill: Color { (isCeramic ? wheel : body).color }
 
     var centerStroke: (color: Color, width: CGFloat) {
         switch style {
@@ -319,24 +319,34 @@ private struct WheelPaintLayer: View {
             .frame(width: geometry.diameter, height: geometry.diameter)
         case .minimalIcons:
             if look.material.isGlass {
-                GlassWheelSurface(material: look.material, fallback: look.wheel)
+                GlassWheelSurface(fallback: look.wheel)
                     .environment(\.colorScheme, look.body.isLight ? .light : .dark)
                     .frame(width: geometry.diameter, height: geometry.diameter)
-            } else if look.isPorcelain {
-                // A warm ceramic face and a shallow edge give Porcelain substance.
+            } else if look.isCeramic {
+                // Smooth, flush ceramic with a soft chamfer and broad specular light.
                 Circle()
                     .fill(look.wheel.color)
                     .overlay {
-                        Circle().strokeBorder(look.body.adjustingLightness(by: -0.12).color, lineWidth: 1)
+                        Circle().fill(LinearGradient(
+                            colors: [.white.opacity(0.65), .clear, Color.black.opacity(0.025)],
+                            startPoint: .topLeading, endPoint: .bottomTrailing))
                     }
-                    .shadow(color: look.body.adjustingLightness(by: -0.25).color.opacity(0.18), radius: 3, y: 2)
+                    .overlay {
+                        Circle().strokeBorder(LinearGradient(
+                            colors: [.white, look.body.adjustingLightness(by: -0.08).color],
+                            startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1)
+                    }
+                    .shadow(color: .black.opacity(0.07), radius: 5, y: 2)
                     .frame(width: geometry.diameter, height: geometry.diameter)
             } else if look.material == .engraved {
-                Circle()
-                    .strokeBorder(look.wheel.color, lineWidth: 1.5)
-                    .overlay {
-                        Circle().inset(by: 2).stroke(Color.white.opacity(0.65), lineWidth: 1)
-                    }
+                ZStack {
+                    Circle().fill(look.body.color)
+                    // A recessed channel carries a fine, warm metallic inlay.
+                    Circle().inset(by: 1).stroke(look.body.adjustingLightness(by: -0.20).color, lineWidth: 3)
+                    Circle().inset(by: 1).stroke(look.wheel.color, lineWidth: 1)
+                    Circle().inset(by: 4).stroke(Color.white.opacity(0.8), lineWidth: 1)
+                    Circle().inset(by: 7).stroke(look.wheel.color.opacity(0.35), lineWidth: 0.5)
+                }
                     .frame(width: geometry.diameter, height: geometry.diameter)
             } else {
                 Circle()
@@ -359,8 +369,14 @@ private struct WheelPaintLayer: View {
             }
             Circle().strokeBorder(look.centerStroke.color, lineWidth: look.centerStroke.width)
             Circle().stroke(look.hairline, lineWidth: 1)
-            if look.isPorcelain {
-                Circle().strokeBorder(look.body.adjustingLightness(by: -0.12).color, lineWidth: 1)
+            if look.isCeramic {
+                Circle().fill(LinearGradient(colors: [.white.opacity(0.45), .clear],
+                                             startPoint: .topLeading, endPoint: .bottomTrailing))
+                Circle().strokeBorder(look.body.adjustingLightness(by: -0.08).color, lineWidth: 1)
+            } else if look.material == .engraved {
+                Circle().inset(by: 1).stroke(look.body.adjustingLightness(by: -0.20).color, lineWidth: 3)
+                Circle().inset(by: 1).stroke(look.wheel.color, lineWidth: 1)
+                Circle().inset(by: 4).stroke(Color.white.opacity(0.8), lineWidth: 1)
             }
         }
         .frame(width: geometry.centerDiameter, height: geometry.centerDiameter)

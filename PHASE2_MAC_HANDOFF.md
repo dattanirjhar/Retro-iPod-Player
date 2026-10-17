@@ -1,18 +1,24 @@
 # Beta handoff for prod-dev-team — 16 October 2026
 
+> Current release: **1.4 (build 4)**. See [the current beta notes](design/beta/2026-10-17/README.md).
+> Historical releases are now labeled **1.2 (build 2)** and **1.3 (build 3)**. Those original IPAs
+> embedded version 1.0; their recorded metadata, filenames and logs remain unchanged. Earlier
+> status and retained-artifact statements below describe their original dates.
+
+
 > **17 October follow-up:** immersive Cover Flow now selects individual tracks, opens normal
 > Now Playing, and preserves the album/list for MENU return. Denser album spacing, landscape label
 > layout, status-bar contrast, and the 22-theme gallery are updated in source. Cover Flow uses the chosen
 > 0.70 / 0.36 spacing. Ceramic, Engraved, Frosted and Clear are implemented, with artwork light behind
 > both glass wheels at 75% Frosted / 50% Clear. Their LCD stays neutral. Album Glow now uses Ambient Screen
 > at 80% preferred intensity, retaining violet hardware. All 28 tests (594 fixed contrast checks plus
-> dynamic lighting checks), Release compilation and fresh Release analysis pass. Version **1.0 (3)**
+> dynamic lighting checks), Release compilation and fresh Release analysis pass. Version **1.3 (3)**
 > is packaged and verified; only this IPA is retained. Variant labels wrap and embedded track lists
 > use the available area. Device acceptance remains pending; see `design/beta/2026-10-17/README.md`.
 
 > **16 October Mac update:** the four beta fixes and later queue/seek/shortcut features compile
 > successfully. Three follow-up fixes are committed in `4b188ef`; all 20 ThemeCore tests and the
-> unsigned Debug iOS build pass. Release version 1.0 (2) is built and its IPA passes packaging
+> unsigned Debug iOS build pass. Release version 1.2 (2) is built and its IPA passes packaging
 > checks; manual installation and device acceptance remain pending. See
 > [the detailed log](BETA_TEST_LOG.md#mac-review-and-follow-up-fixes--16-october-2026) and
 > [the updated technical handoff](HANDOFF_2026-10-16.md).
@@ -39,12 +45,12 @@ implemented. The Immersive Mode setting changes presentation and does not disabl
 - Latest source: `4b188ef`, including MAC-01 through MAC-03, plus the local build-number bump to 2.
   All 20 native Mac ThemeCore tests and unsigned Debug compilation for
   `generic/platform=iOS` pass. Only the existing App Intents metadata warning was emitted by Xcode.
-- New candidate: `DerivedData/Artifacts/iPod-Playr-SideStore-1.0-2.ipa`, version 1.0 (2),
+- New candidate: `DerivedData/Artifacts/iPod-Playr-SideStore-1.0-2.ipa`, version 1.2 (2),
   unsigned Release for arm64 iPhoneOS, minimum iOS 17.0. Build and packaging checks passed;
   manual SideStore installation and device checks remain pending. The exact checksum and
   saved validation logs are in `BETA_TEST_LOG.md`.
 - The candidate details below describe the **previous 15 October installed IPA**. Its saved
-  archive and the duplicate unversioned 1.0 (2) IPA were deleted on 17 October at the user's
+  archive and the duplicate unversioned 1.2 (2) IPA were deleted on 17 October at the user's
   request. Only `DerivedData/Artifacts/iPod-Playr-SideStore-1.0-2.ipa` remains for distribution.
 - App version: 1.0 (1), built from baseline `679be9b` plus uncommitted Phase 2 fixes.
 - Tools: Xcode 27.0 (27A266a), iOS 27.0 SDK, Apple silicon Mac on macOS 27.0.1.
@@ -171,7 +177,7 @@ changes and automated checks below do not establish that visual or playback beha
 - [x] Apply MAC-01 through MAC-03 locally: Mac package minimum, embedded-player shortcut guard,
       and immediate seek commit on MENU/focus handoff.
 - [ ] Verify the embedded-player shortcut and immediate seek commit on MENU/hold MENU on the phone.
-- [x] Build a new IPA using `bash scripts/build_ipa.sh`: version 1.0 (3), saved with a distinct
+- [x] Build a new IPA using `bash scripts/build_ipa.sh`: version 1.3 (3), saved with a distinct
       filename. Metadata-free packaging, device platform/architecture, and archive integrity pass.
 - [ ] Hand the new IPA to the user for manual SideStore installation and before/after screenshots.
 - [ ] Obtain the user's review of wheel size/right alignment and Cover Flow's corrected appearance.

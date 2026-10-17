@@ -6,11 +6,22 @@ final class AlbumLightingTests: XCTestCase {
         let albumGlow = ThemeTable.find("modernAlbumGlow")!
         XCTAssertEqual(albumGlow.atmosphere, .ambientScreen)
         XCTAssertEqual(albumGlow.material.artworkIntensity, 0)
-        for (id, intensity) in [("liquidGlass", 0.75), ("liquidGlassClear", 0.50)] {
-            let glass = ThemeTable.find(id)!
-            XCTAssertEqual(glass.atmosphere, .off, "Glass must not inherit the colored LCD wash")
-            XCTAssertEqual(glass.material.artworkIntensity, intensity)
+        XCTAssertEqual(albumGlow.material.artworkLuminance, 1)
+        let frosted = ThemeTable.find("liquidGlass")!
+        XCTAssertEqual(frosted.name, "Frosted")
+        XCTAssertEqual(frosted.atmosphere, .off, "Frosted must keep a neutral LCD")
+        XCTAssertEqual(frosted.material.artworkIntensity, 0.80, "Selected Frosted artwork intensity")
+        XCTAssertEqual(frosted.material.artworkLuminance, 1.15, "Selected artwork-only luminance lift")
+        XCTAssertNil(ThemeTable.find("liquidGlassClear"))
+    }
+
+    func testRetiredClearSelectionMigratesToFrostedAndPreservesMode() {
+        for mode in ScreenMode.allCases {
+            let selection = ThemeMigration.migrate(.init(themeId: "liquidGlassClear", modeRaw: mode.rawValue))
+            XCTAssertEqual(selection.themeId, "liquidGlass")
+            XCTAssertEqual(selection.mode, mode)
         }
+        XCTAssertEqual(ThemeMigration.migrateTheme(.init(presetId: "liquidGlassClear")), "liquidGlass")
     }
 
     func testArtworkChangesScreenLightWhileKeepingVioletHardware() {

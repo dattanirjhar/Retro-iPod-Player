@@ -156,10 +156,30 @@ private struct ChassisBackgroundView: View {
                     startPoint: .top, endPoint: .bottom
                 )
             }
+            if theme.material == .ceramic || theme.material == .engraved {
+                LinearGradient(
+                    stops: [.init(color: .white.opacity(0.42), location: 0),
+                            .init(color: .white.opacity(0.08), location: 0.36),
+                            .init(color: .clear, location: 0.62)],
+                    startPoint: .topLeading, endPoint: .bottomTrailing)
+            }
         }
         .overlay {
             RoundedRectangle(cornerRadius: 40, style: .continuous)
                 .strokeBorder(edge, lineWidth: 1)
+        }
+        .overlay {
+            if theme.material == .engraved {
+                RoundedRectangle(cornerRadius: 36, style: .continuous)
+                    .inset(by: 5)
+                    .stroke(theme.wheel.color.opacity(0.45), lineWidth: 0.75)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 35, style: .continuous)
+                            .inset(by: 7)
+                            .stroke(Color.white.opacity(0.65), lineWidth: 0.75)
+                    }
+                    .allowsHitTesting(false)
+            }
         }
         .ignoresSafeArea()
         .background(Color.black.ignoresSafeArea())

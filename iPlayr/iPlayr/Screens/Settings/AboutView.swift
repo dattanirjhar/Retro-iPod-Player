@@ -7,26 +7,11 @@ struct AboutView: View {
     @Environment(ThemeManager.self) private var theme
     @Environment(\.navigate) private var navigate
     @State private var scope = FocusScope(id: "about")
-    @State private var page = 0
-
-    private var pages: [[Menu]] {
-        [
-            [
-                Menu(name: String(localized: "Songs"), next: false, value: count(libraryStore.songs?.count)),
-                Menu(name: String(localized: "Albums"), next: false, value: count(libraryStore.albums?.count)),
-                Menu(name: String(localized: "Artists"), next: false, value: count(libraryStore.artists?.count)),
-                Menu(name: String(localized: "Playlists"), next: false, value: count(libraryStore.playlists?.count)),
-            ],
-            [
-                Menu(name: String(localized: "Genres"), next: false, value: count(libraryStore.genres?.count)),
-                Menu(name: String(localized: "Composers"), next: false, value: count(libraryStore.composers?.count)),
-            ],
-            [
-                Menu(name: String(localized: "Model"), next: false, value: deviceModel),
-                Menu(name: String(localized: "Version"), next: false, value: appVersion),
-            ],
-        ]
+    private enum Page: CaseIterable {
+        case app, library, collections, device, inspiration
     }
+
+    private var page: Page { Page.allCases[scope.selection] }
 
     private func count(_ value: Int?) -> String {
         guard let value else { return "—" }
@@ -34,26 +19,70 @@ struct AboutView: View {
     }
 
     private var appVersion: String {
-        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "—"
-    }
-
-    private var deviceModel: String {
-        UIDevice.current.model
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "—"
+        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "—"
+        return "\(version) (\(build))"
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             StatusBar(title: String(localized: "About"))
-            let rows = pages[min(page, pages.count - 1)]
-            ForEach(rows.indices, id: \.self) { index in
-                MenuItemView(menu: rows[index], isSelected: false)
-            }
-            Spacer()
-            pageIndicator
+            pageContent
+            Spacer(minLength: 0)
+            pageControl
         }
         .shadowedBackground()
         .onAppear(perform: setup)
         .taskAfterNavigation { await loadLibraryCounts() }
+    }
+
+    @ViewBuilder
+    private var pageContent: some View {
+        switch page {
+        case .app:
+            VStack(alignment: .leading, spacing: 5) {
+                Text("iPod-Playr")
+                    .font(.system(size: 17, weight: .semibold))
+                    .foregroundStyle(theme.tokens().primaryText.color)
+                Text("Classic controls. Your Apple Music library.")
+                    .font(.system(size: 13))
+                    .foregroundStyle(theme.tokens().secondaryText.color)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 8)
+            infoRow(String(localized: "Version"), value: appVersion)
+            infoRow(String(localized: "Themes"), value: String(ThemeTable.all.count))
+        case .library:
+            infoRow(String(localized: "Songs"), value: count(libraryStore.songs?.count))
+            infoRow(String(localized: "Albums"), value: count(libraryStore.albums?.count))
+            infoRow(String(localized: "Artists"), value: count(libraryStore.artists?.count))
+            infoRow(String(localized: "Playlists"), value: count(libraryStore.playlists?.count))
+        case .collections:
+            infoRow(String(localized: "Genres"), value: count(libraryStore.genres?.count))
+            infoRow(String(localized: "Composers"), value: count(libraryStore.composers?.count))
+        case .device:
+            infoRow(String(localized: "Model"), value: UIDevice.current.model)
+            infoRow("iOS", value: UIDevice.current.systemVersion)
+        case .inspiration:
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Inspiration")
+                    .font(.system(size: 17, weight: .semibold))
+                    .foregroundStyle(theme.tokens().primaryText.color)
+                Text("Inspired by iPodPlayer.")
+                Text("Extensively reworked with custom themes, refined Cover Flow and expanded playback controls.")
+                Text("Built with SwiftUI and MusicKit.")
+            }
+            .font(.system(size: 13))
+            .foregroundStyle(theme.tokens().secondaryText.color)
+            .fixedSize(horizontal: false, vertical: true)
+            .padding(10)
+        }
+    }
+
+    private func infoRow(_ name: String, value: String) -> some View {
+        MenuItemView(menu: Menu(name: name, next: false, value: value), isSelected: false)
+            .accessibilityElement(children: .combine)
     }
 
     /// Songs are loaded first because `loadComposersIfNeeded` derives composers
@@ -72,28 +101,37 @@ struct AboutView: View {
         _ = await (albums, artists, playlists, genres, composers)
     }
 
-    private var pageIndicator: some View {
-        HStack(spacing: 6) {
-            ForEach(pages.indices, id: \.self) { index in
-                Circle()
-                    // Follows the interface palette so the active dot is visible in
-                    // Night mode too (a hard-coded black dot vanished on the dark background).
-                    .fill(index == page ? theme.tokens().primaryText.color : Color.gray.opacity(0.35))
-                    .frame(width: 5, height: 5)
+    private var pageControl: some View {
+        Button(action: nextPage) {
+            HStack {
+                Text("\(scope.selection + 1) / \(Page.allCases.count)")
+                    .monospacedDigit()
+                Spacer(minLength: 4)
+                Text("Next")
+                Image(systemName: "chevron.right")
             }
+            .font(.system(size: 12, weight: .medium))
+            .foregroundStyle(theme.tokens().secondaryText.color)
+            .padding(.horizontal, 10)
+            .frame(maxWidth: .infinity, minHeight: 44)
         }
-        .frame(maxWidth: .infinity)
-        .padding(.bottom, 10)
+        .buttonStyle(.plain)
+        .accessibilityLabel(String(localized: "Next About page"))
+        .accessibilityValue("\(scope.selection + 1) / \(Page.allCases.count)")
+    }
+
+    private func nextPage() {
+        scope.select((scope.selection + 1) % Page.allCases.count)
     }
 
     private func setup() {
-        scope.configure(itemCount: 0)
+        scope.configure(itemCount: Page.allCases.count)
         scope.onAction = { action in
             switch action {
             case .menu:
                 navigate(.pop)
             case .select:
-                page = (page + 1) % pages.count
+                nextPage()
             default:
                 break
             }

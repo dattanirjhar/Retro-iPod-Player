@@ -18,18 +18,21 @@ enum WheelFinish: String, CaseIterable, Sendable {
 }
 
 enum WheelMaterial: String, Sendable {
-    case standard, ceramic, engraved, glassFrosted, glassClear
+    case standard, ceramic, engraved, glassFrosted
 
-    var isGlass: Bool { self == .glassFrosted || self == .glassClear }
+    var isGlass: Bool { self == .glassFrosted }
 
     /// Artwork opacity beneath the material, independent of screen mode.
     var artworkIntensity: Double {
         switch self {
-        case .glassFrosted: 0.75
-        case .glassClear: 0.50
+        case .glassFrosted: 0.80
         default: 0
         }
     }
+
+    /// Multiplicative artwork light, applied before opacity and the glass surface.
+    /// Neutral for other materials and for the missing-artwork body fallback.
+    var artworkLuminance: Double { self == .glassFrosted ? 1.15 : 1 }
 }
 
 enum Atmosphere: String, CaseIterable, Sendable {
@@ -68,9 +71,9 @@ struct ThemeSpec: Identifiable, Hashable, Sendable {
     let wheelStyle: RingStyle
     let finish: WheelFinish
     let atmosphere: Atmosphere
-    /// Mini and nano bodies draw the wheel at 68% instead of 62%.
+    /// Mini and nano bodies draw the wheel at 76% instead of 70%.
     let isCompact: Bool
-    /// Porcelain draws a fixed edge instead of body −18%.
+    /// Material themes can use a fixed edge instead of body −18%.
     let bodyEdgeOverride: RGB?
     let darkSurfaces: SurfaceOverride?
     let lightSurfaces: SurfaceOverride?
@@ -181,19 +184,17 @@ enum ThemeTable {
         theme("midnightStudio", "Midnight Studio", .modern, body: "121212", wheel: "2A2A2A", glyph: "FFFFFF", accent: "1ED760",
               dark: ("1ED760", "000000", "1ED760"), light: ("0F853E", "FFFFFF", "0F8A40"),
               style: .classic, finish: .satin, atmosphere: .subtle, compact: false),
-        theme("porcelain", "Porcelain · Ceramic", .modern, body: "E7E5E0", wheel: "F8F7F4", glyph: "2B2B2B", accent: "E5531A",
+        // Keep the original IDs while giving the two finishes distinct identities.
+        theme("porcelain", "Ceramic", .modern, body: "ECEEF0", wheel: "FAFAFB", glyph: "34383D", accent: "E5531A",
               dark: ("CC4916", "FFFFFF", "E5531A"), light: ("CC4916", "FFFFFF", "D64D17"),
-              style: .minimalIcons, finish: .matte, atmosphere: .off, compact: false, edge: "D3D0C9", material: .ceramic),
-        theme("porcelainEngraved", "Porcelain · Engraved", .modern, body: "E7E5E0", wheel: "AEA69A", glyph: "30332F", accent: "E5531A",
+              style: .minimalIcons, finish: .satin, atmosphere: .off, compact: false, edge: "D2D7DC", material: .ceramic),
+        theme("porcelainEngraved", "Porcelain", .modern, body: "EAE3D7", wheel: "9A7E59", glyph: "423B31", accent: "E5531A",
               dark: ("CC4916", "FFFFFF", "E5531A"), light: ("CC4916", "FFFFFF", "D64D17"),
               style: .minimalIcons, finish: .matte, atmosphere: .off, compact: false, edge: "D3D0C9", material: .engraved),
-        theme("liquidGlass", "Liquid Glass · Frosted", .modern, body: "1D2329", wheel: "38444E", glyph: "F5F7F8", accent: "0A84FF",
+        // Preserve the stored ID so existing Frosted selections survive the rename.
+        theme("liquidGlass", "Frosted", .modern, body: "1D2329", wheel: "38444E", glyph: "F5F7F8", accent: "0A84FF",
               dark: ("0073EB", "FFFFFF", "0A84FF"), light: ("0073EB", "FFFFFF", "0078F5"),
               style: .minimalIcons, finish: .satin, atmosphere: .off, compact: false,
               darkSurfaces: liquidGlassDark, lightSurfaces: liquidGlassLight, material: .glassFrosted),
-        theme("liquidGlassClear", "Liquid Glass · Clear", .modern, body: "DFE5E4", wheel: "DFE5E4", glyph: "1F2C2E", accent: "0A84FF",
-              dark: ("0073EB", "FFFFFF", "0A84FF"), light: ("0073EB", "FFFFFF", "0078F5"),
-              style: .minimalIcons, finish: .satin, atmosphere: .off, compact: false,
-              darkSurfaces: liquidGlassDark, lightSurfaces: liquidGlassLight, material: .glassClear),
     ]
 }

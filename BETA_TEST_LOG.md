@@ -1,15 +1,34 @@
 # Beta observations — 15 October 2026
 
-**Latest update, 17 October:** immersive Cover Flow track selection/return navigation, denser album
+Release labels now follow **1.2/build 2 → 1.3/build 3 → 1.4/build 4**, then 1.5/build 5.
+The original build-2/build-3 bundles embedded version 1.0; historical bundle metadata, paths and
+raw verification logs are preserved. Retention statements in dated entries apply at those dates.
+
+**Latest candidate, 17 October: 1.4 (4).** Packages the Settings/About cleanup, 21-theme
+Ceramic/Porcelain/Frosted refresh and accepted Frosted 80% intensity / 115% luminance. All 29
+ThemeCore tests, Release analysis/build and IPA verification pass. Only build 4 is retained.
+Installation and device acceptance remain manual. See the [current checklist](design/beta/2026-10-17/README.md).
+
+**Build-3 history, 17 October:** immersive Cover Flow track selection/return navigation, denser album
 spacing (0.70 / 0.36), landscape title layout, system status-bar contrast, and the 22-theme gallery
 are implemented locally. Album Glow now uses the selected Ambient Screen treatment at 80% preferred
 intensity. Glass artwork is limited to the wheel, at 75% for Frosted and 50% for Clear. The source
 passes 28 ThemeCore tests and an unsigned Debug iOS build. The gallery includes Porcelain
 Ceramic/Engraved and Liquid Glass Frosted/Clear.
-Version **1.0 (3)** now packages these changes plus the final theme-label and embedded track-list
+Version **1.3 (3)** now packages these changes plus the final theme-label and embedded track-list
 fixes. Release analysis/build and IPA verification pass. Only build 3 is retained; device acceptance
 is pending. See the [manual beta checklist](design/beta/2026-10-17/README.md).
 The following device/build details describe the original 15 October candidate.
+
+**Post-build-3 source update:** removed What's New, Tutorial and Gestures from Settings; refreshed
+About with version/build, theme/library/device information and “Inspired by iPodPlayer” wording.
+Added `CHANGELOG.md` for ongoing development and release history. Unsigned Debug compilation passes;
+the retained build-3 IPA does not contain this later Settings/About update.
+
+**Current source appearance:** 21 themes, including separate Ceramic, Porcelain and Frosted.
+Clear is retired and its saved selections migrate to Frosted. The accepted Frosted comparison uses
+**80% artwork intensity / 115% luminance**, with a dark chassis and neutral LCD. Album Glow remains
+at 80% Ambient Screen intensity. These later theme changes are also absent from the build-3 IPA.
 
 Device: iPhone 17 · iOS 27.0.1 · app 1.0 (1) · manually installed using SideStore.
 Build tools: Xcode 27.0 (27A266a), iOS 27.0 SDK. Source: baseline `679be9b` plus uncommitted Phase 2
@@ -142,7 +161,7 @@ Saved evidence: [original Mac test failure](design/beta/2026-10-16/logs/theme-co
 ## Build cleanup — 17 October 2026
 
 At the user's request, retained only `DerivedData/Artifacts/iPod-Playr-SideStore-1.0-2.ipa` as the
-distributable build. Deleted the previous 1.0 (1) IPA and the duplicate, unversioned 1.0 (2) IPA.
+distributable build. Deleted the previous 1.0 (1) IPA and the duplicate, unversioned 1.2 (2) IPA.
 Removed the older Debug device products/intermediates and the temporary Debug build directory
 `/private/tmp/ipod-review-derived`. The latest Release products and historical verification logs
 remain. Rechecked ZIP integrity and SHA-256: the retained IPA is unchanged. Earlier references
@@ -201,7 +220,7 @@ Swift filenames above are under `iPlayr/iPlayr/` in their existing feature folde
   [Debug build log](design/beta/2026-10-17/logs/xcode-debug-build.log) for the first 22-theme pass.
   The latest [28-test run](design/beta/2026-10-17/logs/album-lighting-tests.log) and
   [Debug build](design/beta/2026-10-17/logs/album-lighting-debug-build.log) include the selected lighting treatments.
-- No new Release IPA, device installation, or app-module UI tests were run. Version 1.0 (2) remains
+- No new Release IPA, device installation, or app-module UI tests were run. Version 1.2 (2) remains
   the only distributable and does not contain these changes. The build number is still 2.
 
 ### Liquid Glass decision and implementation
@@ -262,7 +281,7 @@ Album Glow and requested stronger artwork color for the darker Frosted theme (65
 - **Preview:** the comparison now opens on Ambient Screen and has independent intensity controls
   for Album Glow, Frosted and Clear; the defaults match the app. Its glass optics remain approximate.
 
-No new IPA or device verification was performed in this pass. Version 1.0 (2) is still the previous candidate.
+No new IPA or device verification was performed in this pass. Version 1.2 (2) is still the previous candidate.
 
 ### Captured comparison refinements — 17 October 2026
 
@@ -310,7 +329,7 @@ items. They were then fixed for the requested beta build; device layout acceptan
 - Packaging checks pass: ZIP integrity, exactly one app directory, no macOS sidecars, arm64/iOS
   metadata, executable permissions, Music usage description, background audio, unsigned bundle,
   and archive executable identical to the Release product.
-- Deleted the known previous 1.0 (2) IPA only after the new candidate passed verification. Build 3
+- Deleted the known previous 1.2 (2) IPA only after the new candidate passed verification. Build 3
   is the only retained distributable. Build logs and previous verification reports are preserved.
 - Fetched `origin` before commit preparation; local `main` matched `origin/main` at `4b188ef`.
   Prepared the source, tests, documentation, verification evidence and reference screenshots for a
@@ -324,6 +343,9 @@ items. They were then fixed for the requested beta build; device layout acceptan
 Installation and phone acceptance remain manual. No app-module UI test target is configured.
 
 ### Next acceptance checks
+
+- [ ] In the next candidate after build 3, confirm the shortened Settings menu, five About pages,
+      version/build display and wheel/SELECT/tappable Next navigation. Tutorial remains in Extras.
 
 - [ ] Immersive Cover Flow → Tracks → tap a middle or final track: that exact track starts in
       standard Now Playing with the normal chassis and wheel.
@@ -347,3 +369,85 @@ For the next candidate containing the 17 October changes, record its version/bui
 outcome, the new acceptance checks above, and BETA-01 through BETA-04 results,
 Immersive On/Off plus orientation for each Cover Flow screenshot, and the user's review of wheel
 placement/size. Keep the current screenshots as the before set; do not overwrite them.
+
+
+### Post-build-3 source update — material identities, 17 October 2026
+
+- Renamed Liquid Glass to **Frosted** and retired **Clear**. The gallery now contains 21 themes
+  (6 Classic, 4 Mini, 6 Nano, 5 Modern). Saved Clear IDs and legacy presets migrate to Frosted
+  without changing screen mode. Native/fallback glass and accessibility behavior remain supported.
+- Split the old Porcelain variants into **Ceramic** and **Porcelain**, preserving their stored IDs.
+  Ceramic uses cool white satin, a flush wheel, broad specular light and a soft chamfer. Porcelain
+  uses warm glaze, recessed circular channels, metallic inlay, engraved label details and a double rim.
+  The legacy custom Porcelain body still migrates to Ceramic.
+- Frosted stays at **75%** artwork opacity and Album Glow stays at **80%** preferred Ambient Screen
+  intensity. A separate comparison explores brighter Frosted artwork before implementation.
+  Comparison defaults: Current 75% intensity/100% luminance, More artwork 85%/100%, Brighter
+  artwork 85%/115%. All keep the dark chassis and neutral screen; material optics are approximated.
+- Refreshed both contact sheets and development documentation. These source changes are absent
+  from the retained **1.3 (3)** IPA. Device optical/layout acceptance remains pending.
+- Validation: 29 ThemeCore tests passed, including 567 contrast checks across 42 combinations and
+  Clear migration in both modes; unsigned Debug iPhone build passed. Evidence:
+  [theme tests](design/beta/2026-10-17/logs/theme-refresh-tests.log) and
+  [Debug build](design/beta/2026-10-17/logs/theme-refresh-debug-build.log).
+
+Next candidate acceptance: confirm the three separate Modern names, no Clear entry, saved Clear
+migration, Ceramic's flush highlights and Porcelain's recessed/inlaid detail in portrait/landscape
+and both screen modes. Review Frosted artwork across warm, cool, grayscale and missing artwork.
+Earlier build-3 checklists and settings snapshots above describe that packaged build's 22-theme state.
+
+### Accepted Frosted brightness — 17 October 2026
+
+- Applied the user's edited **Current** comparison: **80% artwork intensity / 115% luminance**.
+  The other comparison variants remain alternatives. Album Glow stays at 80% Ambient Screen;
+  Cover Flow stays at nearest 0.70 / stack 0.36. Clear remains retired.
+- The extended-sRGB light multiplier affects the blurred artwork before opacity and glass.
+  The dark chassis, neutral LCD, opaque glyph backings and missing-artwork fallback are unchanged.
+  Reduce Transparency/Increase Contrast still disable the artwork layer; Reduce Motion still
+  disables cross-fades. Both Dark and Light screen modes use the selected artwork settings.
+- Captured the accepted values and artwork context in
+  [Frosted settings](design/beta/2026-10-17/frosted-selected-settings.json). The earlier
+  `selected-theme-settings.json` remains a historical snapshot of packaged beta 3.
+- All 29 ThemeCore tests passed, including 567 contrast checks; unsigned Debug iPhone compilation
+  passed. A native SwiftUI render sample also confirms that the light multiplier increases pixel
+  brightness. This sample does not establish the phone's native glass optics.
+- Evidence: [theme tests](design/beta/2026-10-17/logs/frosted-lighting-tests.log),
+  [Debug build](design/beta/2026-10-17/logs/frosted-lighting-debug-build.log), and
+  [native render sample](design/beta/2026-10-17/logs/frosted-luminance-render.log).
+  No IPA was repackaged; build 3 still predates these changes. Device acceptance remains pending.
+
+
+### Release candidate 1.4 (4) — 17 October 2026
+
+- Reviewed and confirmed the pending Settings/About and material updates. Set both Debug/Release
+  build numbers to 4; marketing version is 1.4. The gallery has 21 themes, with Ceramic,
+  Porcelain and Frosted as separate entries; Clear migration preserves screen mode.
+- Frosted uses the approved 80% artwork intensity and 115% luminance. Album Glow remains at
+  80% Ambient Screen intensity and Cover Flow at 0.70 / 0.36 spacing.
+- All 29 ThemeCore tests passed, including 567 fixed contrast checks, dynamic artwork checks,
+  retired-theme migration and Cover Flow presentation/spacing checks. Fresh Release static
+  analysis and unsigned Release iPhone compilation passed. The final 1.4 analysis and build
+  completed without warnings. Earlier runs recorded an AppIntents metadata-extraction notice.
+- Packaged `DerivedData/Artifacts/iPod-Playr-SideStore-1.4-4.ipa` for SideStore: **5,785,586 bytes**,
+  SHA-256 `327cb04ba4036d1f1ca4ae844b38eb895f5be7f26c4b4ef08816e25629d11e31`.
+  ZIP integrity, single app directory, no macOS sidecars, version/build/platform/privacy/audio
+  metadata, arm64, executable permissions, unsigned bundle, and executable identity all passed.
+- Removed the previous build-3 IPA after build 4 passed verification. Historical build-3 notes
+  are retained in [build-3.md](design/beta/2026-10-17/build-3.md); the main beta checklist now describes build 4.
+  Promoted the Unreleased changelog into the 1.4 (4) release entry.
+- Fetched origin successfully over SSH; main matched origin/main at `ede1582` before preparing
+  this release commit. Source, settings, documentation, contact sheets and validation evidence
+  are included in the requested commit/push; the IPA stays excluded from Git.
+- Evidence: [29 tests](design/beta/2026-10-17/logs/beta-4-theme-core-tests.log),
+  [Release analysis](design/beta/2026-10-17/logs/beta-4-release-analyze.log),
+  [Release build](design/beta/2026-10-17/logs/beta-4-release-build.log), and
+  [IPA verification](design/beta/2026-10-17/logs/ipa-build-4-verification.json).
+
+No phone installation, MusicKit runtime acceptance or native-material optical acceptance is inferred.
+Use the current manual checklist and record the next device result here.
+
+Version convention confirmed by the user: earlier releases are labeled 1.2/build 2 and 1.3/build 3;
+this candidate embeds **1.4 (4)**. Future packaged updates increment both values together, starting
+with 1.5/build 5. `AGENTS.md`, README and changelog record the convention. Historical verification
+manifests add the revised release label while preserving the actual embedded 1.0 version and hashes.
+The temporary 1.0 (4) archive was removed after the 1.4 (4) replacement passed verification.

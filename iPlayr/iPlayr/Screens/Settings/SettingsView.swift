@@ -11,7 +11,7 @@ struct SettingsView: View {
     @State private var scope = FocusScope(id: "settings")
 
     private enum Row: CaseIterable {
-        case appSettings, gestures, tutorial, whatsNew, about
+        case appSettings, about
         case shuffle, repeatMode, sortOrder, mainMenu, musicMenu, brightness, haptics, sounds
     }
 
@@ -19,12 +19,6 @@ struct SettingsView: View {
         switch row {
         case .appSettings:
             return Menu(name: String(localized: "App Settings"), next: true)
-        case .gestures:
-            return Menu(name: String(localized: "Gestures"), next: true)
-        case .tutorial:
-            return Menu(name: String(localized: "Tutorial"), next: true)
-        case .whatsNew:
-            return Menu(name: String(localized: "What’s New"), next: true)
         case .about:
             return Menu(name: String(localized: "About"), next: true)
         case .shuffle:
@@ -107,12 +101,6 @@ struct SettingsView: View {
         switch Row.allCases[scope.selection] {
         case .appSettings:
             navigate(.push(.theme))
-        case .gestures:
-            navigate(.push(.info(.gestures)))
-        case .tutorial:
-            navigate(.push(.info(.tutorial)))
-        case .whatsNew:
-            navigate(.push(.info(.whatsNew)))
         case .about:
             navigate(.push(.about))
         case .shuffle:

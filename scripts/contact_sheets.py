@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Design-review contact sheets for the 22 iPlayr themes, Dark and Light.
+"""Design-review contact sheets for the current iPlayr themes, Dark and Light.
 
 Reads the constants straight out of the Swift sources (ThemeTable.swift and
 ModeTokens.swift); nothing is retyped here. Output: design/contact-dark.png and
@@ -36,7 +36,8 @@ for m in theme_re.finditer(table_src):
                        style=g[13], finish=g[14], atmosphere=g[15], compact=g[16] == "true", edge=g[17],
                        darkSurfaces=overrides.get(g[18]) if g[18] else None,
                        lightSurfaces=overrides.get(g[19]) if g[19] else None, material=g[20] or "standard"))
-assert len(themes) == 22, f"parsed {len(themes)} themes, expected 22"
+expected_count = len(re.findall(r'^\s+theme\("', table_src, re.M))
+assert len(themes) == expected_count and expected_count > 0, f"parsed {len(themes)} of {expected_count} themes"
 
 mode_re = re.compile(
     r'static let (dark|light) = SurfaceTokens\(\s*screenBackground: \.hex\("(\w+)"\), panelBackground: \.hex\("(\w+)"\), '
@@ -138,7 +139,7 @@ def draw_cell(page, x0, y0, t, mode):
     dia = int(bw * ratio); cx, cy = x0 + bw // 2, sy + sh + 6 + 20 + dia // 2
     r = dia // 2
     hair = (0, 0, 0, int(255 * 0.14)) if light_body else (255, 255, 255, int(255 * 0.18))
-    glass = t["material"] in ("glassFrosted", "glassClear")
+    glass = t["material"] == "glassFrosted"
     if t["style"] == "classic" or t["material"] == "ceramic" or glass:
         pd.ellipse([cx - r, cy - r, cx + r, cy + r], fill=wheel + (255,))
         if t["finish"] == "gloss":
@@ -147,7 +148,10 @@ def draw_cell(page, x0, y0, t, mode):
     else:
         pd.ellipse([cx - r + 1, cy - r + 1, cx + r - 1, cy + r - 1], outline=wheel + (255,), width=2)
         if t["material"] == "engraved":
-            pd.ellipse([cx - r + 3, cy - r + 3, cx + r - 3, cy + r - 3], outline=(255, 255, 255, 165), width=1)
+            pd.ellipse([cx - r + 1, cy - r + 1, cx + r - 1, cy + r - 1], outline=adjust(body, -0.20) + (255,), width=3)
+            pd.ellipse([cx - r + 1, cy - r + 1, cx + r - 1, cy + r - 1], outline=wheel + (255,), width=1)
+            pd.ellipse([cx - r + 4, cy - r + 4, cx + r - 4, cy + r - 4], outline=(255, 255, 255, 204), width=1)
+            pd.ellipse([cx - r + 7, cy - r + 7, cx + r - 7, cy + r - 7], outline=wheel + (90,), width=1)
     pd.ellipse([cx - r, cy - r, cx + r, cy + r], outline=hair, width=1)
     # Ceramic and the opaque glass fallback retain the wheel surface at centre.
     cr = int(dia * 0.36 / 2)
@@ -156,6 +160,10 @@ def draw_cell(page, x0, y0, t, mode):
     pd.ellipse([cx - cr, cy - cr, cx + cr, cy + cr], fill=center + (255,))
     pd.ellipse([cx - cr + 1, cy - cr + 1, cx + cr - 1, cy + cr - 1], outline=stroke, width=1 if t["style"] == "classic" else 2)
     pd.ellipse([cx - cr, cy - cr, cx + cr, cy + cr], outline=hair, width=1)
+    if t["material"] == "engraved":
+        pd.ellipse([cx - cr + 1, cy - cr + 1, cx + cr - 1, cy + cr - 1], outline=adjust(body, -0.20) + (255,), width=3)
+        pd.ellipse([cx - cr + 1, cy - cr + 1, cx + cr - 1, cy + cr - 1], outline=wheel + (255,), width=1)
+        pd.ellipse([cx - cr + 4, cy - cr + 4, cx + cr - 4, cy + cr - 4], outline=(255, 255, 255, 204), width=1)
     # labels at 68% radius
     lr = int(r * 0.68); gl = glyph + (255,)
     f = font(11, True)

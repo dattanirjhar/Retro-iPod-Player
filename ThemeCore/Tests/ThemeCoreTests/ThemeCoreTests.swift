@@ -24,20 +24,21 @@ private let expectedThemes: [(String, String, String, String, String, [String], 
     ("nanoYellow", "E9C63C", "F3F5F7", "4D5A66", "8A6D00", ["E9C63C", "1D2228", "E9C63C"], ["8A6D00", "FFFFFF", "8A6D00"], .classic, .satin, .off, true),
     ("modernAlbumGlow", "1B1B23", "C9C7FF", "F1F0FA", "6A58E0", ["6A58E0", "FFFFFF", "7E6CE5"], ["6A58E0", "FFFFFF", "6A58E0"], .minimalIcons, .satin, .ambientScreen, false),
     ("midnightStudio", "121212", "2A2A2A", "FFFFFF", "1ED760", ["1ED760", "000000", "1ED760"], ["0F853E", "FFFFFF", "0F8A40"], .classic, .satin, .subtle, false),
-    ("porcelain", "E7E5E0", "F8F7F4", "2B2B2B", "E5531A", ["CC4916", "FFFFFF", "E5531A"], ["CC4916", "FFFFFF", "D64D17"], .minimalIcons, .matte, .off, false),
-    ("porcelainEngraved", "E7E5E0", "AEA69A", "30332F", "E5531A", ["CC4916", "FFFFFF", "E5531A"], ["CC4916", "FFFFFF", "D64D17"], .minimalIcons, .matte, .off, false),
+    ("porcelain", "ECEEF0", "FAFAFB", "34383D", "E5531A", ["CC4916", "FFFFFF", "E5531A"], ["CC4916", "FFFFFF", "D64D17"], .minimalIcons, .satin, .off, false),
+    ("porcelainEngraved", "EAE3D7", "9A7E59", "423B31", "E5531A", ["CC4916", "FFFFFF", "E5531A"], ["CC4916", "FFFFFF", "D64D17"], .minimalIcons, .matte, .off, false),
     ("liquidGlass", "1D2329", "38444E", "F5F7F8", "0A84FF", ["0073EB", "FFFFFF", "0A84FF"], ["0073EB", "FFFFFF", "0078F5"], .minimalIcons, .satin, .off, false),
-    ("liquidGlassClear", "DFE5E4", "DFE5E4", "1F2C2E", "0A84FF", ["0073EB", "FFFFFF", "0A84FF"], ["0073EB", "FFFFFF", "0078F5"], .minimalIcons, .satin, .off, false),
 ]
 
 final class ThemeTableTests: XCTestCase {
-    func testTwentyTwoThemesInGalleryOrder() {
-        XCTAssertEqual(ThemeTable.all.count, 22)
+    func testTwentyOneThemesInGalleryOrder() {
+        XCTAssertEqual(ThemeTable.all.count, 21)
         XCTAssertEqual(ThemeTable.all.map(\.id), expectedThemes.map { $0.0 })
         XCTAssertEqual(ThemeTable.defaultId, "silverClassic")
+        XCTAssertEqual(ThemeTable.themes(in: .modern).map(\.name),
+                       ["Modern Album Glow", "Midnight Studio", "Ceramic", "Porcelain", "Frosted"])
         XCTAssertEqual(ThemeTable.all.map(\.group), [ThemeGroup](repeating: .classic, count: 6)
                        + [ThemeGroup](repeating: .mini, count: 4) + [ThemeGroup](repeating: .nano, count: 6)
-                       + [ThemeGroup](repeating: .modern, count: 6))
+                       + [ThemeGroup](repeating: .modern, count: 5))
     }
 
     func testEveryThemeConstant() {
@@ -54,9 +55,9 @@ final class ThemeTableTests: XCTestCase {
             XCTAssertEqual(t.atmosphere, row.9, "\(row.0) atmosphere")
             XCTAssertEqual(t.isCompact, row.10, "\(row.0) compact")
         }
-        XCTAssertEqual(ThemeTable.find("porcelain")?.bodyEdgeOverride?.hex, "#D3D0C9")
+        XCTAssertEqual(ThemeTable.find("porcelain")?.bodyEdgeOverride?.hex, "#D2D7DC")
         XCTAssertNil(ThemeTable.find("silverClassic")?.bodyEdgeOverride)
-        XCTAssertEqual(ThemeTable.all.filter { $0.darkSurfaces != nil }.map(\.id), ["modernAlbumGlow", "liquidGlass", "liquidGlassClear"])
+        XCTAssertEqual(ThemeTable.all.filter { $0.darkSurfaces != nil }.map(\.id), ["modernAlbumGlow", "liquidGlass"])
     }
 
     func testModeTokenConstants() {
@@ -87,8 +88,8 @@ final class ContrastTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(ratio, floor, "\(label): \(a.hex) on \(b.hex) = \(String(format: "%.2f", ratio)):1, need \(floor):1")
     }
 
-    /// 22 themes × 2 modes, including opaque glass accessibility fallbacks.
-    func testAllFortyFourCombinations() {
+    /// 21 themes × 2 modes, including opaque glass accessibility fallbacks.
+    func testAllFortyTwoCombinations() {
         var checks = 0
         for theme in ThemeTable.all {
             let surface = theme.glyphSurface
@@ -109,7 +110,7 @@ final class ContrastTests: XCTestCase {
                 checks += 4
             }
         }
-        XCTAssertEqual(checks, 594)
+        XCTAssertEqual(checks, 567)
     }
 }
 
@@ -140,7 +141,7 @@ final class SelectionStateTests: XCTestCase {
 
     func testMigration() {
         typealias V = ThemeMigration.StoredValues
-        for id in ["porcelain", "liquidGlass", "porcelainEngraved", "liquidGlassClear"] {
+        for id in ["porcelain", "liquidGlass", "porcelainEngraved"] {
             XCTAssertEqual(ThemeMigration.migrateTheme(V(themeId: id)), id,
                            "Existing saved IDs and new variants must remain selectable")
         }
