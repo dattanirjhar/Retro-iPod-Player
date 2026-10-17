@@ -1,0 +1,30 @@
+{
+  "artifact": "DerivedData/Artifacts/iPod-Playr-SideStore-1.5.ipa",
+  "version": "1.5",
+  "build": "5",
+  "bundle_identifier": "com.kerem.iPlayr",
+  "minimum_ios": "17.0",
+  "size_bytes": 5788049,
+  "sha256": "dac1798ae308b9135d09f538cb2b8092a112094469d7d1eb7a7ebe75bda74a8d",
+  "architecture": "arm64",
+  "executable_sha256": "65574c2799854e5d4dad7d9a98108c9713979dd532d740b1cdac4e5ab2fbd601",
+  "source_base_commit": "93eaad6d109d55c1ba6142687634426bc762ff80",
+  "source_note": "Includes the approved wide-double Menu symbol, bare Frosted controls with soft shadow, opaque accessibility fallbacks and version 1.5/build-5 changes in this release commit.",
+  "checks_passed": [
+    "ZIP integrity",
+    "single app directory in Payload",
+    "no AppleDouble or __MACOSX metadata",
+    "arm64 Mach-O executable",
+    "iOS device platform",
+    "executable permissions",
+    "version 1.5 (5)",
+    "music privacy description",
+    "background audio mode",
+    "unsigned app with no embedded provisioning profile",
+    "archive executable matches Release product"
+  ],
+  "installation": "Not performed; import into SideStore for manual signing and device acceptance",
+  "removed_previous_ipas": [
+    "DerivedData/Artifacts/iPod-Playr-SideStore-1.4.ipa"
+  ]
+}

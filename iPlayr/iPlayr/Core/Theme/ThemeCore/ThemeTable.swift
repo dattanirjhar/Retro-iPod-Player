@@ -62,7 +62,7 @@ struct ThemeSpec: Identifiable, Hashable, Sendable {
     let group: ThemeGroup
     let body: RGB
     let wheel: RGB
-    /// Label colour on glyphSurface: ring, ceramic face, glass label backing or body.
+    /// Label colour on glyphSurface: ring, ceramic face, opaque glass fallback or body.
     let glyph: RGB
     /// The base accent, shown by the picker's swatch dot.
     let accent: RGB
@@ -79,7 +79,8 @@ struct ThemeSpec: Identifiable, Hashable, Sendable {
     let lightSurfaces: SurfaceOverride?
     let material: WheelMaterial
 
-    /// The opaque surface under wheel labels, including glass label backings.
+    /// The fixed label surface, including Frosted's opaque accessibility fallback.
+    /// Bare Frosted glyphs over artwork need separate device optical acceptance.
     var glyphSurface: RGB {
         wheelStyle == .classic || material == .ceramic || material.isGlass ? wheel : body
     }

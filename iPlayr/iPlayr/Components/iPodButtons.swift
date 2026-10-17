@@ -385,15 +385,25 @@ private struct WheelPaintLayer: View {
 
 // MARK: - Labels (paint only)
 
+/// The selected wide double: 18 pt bars, 1.75 pt thick, 6 pt centre-to-centre.
+/// An optical 24 pt canvas keeps the label centred on the existing Menu sector.
+private struct WheelMenuGlyph: View {
+    var body: some View {
+        VStack(spacing: 4.25) {
+            Capsule().frame(width: 18, height: 1.75)
+            Capsule().frame(width: 18, height: 1.75)
+        }
+        .frame(width: 24, height: 24)
+    }
+}
+
 private struct WheelLabelLayer: View {
     let geometry: WheelGeometry
     let look: WheelLook
 
     var body: some View {
         ZStack {
-            Text("MENU")
-                .font(.system(size: 11, weight: .semibold))
-                .tracking(11 * 0.06)
+            WheelMenuGlyph()
                 .modifier(WheelGlyphBacking(look: look))
                 .position(geometry.labelPosition(for: .menu))
             Image(systemName: ImageNames.System.forwardEndAlt)

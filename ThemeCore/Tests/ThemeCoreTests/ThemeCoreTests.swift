@@ -89,6 +89,7 @@ final class ContrastTests: XCTestCase {
     }
 
     /// 21 themes × 2 modes, including opaque glass accessibility fallbacks.
+    /// Bare Frosted symbols over native glass/artwork are a device acceptance check.
     func testAllFortyTwoCombinations() {
         var checks = 0
         for theme in ThemeTable.all {

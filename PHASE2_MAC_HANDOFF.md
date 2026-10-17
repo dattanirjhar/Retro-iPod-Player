@@ -1,6 +1,6 @@
 # Beta handoff for prod-dev-team — 16 October 2026
 
-> Current release: **1.4 (build 4)**. See [the current beta notes](design/beta/2026-10-17/README.md).
+> Current release: **1.5 (build 5)**. See [the current beta notes](design/beta/2026-10-17/README.md).
 > Historical releases are now labeled **1.2 (build 2)** and **1.3 (build 3)**. Those original IPAs
 > embedded version 1.0; their recorded metadata, filenames and logs remain unchanged. Earlier
 > status and retained-artifact statements below describe their original dates.

@@ -1,13 +1,13 @@
 # Beta observations — 15 October 2026
 
-Release labels now follow **1.2/build 2 → 1.3/build 3 → 1.4/build 4**, then 1.5/build 5.
+Release labels now follow **1.2/build 2 → 1.3/build 3 → 1.4/build 4 → 1.5/build 5**, then 1.6/build 6.
 The original build-2/build-3 bundles embedded version 1.0; historical bundle metadata, paths and
 raw verification logs are preserved. Retention statements in dated entries apply at those dates.
 
-**Latest candidate, 17 October: 1.4 (4).** Packages the Settings/About cleanup, 21-theme
-Ceramic/Porcelain/Frosted refresh and accepted Frosted 80% intensity / 115% luminance. All 29
-ThemeCore tests, Release analysis/build and IPA verification pass. Only build 4 is retained.
-Installation and device acceptance remain manual. See the [current checklist](design/beta/2026-10-17/README.md).
+**Latest candidate, 17 October: 1.5 (5).** Replaces MENU text with the approved wide double
+symbol and gives Frosted bare glyphs with a soft shadow, retaining opaque accessibility fallbacks.
+All 29 ThemeCore tests, Release analysis/build and IPA checks pass. Only the 1.5 IPA is retained;
+manual device acceptance remains pending. See the [current checklist](design/beta/2026-10-17/README.md).
 
 **Build-3 history, 17 October:** immersive Cover Flow track selection/return navigation, denser album
 spacing (0.70 / 0.36), landscape title layout, system status-bar contrast, and the 22-theme gallery
@@ -451,3 +451,42 @@ this candidate embeds **1.4 (4)**. Future packaged updates increment both values
 with 1.5/build 5. `AGENTS.md`, README and changelog record the convention. Historical verification
 manifests add the revised release label while preserving the actual embedded 1.0 version and hashes.
 The temporary 1.0 (4) archive was removed after the 1.4 (4) replacement passed verification.
+
+
+### Release 1.5 (5) — wide double and soft shadow, 17 October 2026
+
+- Applied the user's approved **Wide double / Soft shadow** direction. The menu text is now two
+  rounded 18 pt bars, 1.75 pt thick with 6 pt centre spacing, on a 24 pt optical canvas across all
+  21 themes. The existing Menu label position, hit sector and input routing are unchanged.
+- Frosted's four glyphs are bare by default, with black shadows at 70%/1.4 pt radius/1.4 pt down and
+  a 28%/0.4 pt edge shadow. Reduce Transparency or Increase Contrast restores opaque label backings
+  and wheel material; those accessibility modes continue to suppress the artwork layer.
+- Other materials keep their existing glyph treatments. Accessible Menu/Main menu actions remain
+  available. Frosted 80% intensity / 115% luminance, Album Glow 80%, and Cover Flow 0.70 / 0.36 remain unchanged.
+- Captured the approved geometry and shadow values in
+  [selected wheel settings](design/beta/2026-10-17/wide-double-selected-settings.json). Regenerated both
+  contact sheets with the new symbol; these sheets still approximate Frosted using its opaque fallback.
+- Set Debug and Release to marketing version **1.5**, build **5**. The next packaged update is 1.6/build 6.
+  Updated changelog, README, current beta checklist, handoff pointers and the release convention.
+- All 29 ThemeCore tests pass, including 567 fixed contrast checks, dynamic Album Glow checks,
+  migration, wheel geometry and Cover Flow behavior. Release analysis and unsigned Release iPhone
+  compilation pass. Existing AppIntents metadata-extraction notice during analysis only.
+- Verified `DerivedData/Artifacts/iPod-Playr-SideStore-1.5.ipa`: **5,788,049 bytes**, SHA-256
+  `dac1798ae308b9135d09f538cb2b8092a112094469d7d1eb7a7ebe75bda74a8d`.
+  ZIP integrity, single app directory, no macOS sidecars, arm64/iOS metadata, executable permissions,
+  privacy/background audio, unsigned bundle and executable identity against the Release product pass.
+- Verified the previous 1.4 IPA's hash against its historical manifest before removing it. It was
+  found as `iPod-Playr-SideStore-1.4.ipa`; original verification filenames/hashes remain preserved.
+  Only 1.5 is retained. Archived the previous current checklist as
+  [build-4.md](design/beta/2026-10-17/build-4.md).
+- Fetched origin successfully; main matched origin/main at `93eaad6` before preparing this release commit.
+  The source, selected settings, release notes, contact sheets and verification evidence are prepared
+  for the requested commit/push. The IPA remains excluded from Git.
+- Evidence: [tests](design/beta/2026-10-17/logs/beta-5-theme-core-tests.log),
+  [Release analysis](design/beta/2026-10-17/logs/beta-5-release-analyze.log),
+  [Release build](design/beta/2026-10-17/logs/beta-5-release-build.log), and
+  [IPA verification](design/beta/2026-10-17/logs/ipa-build-5-verification.json).
+
+Fixed glyph contrast assertions cover the opaque Frosted accessibility fallback. Bare symbols over
+native glass and changing artwork still need the manual visual/interaction checks in the current
+checklist. No device installation, optical acceptance or MusicKit runtime result is inferred.

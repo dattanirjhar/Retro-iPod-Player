@@ -1,0 +1,45 @@
+{
+  "capturedOn": "2026-10-17",
+  "release": "1.5",
+  "build": "5",
+  "source": "User approved Wide double and Soft shadow after the interactive comparisons",
+  "menuSymbol": {
+    "name": "Wide double",
+    "scope": "all themes",
+    "barWidthPoints": 18,
+    "barThicknessPoints": 1.75,
+    "barCenterSpacingPoints": 6,
+    "canvasPoints": 24,
+    "tap": "Previous menu",
+    "hold": "Main menu",
+    "hitGeometryChanged": false
+  },
+  "frostedSymbols": {
+    "defaultBacking": "none",
+    "scope": "all four wheel labels",
+    "primaryShadow": {
+      "color": "black",
+      "opacity": 0.7,
+      "radiusPoints": 1.4,
+      "xPoints": 0,
+      "yPoints": 1.4
+    },
+    "edgeShadow": {
+      "color": "black",
+      "opacity": 0.28,
+      "radiusPoints": 0.4,
+      "xPoints": 0,
+      "yPoints": 0
+    },
+    "opaqueBackingWhen": [
+      "Reduce Transparency",
+      "Increase Contrast"
+    ]
+  },
+  "unchangedLighting": {
+    "frostedArtworkIntensity": 0.8,
+    "frostedArtworkLuminance": 1.15,
+    "albumGlowPreferredIntensity": 0.8
+  },
+  "notes": "Bare glyphs over native glass require manual device acceptance with varied artwork. Fixed contrast checks cover the opaque accessibility fallback. Preview glyph geometry is translated into native SwiftUI rounded bars."
+}

@@ -4,17 +4,44 @@ Track product and development changes here, newest first. Add work under **Unrel
 lands; move it into a dated `version (build)` section when packaging an IPA. Record validation
 separately from manual device acceptance. Detailed beta evidence remains in `BETA_TEST_LOG.md`.
 
-Release versions advance with each packaged update: **1.2 (build 2), 1.3 (build 3), 1.4 (build 4)**;
-next is **1.5 (build 5)**. Releases 1.2 and 1.3 are retrospective labels: those original IPAs
+Release versions advance with each packaged update: **1.2 (build 2), 1.3 (build 3), 1.4 (build 4), 1.5 (build 5)**;
+next is **1.6 (build 6)**. Releases 1.2 and 1.3 are retrospective labels: those original IPAs
 embedded marketing version 1.0. Their original metadata, filenames, logs and checksums are preserved.
 
 ## Unreleased
 
 No unreleased changes.
 
-## 1.4 (4) — 2026-10-17
+## 1.5 (5) — 2026-10-17
 
 [Manual beta checklist and verification](design/beta/2026-10-17/README.md).
+
+### Changed
+
+- Replaced the wheel's MENU text with the approved wide double-bar symbol across all 21 themes:
+  two rounded 18 pt bars, 1.75 pt thick, with 6 pt centre spacing on a 24 pt canvas.
+- Frosted's wheel labels now sit directly on the glass with the selected soft shadow: black at
+  70%, radius 1.4 pt and 1.4 pt down, plus a 28% edge shadow at radius 0.4 pt. Solid label pills
+  return under Reduce Transparency or Increase Contrast. Hit geometry and Menu tap/hold behavior
+  are unchanged, including the accessible Menu and Main menu actions.
+- Updated contact sheets, captured settings and release notes. Frosted remains at 80% artwork
+  intensity / 115% luminance; Album Glow remains at 80% Ambient Screen intensity.
+
+### Verification
+
+- All 29 ThemeCore tests passed, including fixed contrast, migration, wheel geometry and Cover Flow
+  checks. Release static analysis, unsigned Release device compilation and IPA verification passed.
+  Bare Frosted glyph optics require device acceptance; fixed glyph contrast assertions cover the
+  opaque accessibility fallback.
+
+### Packaging
+
+- Built unsigned arm64 IPA **1.5 (5)** for SideStore. Only the latest verified IPA is retained;
+  the previous 1.4 archive was removed after the replacement passed verification.
+
+## 1.4 (4) — 2026-10-17
+
+[Historical beta checklist and verification](design/beta/2026-10-17/build-4.md).
 
 ### Changed
 

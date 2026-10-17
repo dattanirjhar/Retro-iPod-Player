@@ -11,8 +11,9 @@ split-screen artwork pane, and the hardware is drawn live from 21 theme presets.
 ## Features
 
 - **Click wheel.** Rotate your thumb to scroll, with selection haptics and the original click sound.
-  MENU goes back one screen; hold it to jump to the main menu. Tap previous or next to skip tracks;
-  use Now Playing's Seek wheel mode to scrub. The hit map is identical in every theme.
+  The double-bar Menu control goes back one screen; hold it to jump to the main menu.
+  Tap previous or next to skip tracks; use Now Playing's Seek wheel mode to scrub.
+  The hit map is identical in every theme.
 - **Split-screen menus.** The artwork pane on the right slowly pans through your album covers.
 - **Cover Flow.** Flick through your albums in 3D and open an album's scrolling track list, inside the
   iPod screen or as a full-phone immersive view. Immersive playback opens normal Now Playing;
@@ -48,13 +49,15 @@ Two independent choices under Settings › App Settings:
 
 Every constant lives in `iPlayr/iPlayr/Core/Theme/ThemeCore/` and is checked by tests for WCAG
 contrast across all 42 theme × mode combinations. `design/contact-dark.png` and
-`design/contact-light.png` show all 21 themes in each mode as Pillow approximations.
+`design/contact-light.png` show all 21 themes in each mode as Pillow approximations. Frosted glyph
+contrast checks cover the opaque accessibility fallback; bare glyphs require device optical review.
 Ceramic has a cool white satin body, a smooth flush wheel and soft chamfer highlights. Porcelain
 has a warm glazed body, recessed annular channels, fine metallic inlays and engraved label details.
 Frosted keeps a dark neutral body and artwork color behind its controls, with native glass on iOS
-26+, a system-material fallback on earlier versions, and opaque controls under Reduce Transparency
-or Increase Contrast. Clear has been retired; saved Clear selections migrate to Frosted without
-changing Dark/Light mode. Stored Ceramic, Porcelain and Frosted IDs remain compatible.
+26+, a system-material fallback on earlier versions, and bare symbols with a soft shadow.
+Reduce Transparency or Increase Contrast restores opaque controls and label backings. Clear has
+been retired; saved Clear selections migrate to Frosted without changing Dark/Light mode.
+Stored Ceramic, Porcelain and Frosted IDs remain compatible.
 Modern Album Glow uses broad artwork-derived light inside Now Playing at 80% preferred intensity,
 retaining its violet hardware. Frosted keeps a neutral screen and shows blurred artwork through
 the wheel at 80% opacity with a 115% artwork luminance multiplier. Missing artwork leaves
@@ -112,11 +115,12 @@ successful installation does not establish MusicKit service access or runtime co
 No simulator or automated phone installation is used. Run the Foundation-only tests on the Mac
 with `swift test --package-path ThemeCore`; record phone observations in `BETA_TEST_LOG.md`.
 
-Latest manual beta: **1.4 (4)**, `DerivedData/Artifacts/iPod-Playr-SideStore-1.4-4.ipa`.
+Latest manual beta: **1.5 (5)**, `DerivedData/Artifacts/iPod-Playr-SideStore-1.5.ipa`.
 Only this IPA is retained. See the [beta checklist and verification](design/beta/2026-10-17/README.md).
 
-Release versions follow **1.2 (build 2) → 1.3 (build 3) → 1.4 (build 4)**. Each subsequent packaged
-update increments the marketing minor version and build number together; next is **1.5 (build 5)**.
+Release versions follow **1.2 (build 2) → 1.3 (build 3) → 1.4 (build 4) → 1.5 (build 5)**.
+Each packaged update increments the marketing minor version and build number together;
+next is **1.6 (build 6)**.
 Earlier releases 1.2/1.3 originally embedded marketing version 1.0; historical filenames, metadata
 and verification logs retain those original values.
 

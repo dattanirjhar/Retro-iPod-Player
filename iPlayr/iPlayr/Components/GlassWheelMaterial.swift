@@ -27,18 +27,27 @@ struct GlassWheelSurface: View {
     }
 }
 
-/// Stable ink over variable artwork and native glass. The small opaque label
-/// backings use the same tested surface in native, fallback and accessible modes.
+/// Frosted uses bare ink with the selected soft shadow. Accessibility modes
+/// restore opaque label backings over the tested wheel surface.
 struct WheelGlyphBacking: ViewModifier {
     let look: WheelLook
+    @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
+    @Environment(\.colorSchemeContrast) private var contrast
 
     @ViewBuilder
     func body(content: Content) -> some View {
         if look.material.isGlass {
-            content
-                .padding(.horizontal, 6)
-                .padding(.vertical, 4)
-                .background(look.wheel.color, in: Capsule())
+            if reduceTransparency || contrast == .increased {
+                content
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 4)
+                    .background(look.wheel.color, in: Capsule())
+            } else {
+                content
+                    .compositingGroup()
+                    .shadow(color: .black.opacity(0.70), radius: 1.4, y: 1.4)
+                    .shadow(color: .black.opacity(0.28), radius: 0.4)
+            }
         } else if look.material == .engraved {
             // Dark inlaid ink with a lower cut-edge highlight reads as recessed.
             content
