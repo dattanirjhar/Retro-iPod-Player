@@ -1,0 +1,33 @@
+{
+  "audited_on": "2026-10-19",
+  "release": "2.7.4",
+  "release_commit": "e37db0bb47d7774469bfa9a1304520b0d784152c",
+  "entry_point": "HANDOFF.md",
+  "documents_checked": [
+    "HANDOFF.md",
+    "AGENTS.md",
+    "README.md",
+    "RELEASE_VERSIONING.md",
+    "CHANGELOG.md",
+    "BETA_TEST_LOG.md",
+    "HANDOFF_2026-10-16.md",
+    "PHASE2_MAC_HANDOFF.md",
+    "THEME_MIGRATION_STATUS.md",
+    "design/beta/2026-10-19/README.md"
+  ],
+  "local_links_checked": 136,
+  "checks_passed": [
+    "current read order and entry points resolve",
+    "current report links to actual release source commit",
+    "app/project/test/script source unchanged from release",
+    "retained IPA size, SHA-256 and metadata unchanged",
+    "single latest IPA retained locally",
+    "captured version and internal counter agree",
+    "saved test, analysis and build success markers confirmed",
+    "queue-window and album-title grouping limitations checked against source",
+    "tracked changes limited to documentation/report metadata"
+  ],
+  "app_build_or_test_rerun": false,
+  "reason": "Documentation-only handoff audit; existing release evidence remains applicable",
+  "device_acceptance": "Pending; not inferred from build or tests"
+}

@@ -1,3 +1,16 @@
+# Start here
+
+Read [HANDOFF.md](HANDOFF.md) before changing code. It is the current handoff for agents and
+prod-dev-team, with accepted settings, source entry points, verification, open issues and next steps.
+Then read the linked current beta record and version policy. Dated handoff files and older beta-log
+entries are historical snapshots; their local/uncommitted, version and retained-artifact statements
+apply at their original dates. Do not treat old designs or plans as current requirements.
+
+Keep source completion, automated verification and manual device acceptance distinct. Record new
+work and its actual checks in CHANGELOG.md / BETA_TEST_LOG.md; save durable evidence under a dated
+design/beta folder. Keep HANDOFF.md and current pointers accurate when handing off. Do not require
+access to prior chat, local visualization paths or temporary scripts to understand shipped behavior.
+
 # Release versioning
 
 Follow [RELEASE_VERSIONING.md](RELEASE_VERSIONING.md). The user finalized **2.milestone.build**:

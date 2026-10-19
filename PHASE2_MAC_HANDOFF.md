@@ -1,10 +1,11 @@
 # Beta handoff for prod-dev-team — 16 October 2026
 
-> Current release: **2.7.4**. See [the current beta notes](design/beta/2026-10-19/README.md).
-> Historical releases are now labeled **1.2 (build 2)** and **1.3 (build 3)**. Those original IPAs
-> embedded version 1.0; their recorded metadata, filenames and logs remain unchanged. Earlier
-> status and retained-artifact statements below describe their original dates.
+> Historical technical record. Start with [HANDOFF.md](HANDOFF.md) for the current state and work plan.
+> Current release: **2.7.4**, source commit `e37db0b`; see [current beta notes](design/beta/2026-10-19/README.md).
+> Historical labels are mapped in [RELEASE_VERSIONING.md](RELEASE_VERSIONING.md). Dates below scope
+> all references to current/local/uncommitted status, prototypes, checks and retained artifacts.
 
+## Historical snapshots — 15–17 October 2026
 
 > **17 October follow-up:** immersive Cover Flow now selects individual tracks, opens normal
 > Now Playing, and preserves the album/list for MENU return. Denser album spacing, landscape label

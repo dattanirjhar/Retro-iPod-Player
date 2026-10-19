@@ -8,13 +8,16 @@ split-screen artwork pane, and the hardware is drawn live from 21 theme presets.
 [![Platform](https://img.shields.io/badge/platform-iOS%2017%2B-lightgrey)](https://developer.apple.com/ios/)
 [![Swift](https://img.shields.io/badge/Swift-6.0-orange)](https://swift.org)
 
+New agent or prod-dev-team member: read [AGENTS.md](AGENTS.md), then [the current handoff](HANDOFF.md).
+It contains release identity, accepted decisions, implementation entry points, evidence and open work.
+
 ## Features
 
 - **Click wheel.** Rotate your thumb to scroll, with selection haptics and the original click sound.
   The double-bar Menu control goes back one screen; hold it to jump to the main menu.
   Tap previous or next to skip tracks; use Now Playing's Seek wheel mode to scrub.
   The hit map is identical in every theme.
-- **Split-screen menus.** The artwork pane on the right slowly pans through your album covers.
+- **Split-screen menus.** The artwork pane on the right pans through shuffled rounds of album covers.
 - **Cover Flow.** Flick through your albums in 3D and open an album's scrolling track list, inside the
   iPod screen or as a full-phone immersive view. Immersive playback opens normal Now Playing;
   MENU restores the album/list you left.
@@ -129,14 +132,16 @@ milestone history](RELEASE_VERSIONING.md). Original binary metadata, logs and ch
 
 ## Project documents
 
+- [HANDOFF.md](HANDOFF.md): current starting point, source map, remaining work and verification/build instructions.
 - `CHANGELOG.md`: release history and an Unreleased section for ongoing development.
 - `RELEASE_VERSIONING.md`: finalized version/build rules and the audited release history.
-- `THEME_MIGRATION_STATUS.md`: per-item status of the Theme + Mode work.
-- `HANDOFF_2026-10-16.md`: remote updates, local Mac follow-up fixes, and remaining device checks.
-- `PHASE2_MAC_HANDOFF.md`: current prod-dev-team handoff, with implementation, build/test status, and acceptance checks.
+- `THEME_MIGRATION_STATUS.md`: historical per-item Theme + Mode migration record.
+- `HANDOFF_2026-10-16.md`: historical review/fix details from 16 October.
+- `PHASE2_MAC_HANDOFF.md`: historical prod-dev-team plan; current instructions are in `HANDOFF.md`.
 - `BETA_TEST_LOG.md`: original device observations, remote-update review, follow-up fixes, selected designs and release verification.
-- `design/beta/2026-10-16/logs/`: saved Mac test failure, passing 20-test run, Debug/Release iOS builds, and version 1.2 (2) IPA verification.
-- `design/beta/2026-10-17/`: captured settings, current/historical beta checklists, 29-test results, Release analysis/build logs and IPA verification.
+- `design/beta/2026-10-16/logs/`: historical tests/builds and original internal-build-2 IPA evidence.
+- `design/beta/2026-10-19/`: current 2.7.4 beta checklist, accepted settings and verification evidence.
+- `design/beta/2026-10-17/`: historical release checklists, settings and verification evidence.
 - `design/beta/2026-10-15/README.md`: saved screenshots, console/build logs, checksums and superseded plans.
 
 ## Inspiration

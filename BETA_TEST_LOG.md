@@ -8,6 +8,7 @@ Older dated release names and next-release statements below reflect their origin
 About displays the dotted version without a bracketed suffix. The original build 7 is now labeled
 2.7.3, but its embedded marketing version remains 1.6 in historical evidence.
 See the [current beta checklist](design/beta/2026-10-19/README.md) for verification and device acceptance.
+Start new work from [HANDOFF.md](HANDOFF.md); older entries below retain their dated context.
 
 **Build-3 history, 17 October:** immersive Cover Flow track selection/return navigation, denser album
 spacing (0.70 / 0.36), landscape title layout, system status-bar contrast, and the 22-theme gallery
@@ -20,12 +21,12 @@ fixes. Release analysis/build and IPA verification pass. Only build 3 is retaine
 is pending. See the [manual beta checklist](design/beta/2026-10-17/README.md).
 The following device/build details describe the original 15 October candidate.
 
-**Post-build-3 source update:** removed What's New, Tutorial and Gestures from Settings; refreshed
+**Historical post-build-3 source update:** removed What's New, Tutorial and Gestures from Settings; refreshed
 About with version/build, theme/library/device information and “Inspired by iPodPlayer” wording.
 Added `CHANGELOG.md` for ongoing development and release history. Unsigned Debug compilation passes;
 the retained build-3 IPA does not contain this later Settings/About update.
 
-**Current source appearance:** 21 themes, including separate Ceramic, Porcelain and Frosted.
+**Historical 17 October source snapshot:** 21 themes, including separate Ceramic, Porcelain and Frosted.
 Clear is retired and its saved selections migrate to Frosted. The accepted Frosted comparison uses
 **80% artwork intensity / 115% luminance**, with a dark chassis and neutral LCD. Album Glow remains
 at 80% Ambient Screen intensity. These later theme changes are also absent from the build-3 IPA.
@@ -34,7 +35,7 @@ Device: iPhone 17 · iOS 27.0.1 · app 1.0 (1) · manually installed using SideS
 Build tools: Xcode 27.0 (27A266a), iOS 27.0 SDK. Source: baseline `679be9b` plus uncommitted Phase 2
 build/configuration and packaging fixes. Candidate: `DerivedData/Artifacts/iPod-Playr-SideStore.ipa`.
 
-**Current plan and pending acceptance checks:** [prod-dev-team handoff for 16 October](PHASE2_MAC_HANDOFF.md).
+**Current plan and pending acceptance checks:** [current agent/prod handoff](HANDOFF.md).
 This observed-results log replaces the earlier blank checklist. Its previous version is in the
 [evidence archive](design/beta/2026-10-15/archive/BETA_TEST_LOG.md).
 
@@ -600,3 +601,23 @@ Earlier dated source-only and retention statements describe the state at those t
   The previous IPA's checksum was confirmed before removal. SideStore installation and runtime
   acceptance remain manual; [current checklist](design/beta/2026-10-19/README.md).
 - Next ordinary package: **2.7.5**. Search, if next milestone: **2.8.1**.
+
+
+### Agent/prod handoff documentation audit — 19 October 2026
+
+- Added [HANDOFF.md](HANDOFF.md) as the current operational entry point, linked first from
+  AGENTS.md and README. It covers read order, release identity, accepted product settings, source
+  entry points, current limitations, verification commands, packaging and pending phone acceptance.
+- Marked dated handoffs/migration summaries as historical, preserving their original details.
+  Replaced misleading current-entry links and resolved the packaged source to release commit
+  `e37db0bb47d7774469bfa9a1304520b0d784152c` in the current beta notes and IPA report.
+- Confirmed original logs/report markers: 29 tests passed, Release analysis succeeded and the final
+  Release build succeeded. App, project, tests and scripts match the release commit byte-for-byte.
+  IPA version, internal counter, size and SHA-256 are unchanged; only the latest IPA remains local.
+- Checked current queue-window and album-title grouping limitations against implementation.
+  Kept phone acceptance and proposed Search work separate from implemented/verified behavior.
+- Clarified that IPA/DerivedData are excluded from Git: remote pulls receive the source, settings,
+  logs and instructions. No temporary script, local visualization or prior chat is needed to resume.
+- [Machine-readable audit](design/beta/2026-10-19/logs/handoff-documentation-audit.json) records
+  checked documents and link/source/artifact verification. Documentation-only changes: no app
+  source change, version bump, new package, repeated tests or inferred device pass.

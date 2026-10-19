@@ -11,7 +11,10 @@ packages within that milestone and restarts at 1 for the next milestone. Histori
 
 ## Unreleased
 
-No unreleased changes.
+- Documentation: added a current agent/prod handoff with release source identity, accepted settings,
+  implementation map, verification/build instructions and current limitations. Marked dated handoffs
+  as historical, corrected entry links and attached the resolved release commit to the IPA report.
+  No app source, release number or IPA changed.
 
 ## 2.7.4 — 2026-10-19
 

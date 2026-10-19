@@ -1,9 +1,11 @@
 # Manual beta — 2.7.4
 
+Source commit: `e37db0bb47d7774469bfa9a1304520b0d784152c`. [Current agent/prod handoff](../../../HANDOFF.md).
+
 Packaged on 19 October 2026 for arm64 iPhones, iOS 17+. Import into SideStore for signing and
 manual installation. Device installation and runtime acceptance have not been performed.
 
-- IPA: `DerivedData/Artifacts/iPod-Playr-SideStore-2.7.4.ipa` (excluded from Git).
+- IPA: `DerivedData/Artifacts/iPod-Playr-SideStore-2.7.4.ipa` (excluded from Git; remote pulls include source/logs, not the IPA).
 - Size: 5,791,255 bytes.
 - SHA-256: `c2bc8e61a5a261a448f66ace487a65f7bc3708cac23d72721ef043d277e0fbad`.
 - Visible/embedded version: **2.7.4**. Internal installation counter: **9**, separate from the
