@@ -11,6 +11,9 @@ packages within that milestone and restarts at 1 for the next milestone. Histori
 
 ## Unreleased
 
+- Standardized artifact names as `iPod-<version>.ipa`, including `iPod-2.7.4.ipa`. The packaging
+  script derives the filename from embedded version metadata and protects existing candidates
+  from overwrite. Current IPA bytes/version are unchanged; this is a filename/tooling update.
 - Documentation: added a current agent/prod handoff with release source identity, accepted settings,
   implementation map, verification/build instructions and current limitations. Marked dated handoffs
   as historical, corrected entry links and attached the resolved release commit to the IPA report.

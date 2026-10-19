@@ -1,5 +1,5 @@
 {
-  "artifact": "DerivedData/Artifacts/iPod-Playr-SideStore-2.7.4.ipa",
+  "artifact": "DerivedData/Artifacts/iPod-2.7.4.ipa",
   "version": "2.7.4",
   "build": "9",
   "release_label": "2.7.4",
@@ -34,5 +34,8 @@
     "sha256": "54934e30d0ce3f1b4b7b04d5066547d6566b819f57564ee4a9120506130b2659"
   },
   "release_commit": "e37db0bb47d7774469bfa9a1304520b0d784152c",
-  "release_commit_note": "Resolved after packaging. This identifies the committed source for the verified IPA; later documentation-only commits do not alter the binary."
+  "release_commit_note": "Resolved after packaging. This identifies the committed source for the verified IPA; later documentation-only commits do not alter the binary.",
+  "artifact_renamed_on": "2026-10-19",
+  "original_artifact": "DerivedData/Artifacts/iPod-Playr-SideStore-2.7.4.ipa",
+  "artifact_rename_note": "User requested iPod-<version>.ipa naming. Existing archive bytes and embedded version/internal counter are unchanged; no rebuild."
 }

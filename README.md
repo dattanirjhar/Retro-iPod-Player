@@ -111,14 +111,16 @@ With full Xcode installed and selected as the active developer directory:
 bash scripts/build_ipa.sh
 ```
 
-This builds Release for physical iPhones and writes `DerivedData/Artifacts/iPod-Playr-SideStore.ipa`.
+This builds Release for physical iPhones and names the IPA from its embedded version:
+`DerivedData/Artifacts/iPod-<version>.ipa`, e.g. `iPod-2.7.4.ipa`. Allocate a new version and internal
+counter before a replacement package; the script refuses to overwrite an existing IPA of that version.
 The archive excludes macOS metadata sidecars so SideStore sees exactly one app bundle in Payload.
 SideStore signs the IPA during manual installation. The build requires no local signing account;
 successful installation does not establish MusicKit service access or runtime correctness.
 No simulator or automated phone installation is used. Run the Foundation-only tests on the Mac
 with `swift test --package-path ThemeCore`; record phone observations in `BETA_TEST_LOG.md`.
 
-Latest manual beta: **2.7.4**, `DerivedData/Artifacts/iPod-Playr-SideStore-2.7.4.ipa`.
+Latest manual beta: **2.7.4**, `DerivedData/Artifacts/iPod-2.7.4.ipa`.
 Only the latest verified IPA is retained. See the [current beta checklist](design/beta/2026-10-19/README.md).
 This release shuffles right-side artwork and displays the version without brackets, retaining
 Bold 3.25 pt Menu bars and the accepted Frosted soft shadow.

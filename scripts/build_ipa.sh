@@ -5,7 +5,6 @@ set -euo pipefail
 project_dir="$(cd "$(dirname "$0")/.." && pwd)"
 artifact_dir="$project_dir/DerivedData/Artifacts"
 app_bundle="$project_dir/DerivedData/Build/Products/Release-iphoneos/iPlayr.app"
-output_path="$artifact_dir/iPod-Playr-SideStore.ipa"
 mkdir -p "$artifact_dir"
 
 if ! xcodebuild -project "$project_dir/iPlayr/iPlayr.xcodeproj" \
@@ -16,7 +15,7 @@ if ! xcodebuild -project "$project_dir/iPlayr/iPlayr.xcodeproj" \
     exit 1
 fi
 
-python3 - "$app_bundle" "$output_path" <<'PY'
+python3 - "$app_bundle" "$artifact_dir" <<'PY'
 import plistlib
 import shutil
 import subprocess
@@ -25,7 +24,7 @@ import tempfile
 import zipfile
 from pathlib import Path
 
-app, output = map(Path, sys.argv[1:])
+app, artifact_dir = map(Path, sys.argv[1:])
 with (app / "Info.plist").open("rb") as stream:
     info = plistlib.load(stream)
 assert info["CFBundleSupportedPlatforms"] == ["iPhoneOS"], "Expected a device build"
@@ -34,6 +33,8 @@ parts = version.split(".")
 assert len(parts) == 3 and all(part.isdigit() for part in parts), "Expected 2.milestone.build version"
 assert parts[0] == "2" and int(parts[1]) > 0 and int(parts[2]) > 0, "Expected positive milestone and milestone build"
 assert info["CFBundleVersion"].isdigit() and int(info["CFBundleVersion"]) > 0, "Expected positive internal installation build"
+output = artifact_dir / f"iPod-{version}.ipa"
+assert not output.exists(), "IPA already exists; allocate the next release version before packaging"
 assert info.get("NSAppleMusicUsageDescription"), "Missing music privacy description"
 assert "audio" in info.get("UIBackgroundModes", []), "Missing background audio mode"
 assert not (app / "embedded.mobileprovision").exists(), "Expected an unsigned app"

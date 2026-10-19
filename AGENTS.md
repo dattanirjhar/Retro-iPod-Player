@@ -27,7 +27,7 @@ Current release: 2.7.4, internal counter 9. Next fix: 2.7.5; next major feature/
 Honor explicitly requested versions without reusing a previously packaged internal counter.
 
 Update the changelog, current beta notes, captured settings, handoff pointers and IPA filename.
-Use `iPod-Playr-SideStore-2.7.4.ipa` style names and retain only the latest verified IPA.
+Use `iPod-<version>.ipa` names, e.g. `iPod-2.7.4.ipa`, and retain only the latest verified IPA.
 The user approved regrouping old release labels; the mapping is in RELEASE_VERSIONING.md.
 Preserve original embedded metadata, raw logs, artifact paths, checksums and Git history. Add
 canonical labels separately; never present relabeling as a change to a historical binary.

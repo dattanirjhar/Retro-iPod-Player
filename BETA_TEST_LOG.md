@@ -621,3 +621,19 @@ Earlier dated source-only and retention statements describe the state at those t
 - [Machine-readable audit](design/beta/2026-10-19/logs/handoff-documentation-audit.json) records
   checked documents and link/source/artifact verification. Documentation-only changes: no app
   source change, version bump, new package, repeated tests or inferred device pass.
+
+
+### IPA filename convention — 19 October 2026
+
+- User finalized `iPod-<version>.ipa`, e.g. **iPod-2.7.4.ipa**. Current local candidate already had
+  this name when checked; verified its bytes against the original release SHA-256.
+- Updated current instructions, README, handoff, beta notes and the verification report. The report
+  retains the original artifact path as `original_artifact`; earlier raw logs/dated paths stay historical.
+- Updated `scripts/build_ipa.sh` to derive the canonical filename from embedded version metadata
+  automatically and refuse overwriting an existing candidate. Full verification still precedes removing
+  the prior IPA. A new package requires the next visible version/internal counter under the policy.
+- No IPA rebuild or app source/version change. Verified ZIP integrity, embedded 2.7.4/internal 9,
+  unchanged size/SHA-256 and single-candidate retention; packaging script syntax checks passed.
+- Durable [filename audit](design/beta/2026-10-19/logs/artifact-filename-audit.json) records
+  the unchanged binary and validation scope. New packaging logic was syntax-checked and reviewed;
+  the script was not rerun to create another IPA in this filename-only update.

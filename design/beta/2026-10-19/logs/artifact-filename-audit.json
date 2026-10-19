@@ -1,0 +1,23 @@
+{
+  "audited_on": "2026-10-19",
+  "version": "2.7.4",
+  "artifact": "DerivedData/Artifacts/iPod-2.7.4.ipa",
+  "original_artifact": "DerivedData/Artifacts/iPod-Playr-SideStore-2.7.4.ipa",
+  "sha256": "c2bc8e61a5a261a448f66ace487a65f7bc3708cac23d72721ef043d277e0fbad",
+  "size_bytes": 5791255,
+  "internal_installation_counter": 9,
+  "filename_convention": "iPod-<version>.ipa",
+  "checks_passed": [
+    "existing canonical filename confirmed",
+    "original IPA SHA-256 unchanged",
+    "original IPA size unchanged",
+    "ZIP integrity",
+    "embedded version 2.7.4 / internal counter 9",
+    "only latest IPA retained",
+    "shell syntax",
+    "embedded Python syntax",
+    "current documentation links resolve"
+  ],
+  "package_rebuilt": false,
+  "packaging_script_execution": "Not rerun; current artifact retained byte-for-byte. New filename logic syntax-checked and reviewed; next new package uses the updated script."
+}

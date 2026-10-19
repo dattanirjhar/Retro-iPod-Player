@@ -58,7 +58,7 @@ Earlier dated next-release and retention statements apply at their original date
 ## Xcode and packaging
 
 - `MARKETING_VERSION` / `CFBundleShortVersionString` contains the complete visible version: `2.7.4`.
-  About displays only that string. The IPA filename is `iPod-Playr-SideStore-2.7.4.ipa`.
+  About displays only that string. The IPA filename is `iPod-2.7.4.ipa`.
 - `CURRENT_PROJECT_VERSION` / `CFBundleVersion` is a separate internal installation counter. Always
   increase it globally for a new or replacement IPA; do not reset it at milestone boundaries or
   require it to match the final visible version component. Both Xcode configurations must agree.
@@ -66,8 +66,9 @@ Earlier dated next-release and retention statements apply at their original date
   Once a candidate IPA is produced, its internal counter is consumed even if rejected. A failed
   compile with no IPA does not consume one. SideStore re-signing is installation, not a new release.
 - Move included Unreleased changes into a dated dotted-version changelog entry. Update the current
-  README, beta notes, settings capture and handoff pointers. The script's unversioned IPA is staging;
-  verify it, then promote it under the dotted version filename and retain only the latest IPA.
+  README, beta notes, settings capture and handoff pointers. The script derives `iPod-<version>.ipa`
+  from embedded metadata and refuses to overwrite an existing candidate. Verify the new package,
+  then remove the superseded IPA; retain only the latest verified candidate.
 - Record embedded version, internal counter, size, SHA-256, platform and source identity. If packaging
   precedes the release commit, record the base commit and changes, identify the final commit when reporting
   the completed release. Preserve original evidence before removing a superseded IPA.

@@ -28,13 +28,13 @@ needed: accepted settings, sources, tests and logs are committed.
 | Internal installation counter | **9**, independent of the visible milestone build 4 |
 | Bundle identifier / deployment | `com.kerem.iPlayr`; arm64 iPhoneOS; iOS 17.0+ |
 | Toolchain used | Xcode 27.0, build 27A266a |
-| Local IPA | `DerivedData/Artifacts/iPod-Playr-SideStore-2.7.4.ipa` |
+| Local IPA | `DerivedData/Artifacts/iPod-2.7.4.ipa` |
 | IPA bytes / SHA-256 | 5,791,255 / `c2bc8e61a5a261a448f66ace487a65f7bc3708cac23d72721ef043d277e0fbad` |
 | Source/package verification | 29 tests passed; Release analysis and final Release compilation passed; IPA checks passed |
 | Phone verification | Installation and runtime acceptance of this candidate are pending |
 
-The release source is committed and pushed. A subsequent documentation-only commit updates this
-handoff without changing the release binary. Read the current Git status before beginning new work;
+The release source is committed and pushed. Subsequent handoff and packaging-tooling commits update the instructions and filename handling
+without changing the release binary. Read the current Git status before beginning new work;
 there was no unfinished source work at release handoff.
 
 **The IPA is excluded from Git**, as is DerivedData. Pulling remote gets source and durable evidence,
@@ -138,10 +138,11 @@ Set both Xcode configurations consistently. Do not bump for documentation-only w
 bash scripts/build_ipa.sh
 ```
 
-This writes a staging `DerivedData/Artifacts/iPod-Playr-SideStore.ipa` and the build log. The script
+This writes `DerivedData/Artifacts/iPod-<version>.ipa` using the embedded version, plus the build
+log. The script refuses to overwrite an existing candidate of that version. It
 checks version format, ZIP integrity, device platform, metadata, single app and no signing/sidecars.
 Complete the additional architecture, executable-permission/identity and embedded-metadata checks
 listed in the current verification report; record the new SHA-256/size and source commit/base.
-Promote to the versioned filename only after verification; then remove the previous IPA. Update
+Verify the new package before removing the previous IPA. Update
 README, beta notes, settings capture, changelog and this handoff; commit/push code and evidence.
 Keep the IPA and DerivedData out of Git. Changes to documentation do not require rebuilding the IPA.
