@@ -115,20 +115,22 @@ successful installation does not establish MusicKit service access or runtime co
 No simulator or automated phone installation is used. Run the Foundation-only tests on the Mac
 with `swift test --package-path ThemeCore`; record phone observations in `BETA_TEST_LOG.md`.
 
-Latest manual beta: **1.6 (7)**, `DerivedData/Artifacts/iPod-Playr-SideStore-1.6.ipa`.
-Only this IPA is retained. See the [beta checklist and verification](design/beta/2026-10-17/README.md).
-This replacement includes Bold 3.25 pt Menu bars; the original 1.5 (5) candidate used 1.75 pt bars.
+Latest manual beta: **2.7.4**, `DerivedData/Artifacts/iPod-Playr-SideStore-2.7.4.ipa`.
+Only the latest verified IPA is retained. See the [current beta checklist](design/beta/2026-10-19/README.md).
+This release shuffles right-side artwork and displays the version without brackets, retaining
+Bold 3.25 pt Menu bars and the accepted Frosted soft shadow.
 
-Release versions follow **1.2 (build 2) → 1.3 (build 3) → 1.4 (build 4) → 1.5 (build 5)**.
-The Bold update was initially packaged as 1.5 (6), then corrected to **1.6 (7)** at the user’s request.
-New releases increment the minor version and build number; replacements increase the build number.
-Next is **1.7 (build 8)**.
-Earlier releases 1.2/1.3 originally embedded marketing version 1.0; historical filenames, metadata
-and verification logs retain those original values.
+Release numbering uses **2.milestone.build**. iPodPlayer is the 1.x predecessor; our 20-theme
+redesign starts milestone 2.1. Major design changes and major features advance the middle number
+and restart the last number at 1. Fixes/refinements increment the last number within that milestone.
+Next packaged fix: **2.7.5**. Search, if the next milestone, becomes **2.8.1**.
+Source commits and local tests do not advance release numbers. See the [policy and complete
+milestone history](RELEASE_VERSIONING.md). Original binary metadata, logs and checksums are preserved.
 
 ## Project documents
 
 - `CHANGELOG.md`: release history and an Unreleased section for ongoing development.
+- `RELEASE_VERSIONING.md`: finalized version/build rules and the audited release history.
 - `THEME_MIGRATION_STATUS.md`: per-item status of the Theme + Mode work.
 - `HANDOFF_2026-10-16.md`: remote updates, local Mac follow-up fixes, and remaining device checks.
 - `PHASE2_MAC_HANDOFF.md`: current prod-dev-team handoff, with implementation, build/test status, and acceptance checks.

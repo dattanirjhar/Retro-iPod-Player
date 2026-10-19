@@ -6,6 +6,7 @@ struct RightImageView: View {
     var isActive: Bool = true
     @Environment(MusicAuthorizationManager.self) private var authManager
     @Environment(MusicLibraryStore.self) private var libraryStore
+    @State private var artworkAlbums: [Album] = []
     @State private var currentImageIndex = 0
     @State private var timerCancellable: AnyCancellable?
     @State private var panDirection: PanDirection = .right
@@ -22,9 +23,8 @@ struct RightImageView: View {
 
                 if !authManager.isAuthorized {
                     unauthorizedView
-                } else if let images = libraryStore.albums?.compactMap({ $0.artwork }),
-                          !images.isEmpty {
-                    artworkSlideshow(images, size: proxy.size)
+                } else if !artworkAlbums.isEmpty {
+                    artworkSlideshow(size: proxy.size)
                 } else {
                     noMusicView
                 }
@@ -36,10 +36,15 @@ struct RightImageView: View {
         .onChange(of: authManager.isAuthorized) { _, isAuthorized in
             if isAuthorized {
                 Task { await loadAlbumsIfAuthorized() }
+                startImageCycle()
+            } else {
+                stopImageCycle()
             }
         }
-        .onChange(of: libraryStore.albums) { _, albums in
-            guard !(albums?.isEmpty ?? true) else { return }
+        .onChange(of: libraryStore.albums, initial: true) { _, albums in
+            // Keep a local shuffle so the library's browsing order is unaffected.
+            artworkAlbums = (albums ?? []).filter { $0.artwork != nil }.shuffled()
+            currentImageIndex = 0
             startImageCycle()
         }
         .onChange(of: isActive) { _, isNowActive in
@@ -49,6 +54,7 @@ struct RightImageView: View {
                 stopImageCycle()
             }
         }
+        .onAppear(perform: startImageCycle)
         .onDisappear(perform: stopImageCycle)
     }
 
@@ -69,11 +75,12 @@ struct RightImageView: View {
         }
     }
 
-    private func artworkSlideshow(_ images: [Artwork], size: CGSize) -> some View {
+    private func artworkSlideshow(size: CGSize) -> some View {
         let dimension = (max(size.width, size.height) * overscan).rounded()
         return ZStack {
-            if currentImageIndex >= 0 && currentImageIndex < images.count {
-                ArtworkImage(images[currentImageIndex], width: dimension, height: dimension)
+            if artworkAlbums.indices.contains(currentImageIndex),
+               let artwork = artworkAlbums[currentImageIndex].artwork {
+                ArtworkImage(artwork, width: dimension, height: dimension)
                     .scaledToFill()
                     .frame(width: size.width, height: size.height)
                     .scaleEffect(overscan)
@@ -82,7 +89,7 @@ struct RightImageView: View {
                         direction: panDirection,
                         maxOffset: size.width * panFraction
                     ))
-                    .id("\(currentImageIndex)-\(panDirection.rawValue)")
+                    .id(artworkAlbums[currentImageIndex].id)
                     .transition(.opacity)
                     .animation(.easeInOut(duration: transitionDuration), value: currentImageIndex)
             }
@@ -105,19 +112,28 @@ struct RightImageView: View {
 
     private func startImageCycle() {
         stopImageCycle()
-        guard isActive, !(libraryStore.albums?.isEmpty ?? true) else { return }
+        guard isActive, authManager.isAuthorized, artworkAlbums.count > 1 else { return }
         timerCancellable = Timer.publish(every: imageDuration, on: .main, in: .common)
             .autoconnect()
             .sink { _ in transitionToNextImage() }
     }
 
     private func transitionToNextImage() {
-        guard let albumsCount = libraryStore.albums?.count,
-              albumsCount > 1 else { return }
+        guard isActive, authManager.isAuthorized, artworkAlbums.count > 1 else { return }
 
         withAnimation(.easeInOut(duration: transitionDuration)) {
             panDirection = panDirection == .right ? .left : .right
-            currentImageIndex = (currentImageIndex + 1) % albumsCount
+            if currentImageIndex + 1 < artworkAlbums.count {
+                currentImageIndex += 1
+            } else {
+                // Show every available cover once, then reshuffle for the next round.
+                let previousID = artworkAlbums[currentImageIndex].id
+                artworkAlbums.shuffle()
+                if artworkAlbums[0].id == previousID {
+                    artworkAlbums.swapAt(0, Int.random(in: 1..<artworkAlbums.count))
+                }
+                currentImageIndex = 0
+            }
         }
     }
 

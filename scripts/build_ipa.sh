@@ -29,6 +29,11 @@ app, output = map(Path, sys.argv[1:])
 with (app / "Info.plist").open("rb") as stream:
     info = plistlib.load(stream)
 assert info["CFBundleSupportedPlatforms"] == ["iPhoneOS"], "Expected a device build"
+version = info["CFBundleShortVersionString"]
+parts = version.split(".")
+assert len(parts) == 3 and all(part.isdigit() for part in parts), "Expected 2.milestone.build version"
+assert parts[0] == "2" and int(parts[1]) > 0 and int(parts[2]) > 0, "Expected positive milestone and milestone build"
+assert info["CFBundleVersion"].isdigit() and int(info["CFBundleVersion"]) > 0, "Expected positive internal installation build"
 assert info.get("NSAppleMusicUsageDescription"), "Missing music privacy description"
 assert "audio" in info.get("UIBackgroundModes", []), "Missing background audio mode"
 assert not (app / "embedded.mobileprovision").exists(), "Expected an unsigned app"
@@ -54,5 +59,5 @@ with zipfile.ZipFile(output) as archive:
     assert candidates == {app.name}, f"Ambiguous SideStore app candidates: {candidates}"
     assert archive.getinfo(f"Payload/{app.name}/").is_dir(), "App candidate must be a directory"
 print(f"Unsigned IPA: {output}")
-print(f"Version {info['CFBundleShortVersionString']} ({info['CFBundleVersion']}); SideStore must sign before installation.")
+print(f"Version {version}; SideStore must sign before installation.")
 PY

@@ -1,5 +1,8 @@
 # Evidence from the 15 October 2026 beta session
 
+Historical release label: **2.1.1** under [the milestone policy](../../../RELEASE_VERSIONING.md).
+Original bundle metadata, filenames and dated instructions below are preserved.
+
 Current instructions: [prod-dev-team handoff](../../../PHASE2_MAC_HANDOFF.md).
 Device: iPhone 17, iOS 27.0.1. The images and console were supplied by the user. Images are saved
 byte-for-byte from the supplied JPEG exports; no crop, annotation, regeneration or rescaling was applied.

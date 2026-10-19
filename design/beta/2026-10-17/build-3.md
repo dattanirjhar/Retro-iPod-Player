@@ -1,4 +1,8 @@
-# Manual beta candidate — version 1.3 (3)
+# Historical beta — 2.4.1
+
+Canonical label under [the new policy](../../../RELEASE_VERSIONING.md). Original bundle marketing version: `1.0`; build: `3`.
+The metadata, filenames and dated retention statements below record the original package.
+Current release: [2.7.4](../2026-10-19/README.md).
 
 Historical release label 1.3; the original bundle embedded version **1.0 (3)**. Filenames and
 verification metadata below preserve the original candidate; it has not been rebuilt.

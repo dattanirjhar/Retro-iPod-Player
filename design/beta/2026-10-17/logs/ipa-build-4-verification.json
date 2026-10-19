@@ -27,5 +27,7 @@
   "removed_previous_ipas": [
     "DerivedData/Artifacts/iPod-Playr-SideStore-1.0-3.ipa",
     "DerivedData/Artifacts/iPod-Playr-SideStore-1.0-4.ipa"
-  ]
+  ],
+  "release_label": "2.6.1",
+  "release_label_note": "User-approved 2.milestone.build label regrouped by feature and design milestones; builds restart within milestones. Original embedded metadata, artifact paths, hashes and check results are unchanged."
 }

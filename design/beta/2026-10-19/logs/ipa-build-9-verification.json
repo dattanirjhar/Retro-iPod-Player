@@ -1,0 +1,36 @@
+{
+  "artifact": "DerivedData/Artifacts/iPod-Playr-SideStore-2.7.4.ipa",
+  "version": "2.7.4",
+  "build": "9",
+  "release_label": "2.7.4",
+  "milestone": 7,
+  "milestone_build": 4,
+  "bundle_identifier": "com.kerem.iPlayr",
+  "minimum_ios": "17.0",
+  "size_bytes": 5791255,
+  "sha256": "c2bc8e61a5a261a448f66ace487a65f7bc3708cac23d72721ef043d277e0fbad",
+  "architecture": "arm64",
+  "executable_sha256": "77fc7915b99a43735e2ea044c45625b84472eed05fff3c9e11c5f78625edbf75",
+  "source_base_commit": "c1aedb3f383e95dbe79a20d8f14db725a915b2f3",
+  "source_note": "Includes shuffled right-side album artwork, dotted About version, and user-approved 2.milestone.build convention. Internal counter 9 is independent of visible milestone build 4. Source includes the working-tree changes recorded in this release commit.",
+  "checks_passed": [
+    "ZIP integrity",
+    "single app directory in Payload",
+    "no AppleDouble or __MACOSX metadata",
+    "arm64 Mach-O executable",
+    "iOS device platform",
+    "executable permissions",
+    "version 2.7.4; internal installation counter 9",
+    "music privacy description",
+    "background audio mode",
+    "unsigned app with no embedded provisioning profile",
+    "archive executable matches Release product"
+  ],
+  "installation": "Not performed; import into SideStore for manual signing and device acceptance",
+  "replaced_previous_candidate": {
+    "artifact": "DerivedData/Artifacts/iPod-Playr-SideStore-1.6.ipa",
+    "version": "1.6",
+    "build": "7",
+    "sha256": "54934e30d0ce3f1b4b7b04d5066547d6566b819f57564ee4a9120506130b2659"
+  }
+}

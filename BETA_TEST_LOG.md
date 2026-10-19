@@ -1,14 +1,13 @@
 # Beta observations — 15 October 2026
 
-Release labels now follow **1.2/build 2 → 1.3/build 3 → 1.4/build 4 → 1.5/build 5**. The Bold
-update was corrected from 1.5/build 6 to **1.6/build 7**; the next default release is **1.7/build 8**.
-The original build-2/build-3 bundles embedded version 1.0; historical bundle metadata, paths and
-raw verification logs are preserved. Retention statements in dated entries apply at those dates.
+Release labels now use **2.milestone.build**. Historical builds are regrouped by design milestone
+in [the policy and mapping](RELEASE_VERSIONING.md); original bundle metadata and raw evidence are preserved.
+Older dated release names and next-release statements below reflect their original context.
 
-**Latest candidate, 17 October: 1.6 (7).** Uses the approved Bold 3.25 pt wide double Menu
-symbol and gives Frosted bare glyphs with a soft shadow, retaining opaque accessibility fallbacks.
-All 29 ThemeCore tests, Release analysis/build and IPA checks pass. Only the 1.6 IPA is retained;
-manual device acceptance remains pending. See the [current checklist](design/beta/2026-10-17/README.md).
+**Latest candidate, 19 October: 2.7.4.** Right-side artwork shuffles independently of library sorting;
+About displays the dotted version without a bracketed suffix. The original build 7 is now labeled
+2.7.3, but its embedded marketing version remains 1.6 in historical evidence.
+See the [current beta checklist](design/beta/2026-10-19/README.md) for verification and device acceptance.
 
 **Build-3 history, 17 October:** immersive Cover Flow track selection/return navigation, denser album
 spacing (0.70 / 0.36), landscape title layout, system status-bar contrast, and the 22-theme gallery
@@ -558,3 +557,46 @@ Earlier dated source-only and retention statements describe the state at those t
 - Updated current release pointers, settings capture and changelog. Next default release: **1.7 (8)**.
 - Evidence: [Release build](design/beta/2026-10-17/logs/beta-7-release-build.log),
   [IPA verification](design/beta/2026-10-17/logs/ipa-build-7-verification.json).
+
+
+### Right-side artwork shuffle — source update, 19 October 2026
+
+- Confirmed the split-screen artwork used the library's sorted order and advanced sequentially.
+  It also wrapped by total album count despite filtering out missing artwork, permitting blank slides.
+- Added a local, artwork-only shuffled album list. Display every cover once per round, then reshuffle;
+  prevent the last cover in a round from becoming the first cover in the next when multiple covers exist.
+  Library/Cover Flow sort order is unchanged. Empty artwork lists show No Music; one cover stays still.
+- Preserved six-second timing, alternating pan and crossfade. Identify slides by album ID so a new
+  shuffled round transitions correctly. Initialize from preloaded albums, reset on library changes,
+  stop on disappearance, fullscreen navigation or authorization loss, and resume when active again.
+- Unsigned Debug iPhone build passed, with only the existing AppIntents metadata-extraction notice.
+  [Build evidence](design/beta/2026-10-19/logs/random-artwork-debug-build.log).
+- Manual checks pending: randomized first cover and full round; no immediate boundary repeat;
+  missing artwork; empty/single-cover libraries; return from Now Playing; library sorting and authorization changes.
+- Source-only update: retained **1.6 (7)** IPA is unchanged. No release bump, package or Git push performed.
+
+
+### Release 2.7.4 — artwork shuffle and milestone numbering, 19 October 2026
+
+- Final convention confirmed by the user: **2.milestone.build**. iPodPlayer is the series-1
+  predecessor; our 20-theme redesign starts milestone 2.1. Major features and major design changes
+  advance the middle component; the final component restarts at 1 for each milestone.
+- Audited seven milestones: themes; playback/Queue; Cover Flow; artwork-driven themes; material
+  redesign; Settings/About; clickwheel controls. Some landed in the same package. Full mapping:
+  [RELEASE_VERSIONING.md](RELEASE_VERSIONING.md). Canonical labels are separate from original binary metadata.
+- Packaged the right-side artwork shuffle and bracket-free About version as **2.7.4**.
+  Internal installation counter **9** remains independent and increases globally. Counter 8 was an
+  undelivered intermediate package during the numbering discussion; its metadata/hash are preserved.
+- Updated both Xcode configurations, packaging validation, current/historical release summaries,
+  handoff pointers, captured settings and changelog. Original raw logs, metadata, artifact paths
+  and checksums remain intact; historical verification reports add canonical labels separately.
+- All 29 ThemeCore tests passed. Release static analysis passed for identical Swift app source
+  before the final numbering update; final unsigned Release compilation passed.
+- Verified the IPA: **5,791,255 bytes**, SHA-256
+  `c2bc8e61a5a261a448f66ace487a65f7bc3708cac23d72721ef043d277e0fbad`. ZIP integrity, single app, arm64/iOS platform,
+  executable permissions, version/internal counter, privacy/audio metadata, unsigned/provision-free
+  bundle, absence of macOS sidecars, and executable identity passed.
+- Kept only `DerivedData/Artifacts/iPod-Playr-SideStore-2.7.4.ipa` after successful verification.
+  The previous IPA's checksum was confirmed before removal. SideStore installation and runtime
+  acceptance remain manual; [current checklist](design/beta/2026-10-19/README.md).
+- Next ordinary package: **2.7.5**. Search, if next milestone: **2.8.1**.

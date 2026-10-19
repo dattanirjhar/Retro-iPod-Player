@@ -1,22 +1,38 @@
 # Changelog
 
 Track product and development changes here, newest first. Add work under **Unreleased** as it
-lands; move it into a dated `version (build)` section when packaging an IPA. Record validation
+lands; move it into a dated `2.milestone.build` section when packaging an IPA. Record validation
 separately from manual device acceptance. Detailed beta evidence remains in `BETA_TEST_LOG.md`.
 
-Release versions follow **1.2 (build 2), 1.3 (build 3), 1.4 (build 4), 1.5 (build 5)**.
-The Bold update was first packaged as 1.5 (build 6), then corrected to **1.6 (build 7)**.
-Next is **1.7 (build 8)**.
-Releases 1.2 and 1.3 are retrospective labels: those original IPAs embedded marketing version 1.0.
-Their original metadata, filenames, logs and checksums are preserved.
+Release labels use **2.milestone.build**, without a separate bracketed build number.
+The middle component advances for major feature or design milestones; the last component counts
+packages within that milestone and restarts at 1 for the next milestone. Historical releases have been regrouped under the user-approved
+[version policy](RELEASE_VERSIONING.md); original bundle metadata and checksums remain preserved.
 
 ## Unreleased
 
 No unreleased changes.
 
-## 1.6 (7) — 2026-10-17
+## 2.7.4 — 2026-10-19
 
-[Manual beta checklist and verification](design/beta/2026-10-17/README.md).
+[Manual beta checklist and verification](design/beta/2026-10-19/README.md).
+
+- Randomized the right-side menu artwork independently of library sorting. Every available cover
+  appears once per shuffled round; the next round avoids an immediate repeat. Missing artwork
+  is excluded from both display and cycling, preventing blank slides.
+- Preserved six-second timing, alternating pan and crossfade. Preloaded albums initialize correctly;
+  cycling pauses while hidden or unauthorized and resumes when the menu returns.
+- Adopted **2.milestone.build** throughout About, release notes and the IPA filename. Major feature/design
+  milestones advance the middle number and restart the last number at 1; subsequent packages advance it.
+  Regrouped old release labels with their original embedded metadata preserved separately.
+- All 29 ThemeCore tests, Release analysis for the same Swift source, final unsigned Release
+  compilation and IPA verification passed. Device slideshow and navigation acceptance remain manual.
+
+## 2.7.3 — 2026-10-17
+
+Canonical label; original bundle marketing version `1.6`, build `7`.
+
+[Historical beta checklist and verification](design/beta/2026-10-17/README.md).
 
 - Corrected the Bold Menu release to **1.6** at the user's request. Debug and Release now embed
   marketing version 1.6 and build 7; About reads these values from the bundle.
@@ -24,7 +40,9 @@ No unreleased changes.
 - Rebuilt and verified the unsigned arm64 IPA for SideStore. Only the latest IPA is retained;
   original build-6 notes, metadata and checksums remain archived. Device acceptance is pending.
 
-## 1.5 (6) — 2026-10-17
+## 2.7.2 — 2026-10-17
+
+Canonical label; original bundle marketing version `1.5`, build `6`.
 
 [Historical beta checklist and verification](design/beta/2026-10-17/build-6.md).
 
@@ -45,9 +63,11 @@ No unreleased changes.
 ### Packaging
 
 - Rebuilt **v1.5 (build 6)** as requested, replacing the earlier 1.5 (5) IPA only after verification.
-  Only the latest IPA is retained. The next default release is 1.6 (build 7).
+  Only the latest IPA was retained at that time; build 7 followed as a version correction.
 
-## 1.5 (5) — 2026-10-17
+## 2.7.1 — 2026-10-17
+
+Canonical label; original bundle marketing version `1.5`, build `5`.
 
 Source commit: `86cf1e1`. [Historical beta checklist and verification](design/beta/2026-10-17/build-5.md).
 
@@ -74,7 +94,11 @@ Source commit: `86cf1e1`. [Historical beta checklist and verification](design/be
 - Built unsigned arm64 IPA **1.5 (5)** for SideStore. Only the latest verified IPA is retained;
   the previous 1.4 archive was removed after the replacement passed verification.
 
-## 1.4 (4) — 2026-10-17
+## 2.6.1 — 2026-10-17
+
+Includes milestones **2.5: material redesign** and **2.6: Settings/About**, packaged together.
+
+Canonical label; original bundle marketing version `1.4`, build `4`.
 
 [Historical beta checklist and verification](design/beta/2026-10-17/build-4.md).
 
@@ -118,7 +142,11 @@ Source commit: `86cf1e1`. [Historical beta checklist and verification](design/be
   and selection actions no longer include the three disabled entries. Phone installation and
   layout/material acceptance remain pending.
 
-## 1.3 (3) — 2026-10-17
+## 2.4.1 — 2026-10-17
+
+Includes milestones **2.3: Cover Flow** and **2.4: artwork-driven themes**, packaged together.
+
+Canonical label; original bundle marketing version `1.0`, build `3`.
 
 Source commit: `ede1582`. [Historical beta checklist and evidence](design/beta/2026-10-17/build-3.md).
 
@@ -144,7 +172,9 @@ Source commit: `ede1582`. [Historical beta checklist and evidence](design/beta/2
 - 28 ThemeCore tests, fresh Release static analysis, unsigned Release device build and IPA packaging
   checks passed. Manual installation and device acceptance were left to the beta session.
 
-## 1.2 (2) — 2026-10-16
+## 2.2.1 — 2026-10-16
+
+Canonical label; original bundle marketing version `1.0`, build `2`.
 
 Source through `4b188ef`. [Review and verification details](BETA_TEST_LOG.md).
 
@@ -164,7 +194,9 @@ Source through `4b188ef`. [Review and verification details](BETA_TEST_LOG.md).
 
 - 20 ThemeCore tests, Debug/Release iOS compilation and IPA packaging checks passed.
 
-## 1.0 (1) — 2026-10-15
+## 2.1.1 — 2026-10-15
+
+Canonical label; original bundle marketing version `1.0`, build `1`.
 
 Initial documented manual beta. [Preserved evidence](design/beta/2026-10-15/README.md).
 

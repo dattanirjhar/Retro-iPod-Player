@@ -1,0 +1,9 @@
+{
+  "version": "1.3.8",
+  "build": "8",
+  "sha256": "26f4354339d360fb84edafe0342b8f0ecaba241c0a81f779c83c150de401f8a1",
+  "size_bytes": 5791255,
+  "original_staging_path": "DerivedData/Artifacts/iPod-Playr-SideStore.ipa",
+  "status": "Undelivered intermediate candidate, superseded while user finalized numbering; internal build 8 consumed",
+  "reason": "Final convention is 2.milestone.build, with build resetting within each milestone and major features counted alongside design milestones."
+}

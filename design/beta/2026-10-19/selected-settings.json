@@ -1,0 +1,44 @@
+{
+  "release": "2.7.4",
+  "internalInstallationCounter": 9,
+  "milestone": 7,
+  "milestoneBuild": 4,
+  "artworkSlideshow": {
+    "selection": "shuffled rounds of albums with artwork",
+    "noImmediateBoundaryRepeat": true,
+    "secondsPerSlide": 6,
+    "transitionSeconds": 1.5,
+    "librarySortChanged": false
+  },
+  "menuSymbol": {
+    "name": "Wide double Bold",
+    "barWidthPoints": 18,
+    "barThicknessPoints": 3.25,
+    "barCenterSpacingPoints": 6,
+    "barGapPoints": 2.75,
+    "canvasPoints": 24
+  },
+  "frostedSymbols": {
+    "backing": "none by default; opaque under Reduce Transparency or Increase Contrast",
+    "primaryShadow": {
+      "opacity": 0.7,
+      "radiusPoints": 1.4,
+      "yPoints": 1.4
+    },
+    "edgeShadow": {
+      "opacity": 0.28,
+      "radiusPoints": 0.4
+    }
+  },
+  "lighting": {
+    "frostedArtworkIntensity": 0.8,
+    "frostedArtworkLuminance": 1.15,
+    "albumGlowAmbientScreenIntensity": 0.8
+  },
+  "coverFlow": {
+    "nearestSpacing": 0.7,
+    "stackSpacing": 0.36
+  },
+  "themeCount": 21,
+  "deviceAcceptance": "Pending; settings preserve earlier approved design values"
+}

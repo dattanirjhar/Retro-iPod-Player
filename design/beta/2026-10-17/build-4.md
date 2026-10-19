@@ -1,4 +1,8 @@
-# Manual beta candidate — version 1.4 (4)
+# Historical beta — 2.6.1
+
+Canonical label under [the new policy](../../../RELEASE_VERSIONING.md). Original bundle marketing version: `1.4`; build: `4`.
+The metadata, filenames and dated retention statements below record the original package.
+Current release: [2.7.4](../2026-10-19/README.md).
 
 Built on 17 October 2026 for physical iPhones, iOS 17+. Import into SideStore for manual signing
 and installation. Phone installation and device acceptance have not been performed.

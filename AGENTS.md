@@ -1,12 +1,20 @@
 # Release versioning
 
-Use the user's marketing-version convention: 1.2, 1.3, 1.4, 1.5, then 1.6. Increment the marketing
-minor version and build number for each new packaged release unless the user requests a specific
-version. Always increment the build number for a replacement IPA, including same-version rebuilds.
-The user corrected the Bold Menu release to 1.6; the replacement is 1.6/build 7. The next default
-release is 1.7/build 8. Read the current Xcode values before incrementing; source-only edits do not
-require a version bump.
+Follow [RELEASE_VERSIONING.md](RELEASE_VERSIONING.md). The user finalized **2.milestone.build**:
+iPodPlayer is the 1.x predecessor; our 20-theme redesign begins 2.1. Advance the middle component
+for major design changes OR major feature additions, including Search. Start the last component
+at 1 for each new milestone; increase it for packaged fixes/refinements/rebuilds within that milestone.
+Source-only edits, commits and local Debug/test builds do not consume release numbers.
 
-Update the changelog, current beta notes and IPA filename to match each packaged release.
-Earlier releases 1.2 and 1.3 originally embedded marketing version 1.0; preserve original logs,
-checksums, artifact paths and recorded bundle metadata when using the revised release labels.
+Set MARKETING_VERSION to the full dotted version. About displays only that string, with no brackets.
+CURRENT_PROJECT_VERSION is a separate globally increasing internal installation counter; do not
+reset it with a milestone or require it to equal the last visible component. Keep Debug/Release equal.
+Read current project metadata and packaging records before assigning the next unused numbers.
+Current release: 2.7.4, internal counter 9. Next fix: 2.7.5; next major feature/design milestone: 2.8.1.
+Honor explicitly requested versions without reusing a previously packaged internal counter.
+
+Update the changelog, current beta notes, captured settings, handoff pointers and IPA filename.
+Use `iPod-Playr-SideStore-2.7.4.ipa` style names and retain only the latest verified IPA.
+The user approved regrouping old release labels; the mapping is in RELEASE_VERSIONING.md.
+Preserve original embedded metadata, raw logs, artifact paths, checksums and Git history. Add
+canonical labels separately; never present relabeling as a change to a historical binary.

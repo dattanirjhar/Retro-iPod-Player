@@ -32,6 +32,7 @@
     ],
     "latest_sha256_unchanged": true
   },
-  "release_label": "1.2",
-  "release_label_note": "Retrospective user-requested release label; version records the original embedded marketing version. Artifact path and checksum are unchanged."
+  "release_label": "2.2.1",
+  "release_label_note": "User-approved 2.milestone.build label regrouped by feature and design milestones; builds restart within milestones. Original embedded metadata, artifact paths, hashes and check results are unchanged.",
+  "legacy_release_label": "1.2"
 }

@@ -29,5 +29,7 @@
     "version": "1.5",
     "build": "5",
     "sha256": "dac1798ae308b9135d09f538cb2b8092a112094469d7d1eb7a7ebe75bda74a8d"
-  }
+  },
+  "release_label": "2.7.2",
+  "release_label_note": "User-approved 2.milestone.build label regrouped by feature and design milestones; builds restart within milestones. Original embedded metadata, artifact paths, hashes and check results are unchanged."
 }
